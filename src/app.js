@@ -1,3 +1,9 @@
+import $ from 'jquery';
+import MainLoop from 'mainloop';
+import Box2D from 'box2dweb';
+const PIXI = window.PIXI;
+
+
 var b2World = Box2D.Dynamics.b2World;
 var b2Vec2 = Box2D.Common.Math.b2Vec2;
 var b2BodyDef = Box2D.Dynamics.b2BodyDef;
@@ -36,11 +42,17 @@ fixDef.density = 1.0;
 fixDef.friction = 0.0;
 fixDef.restitution = 1;
 
+var initialBallX = 470;
+var initialBallY = 90;
+var ballRadius = 15;
+
+var initialPaddleX = 350;
+var initialPaddleY = height - 50;
+var paddleWidth = 150;
+var paddleHeight = 20;
+
 function createBall (world) {
     var ball = new PIXI.Graphics();
-    var initialBallX = 470;
-    var initialBallY = 90;
-    var ballRadius = 15;
     ball.lineStyle(1, 0xDEFFA3, 1);
     ball.beginFill(0xFFFF0B, 0.5);
     ball.drawCircle(initialBallX, initialBallY, ballRadius);
@@ -67,10 +79,6 @@ function createBall (world) {
 
 function createPaddle (world) {
     var paddle = new PIXI.Graphics();
-    var initialPaddleX = 350;
-    var initialPaddleY = height - 50;
-    var paddleWidth = 150;
-    var paddleHeight = 20;
     paddle.beginFill(0x000000, 0.5);
     paddle.drawRect(initialPaddleX, initialPaddleY, paddleWidth, paddleHeight);
     paddle.endFill();
@@ -136,9 +144,9 @@ var world = new b2World(
 
 var paddle = createPaddle(world);
 var ball = createBall(world);
-createWall('top');
-createWall('left');
-createWall('right');
+createWall(world, 'top');
+createWall(world, 'left');
+createWall(world, 'right');
 
 stage.addChild(paddle);
 stage.addChild(ball);
@@ -159,8 +167,8 @@ function processInput () {
 function update () {
     world.Step(frameRate, velocityIterations, positionIterations);
 
-    ball.position.x = metersToPixels(ballBody.GetPosition().x) - initialBallX;
-    ball.position.y = metersToPixels(ballBody.GetPosition().y) - initialBallY;
+    ball.position.x = metersToPixels(ball.body.GetPosition().x) - initialBallX;
+    ball.position.y = metersToPixels(ball.body.GetPosition().y) - initialBallY;
 
     if (leftKey.isDown) {
         paddle.position.x = paddle.position.x - 3;

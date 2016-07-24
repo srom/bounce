@@ -1,0 +1,25 @@
+{
+  "name": "bounce",
+  "version": "1.0.0",
+  "description": "BOUNCE",
+  "main": "build/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "srom",
+  "license": "MIT",
+  "dependencies": {
+    "box2dweb": "git+https://github.com/mikolalysenko/box2dweb.git",
+    "jquery": "^2.1.4",
+    "mainloop.js": "^1.0.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.4.0",
+    "babel-loader": "^6.2.1",
+    "babel-polyfill": "^6.8.0",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-stage-1": "^6.5.0",
+    "babel-preset-stage-2": "^6.5.0",
+    "webpack": "^1.13.1"
+  }
+}
