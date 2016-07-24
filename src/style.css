@@ -1,0 +1,14 @@
+.canvas {
+    background-color: #87CEFA;
+}
+
+.debugCanvas {
+    z-index: 1000;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+}
+
+#resumeButton {
+    display: none;
+}
