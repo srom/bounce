@@ -1,3 +1,7 @@
+#bounce {
+    position: relative;
+}
+
 .canvas {
     background-color: #87CEFA;
 }
@@ -5,8 +9,8 @@
 .debugCanvas {
     z-index: 1000;
     position: absolute;
-    top: 8px;
-    left: 8px;
+    top: 0;
+    left: 0;
 }
 
 #resumeButton {
