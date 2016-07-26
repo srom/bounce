@@ -2,6 +2,7 @@ import Box2D from 'box2dweb';
 
 import fixDef from './fixture';
 import { pixelsToMeters, metersToPixels } from '../util/scale';
+import Entity from './entity';
 
 const PIXI = window.PIXI;
 
@@ -13,7 +14,7 @@ const DEFAULT_LINE_COLOR = 0xDEFFA3;
 const DEFAULT_FILL_COLOR = 0xFFFF0B;
 
 
-export default class Ball {
+export default class Ball extends Entity {
 
     el = undefined;
     body = undefined;
@@ -23,12 +24,33 @@ export default class Ball {
     _initialX = undefined;
     _initialY = undefined;
 
-    constructor (world, x_px, y_px, radius_px, options = {}) {
+    constructor (x_px, y_px, radius_px, options = {}) {
+        super();
         this.el = this._createBall(x_px, y_px, radius_px, options);
-        this.body = this._createBody(world);
+    }
+
+    createBody (world) {
+        const bodyDef = new b2BodyDef;
+        bodyDef.type = b2Body.b2_dynamicBody;
+        bodyDef.position.x = pixelsToMeters(this._initialX);
+        bodyDef.position.y = pixelsToMeters(this._initialY);
+
+        fixDef.shape = new b2CircleShape(pixelsToMeters(this.radius));
+
+        const body = world.CreateBody(bodyDef);
+        body.CreateFixture(fixDef);
+        body.SetBullet(true);
+
+        this.body = body;
+
+        return body;
     }
 
     setLinearVelocity (x_m, y_m) {
+        if (!this.body) {
+            console.error("Cannot set linear velocity without a body.");
+            return;
+        }
         var velocity = this.body.GetLinearVelocity();
         velocity.x = x_m;
         velocity.y = y_m;
@@ -54,20 +76,5 @@ export default class Ball {
         this._initialY = y_px;
 
         return ball;
-    };
-
-    _createBody = (world) => {
-        const bodyDef = new b2BodyDef;
-        bodyDef.type = b2Body.b2_dynamicBody;
-        bodyDef.position.x = pixelsToMeters(this._initialX);
-        bodyDef.position.y = pixelsToMeters(this._initialY);
-
-        fixDef.shape = new b2CircleShape(pixelsToMeters(this.radius));
-
-        const ballBody = world.CreateBody(bodyDef);
-        ballBody.CreateFixture(fixDef);
-        ballBody.SetBullet(true);
-
-        return ballBody;
     };
 }

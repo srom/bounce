@@ -39,17 +39,19 @@ const world = new b2World(
     true               // allow sleep
 );
 
-const paddle = new Paddle(world, initialPaddleX, initialPaddleY, paddleWidth, paddleHeight);
+const paddle = new Paddle(initialPaddleX, initialPaddleY, paddleWidth, paddleHeight);
+paddle.createBody(world);
 
-const ball = new Ball(world, initialBallX, initialBallY, ballRadius);
+const ball = new Ball(initialBallX, initialBallY, ballRadius);
+ball.createBody(world);
 ball.setLinearVelocity(initialBallVelocityX_m, initialBallVelocityY_m);
 
-new Wall(world, 1, 'top');
-new Wall(world, 1, 'left');
-new Wall(world, 1, 'right');
+(new Wall(1, 'top')).createBody(world);
+(new Wall(1, 'left')).createBody(world);
+(new Wall(1, 'right')).createBody(world);
 
-stage.addChild(paddle.el);
-stage.addChild(ball.el);
+paddle.addTo(stage);
+ball.addTo(stage);
 
 if (constants.DEBUG_PHYSICS) {
     debugPhysics(world);

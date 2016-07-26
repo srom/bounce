@@ -3,6 +3,7 @@ import Box2D from 'box2dweb';
 import fixDef from './fixture';
 import { pixelsToMeters, metersToPixels } from '../util/scale';
 import * as input from '../util/input';
+import Entity from './entity';
 
 const PIXI = window.PIXI;
 
@@ -13,7 +14,7 @@ const b2Body = Box2D.Dynamics.b2Body;
 const b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape;
 const b2Vec2 = Box2D.Common.Math.b2Vec2;
 
-export default class Paddle {
+export default class Paddle extends Entity {
 
     el = undefined;
     body = undefined;
@@ -24,9 +25,26 @@ export default class Paddle {
     _initialX = undefined;
     _initialY = undefined;
 
-    constructor (world, x_px, y_px, width_px, height_px, options = {}) {
+    constructor (x_px, y_px, width_px, height_px, options = {}) {
+        super();
         this.el = this._createPaddle(x_px, y_px, width_px, height_px, options);
-        this.body = this._createBody(world);
+    }
+
+    createBody (world) {
+        const bodyDef = new b2BodyDef;
+        bodyDef.type = b2Body.b2_staticBody;
+        bodyDef.position.x = pixelsToMeters(this._initialX) + pixelsToMeters(this.width) / 2;
+        bodyDef.position.y = pixelsToMeters(this._initialY) + pixelsToMeters(this.height) / 2;
+
+        fixDef.shape = new b2PolygonShape();
+        fixDef.shape.SetAsBox(pixelsToMeters(this.width) / 2, pixelsToMeters(this.height) / 2);
+
+        const body = world.CreateBody(bodyDef);
+        body.CreateFixture(fixDef);
+
+        this.body = body;
+
+        return body;
     }
 
     updatePosition () {
@@ -63,20 +81,5 @@ export default class Paddle {
         this._initialY = y_px;
 
         return paddle;
-    };
-
-    _createBody = (world) => {
-        const bodyDef = new b2BodyDef;
-        bodyDef.type = b2Body.b2_staticBody;
-        bodyDef.position.x = pixelsToMeters(this._initialX) + pixelsToMeters(this.width) / 2;
-        bodyDef.position.y = pixelsToMeters(this._initialY) + pixelsToMeters(this.height) / 2;
-
-        fixDef.shape = new b2PolygonShape();
-        fixDef.shape.SetAsBox(pixelsToMeters(this.width) / 2, pixelsToMeters(this.height) / 2);
-
-        const paddleBody = world.CreateBody(bodyDef);
-        paddleBody.CreateFixture(fixDef);
-
-        return paddleBody;
     };
 }
