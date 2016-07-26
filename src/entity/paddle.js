@@ -16,14 +16,14 @@ const b2Vec2 = Box2D.Common.Math.b2Vec2;
 
 export default class Paddle extends Entity {
 
-    el = undefined;
-    body = undefined;
+    el;
+    body;
 
-    width = undefined;
-    height = undefined;
+    width;
+    height;
 
-    _initialX = undefined;
-    _initialY = undefined;
+    _initialX;
+    _initialY;
 
     constructor (x_px, y_px, width_px, height_px, options = {}) {
         super();
@@ -44,7 +44,7 @@ export default class Paddle extends Entity {
 
         this.body = body;
 
-        return body;
+        return this;
     }
 
     updatePosition () {
@@ -65,6 +65,7 @@ export default class Paddle extends Entity {
                 )
             );
         }
+        return this;
     }
 
     _createPaddle = (x_px, y_px, width_px, height_px, options) => {

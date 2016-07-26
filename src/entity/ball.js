@@ -16,13 +16,13 @@ const DEFAULT_FILL_COLOR = 0xFFFF0B;
 
 export default class Ball extends Entity {
 
-    el = undefined;
-    body = undefined;
+    el;
+    body;
 
-    radius = undefined;
+    radius;
 
-    _initialX = undefined;
-    _initialY = undefined;
+    _initialX;
+    _initialY;
 
     constructor (x_px, y_px, radius_px, options = {}) {
         super();
@@ -43,7 +43,7 @@ export default class Ball extends Entity {
 
         this.body = body;
 
-        return body;
+        return this;
     }
 
     setLinearVelocity (x_m, y_m) {
@@ -51,15 +51,18 @@ export default class Ball extends Entity {
             console.error("Cannot set linear velocity without a body.");
             return;
         }
-        var velocity = this.body.GetLinearVelocity();
+        const velocity = this.body.GetLinearVelocity();
         velocity.x = x_m;
         velocity.y = y_m;
         this.body.SetLinearVelocity(velocity);
+
+        return this;
     }
 
     updatePosition () {
         this.el.position.x = metersToPixels(this.body.GetPosition().x) - this._initialX;
         this.el.position.y = metersToPixels(this.body.GetPosition().y) - this._initialY;
+        return this;
     }
 
     _createBall = (x_px, y_px, radius_px, options) => {

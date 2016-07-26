@@ -11,12 +11,12 @@ const b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape;
 
 export default class Wall extends Entity {
 
-    el = undefined;
-    body = undefined;
+    el;
+    body;
 
-    thickness = undefined;
+    thickness;
 
-    _initialPosition = undefined;
+    _initialPosition;
 
     constructor (thickness_px, position, options = {}) {
         super();
@@ -47,7 +47,7 @@ export default class Wall extends Entity {
 
         this.body = body;
 
-        return body;
+        return this;
     }
 
     _createWall = (thickness_px, position, options) => {

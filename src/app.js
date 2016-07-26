@@ -6,6 +6,7 @@ import * as constants from './constants';
 import Ball from './entity/ball';
 import Paddle from './entity/paddle';
 import Wall from './entity/wall';
+import Brick from './entity/brick';
 import debugPhysics from './util/debug';
 
 const PIXI = window.PIXI;
@@ -14,7 +15,7 @@ const b2World = Box2D.Dynamics.b2World;
 const b2Vec2 = Box2D.Common.Math.b2Vec2;
 
 const initialBallX = 470;
-const initialBallY = 90;
+const initialBallY = constants.STAGE_HEIGHT_PX - 100;
 const ballRadius = 15;
 const initialBallVelocityX_m = 2.1;
 const initialBallVelocityY_m = 1.6;
@@ -23,6 +24,9 @@ const initialPaddleX = 350;
 const initialPaddleY = constants.STAGE_HEIGHT_PX - 50;
 const paddleWidth = 150;
 const paddleHeight = 20;
+
+const brickWidth = 70;
+const brickHeight = 30;
 
 const renderer = PIXI.autoDetectRenderer(constants.STAGE_WIDTH_PX, constants.STAGE_HEIGHT_PX, {
     antialias: true,
@@ -43,8 +47,44 @@ const paddle = new Paddle(initialPaddleX, initialPaddleY, paddleWidth, paddleHei
 paddle.createBody(world);
 
 const ball = new Ball(initialBallX, initialBallY, ballRadius);
-ball.createBody(world);
-ball.setLinearVelocity(initialBallVelocityX_m, initialBallVelocityY_m);
+ball.createBody(
+    world
+).setLinearVelocity(
+    initialBallVelocityX_m, -initialBallVelocityY_m
+);
+
+const bricks = [
+    (new Brick(
+        40,
+        100,
+        brickWidth,
+        brickHeight
+    )).createBody(world),
+    (new Brick(
+        40 + brickWidth + 40,
+        100 + brickHeight + 30,
+        brickWidth,
+        brickHeight
+    )).createBody(world),
+    (new Brick(
+        constants.STAGE_WIDTH_PX - brickWidth - 40,
+        100,
+        brickWidth,
+        brickHeight
+    )).createBody(world),
+    (new Brick(
+        constants.STAGE_WIDTH_PX - 2 * brickWidth - 40 - 40,
+        100 + brickHeight + 30,
+        brickWidth,
+        brickHeight
+    )).createBody(world),
+    (new Brick(
+        (constants.STAGE_WIDTH_PX - brickWidth) / 2,
+        80,
+        brickWidth,
+        brickHeight
+    )).createBody(world),
+];
 
 (new Wall(1, 'top')).createBody(world);
 (new Wall(1, 'left')).createBody(world);
@@ -52,6 +92,7 @@ ball.setLinearVelocity(initialBallVelocityX_m, initialBallVelocityY_m);
 
 paddle.addTo(stage);
 ball.addTo(stage);
+bricks.forEach((brick) => brick.addTo(stage));
 
 if (constants.DEBUG_PHYSICS) {
     debugPhysics(world);
