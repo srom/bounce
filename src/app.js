@@ -87,9 +87,9 @@ const bricks = [
     )).createBody(world),
 ];
 
-(new Wall(1, 'top')).createBody(world);
-(new Wall(1, 'left')).createBody(world);
-(new Wall(1, 'right')).createBody(world);
+(new Wall(constants.WALL_THICKNESS, 'top')).createBody(world);
+(new Wall(constants.WALL_THICKNESS, 'left')).createBody(world);
+(new Wall(constants.WALL_THICKNESS, 'right')).createBody(world);
 
 paddle.addTo(stage);
 ball.addTo(stage);

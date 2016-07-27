@@ -3,6 +3,7 @@ import Box2D from 'box2dweb';
 import fixDef from './fixture';
 import { pixelsToMeters, metersToPixels } from '../util/scale';
 import * as input from '../util/input';
+import * as constants from '../constants';
 import Entity from './entity';
 
 const PIXI = window.PIXI;
@@ -21,6 +22,8 @@ export default class Paddle extends Entity {
 
     width;
     height;
+
+    speed_px = 3;
 
     _initialX;
     _initialY;
@@ -49,7 +52,12 @@ export default class Paddle extends Entity {
 
     render () {
         if (input.LEFT_KEY.isDown) {
-            this.el.position.x = this.el.position.x - 3;
+            let candidatePos_px = this.el.position.x - this.speed_px;
+            if (candidatePos_px + this._initialX < constants.WALL_THICKNESS) {
+                candidatePos_px += this.speed_px;
+            }
+
+            this.el.position.x = candidatePos_px;
             this.body.SetPosition(
                 new b2Vec2(
                     pixelsToMeters(this.el.position.x + this._initialX) + pixelsToMeters(this.width) / 2,
@@ -57,7 +65,12 @@ export default class Paddle extends Entity {
                 )
             );
         } else if (input.RIGHT_KEY.isDown) {
-            this.el.position.x = this.el.position.x + 3;
+            let candidatePos_px = this.el.position.x + this.speed_px;
+            if (candidatePos_px + this._initialX + this.width > constants.STAGE_WIDTH_PX - constants.WALL_THICKNESS) {
+                candidatePos_px -= this.speed_px;
+            }
+
+            this.el.position.x = candidatePos_px;
             this.body.SetPosition(
                 new b2Vec2(
                     pixelsToMeters(this.el.position.x + this._initialX) + pixelsToMeters(this.width) / 2,
