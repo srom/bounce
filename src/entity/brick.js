@@ -19,6 +19,10 @@ export default class Brick extends Entity {
     el;
     body;
 
+    lives = 1;
+
+    _garbage  = false;
+
     constructor (x_px, y_px, width_px, height_px, options = {}) {
         super();
         this.el = this._createBrick(x_px, y_px, width_px, height_px, options);
@@ -39,6 +43,17 @@ export default class Brick extends Entity {
         this.body = body;
 
         return this;
+    }
+
+    contact () {
+        this.lives--;
+        if (this.lives <= 0) {
+            this._garbage = true;
+        }
+    }
+
+    isGarbage () {
+        return this._garbage;
     }
 
     _createBrick = (x_px, y_px, width_px, height_px, options) => {

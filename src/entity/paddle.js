@@ -47,7 +47,7 @@ export default class Paddle extends Entity {
         return this;
     }
 
-    updatePosition () {
+    render () {
         if (input.LEFT_KEY.isDown) {
             this.el.position.x = this.el.position.x - 3;
             this.body.SetPosition(

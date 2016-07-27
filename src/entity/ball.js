@@ -59,9 +59,10 @@ export default class Ball extends Entity {
         return this;
     }
 
-    updatePosition () {
+    render () {
         this.el.position.x = metersToPixels(this.body.GetPosition().x) - this._initialX;
         this.el.position.y = metersToPixels(this.body.GetPosition().y) - this._initialY;
+
         return this;
     }
 

@@ -13,16 +13,17 @@ const PIXI = window.PIXI;
 
 const b2World = Box2D.Dynamics.b2World;
 const b2Vec2 = Box2D.Common.Math.b2Vec2;
+const b2Listener = Box2D.Dynamics.b2ContactListener;
 
 const initialBallX = 470;
 const initialBallY = constants.STAGE_HEIGHT_PX - 100;
-const ballRadius = 15;
+const ballRadius = 10;
 const initialBallVelocityX_m = 2.1;
 const initialBallVelocityY_m = 1.6;
 
 const initialPaddleX = 350;
 const initialPaddleY = constants.STAGE_HEIGHT_PX - 50;
-const paddleWidth = 150;
+const paddleWidth = 100;
 const paddleHeight = 20;
 
 const brickWidth = 70;
@@ -94,6 +95,19 @@ paddle.addTo(stage);
 ball.addTo(stage);
 bricks.forEach((brick) => brick.addTo(stage));
 
+const listener = new b2Listener;
+listener.EndContact = function (contact) {
+    const bodyA = contact.GetFixtureA().GetBody();
+    const bodyB = contact.GetFixtureB().GetBody();
+
+    const brick = bricks.find((b) => [bodyA, bodyB].includes(b.body));
+
+    if (([bodyA, bodyB].includes(ball.body)) && brick) {
+        brick.contact();
+    }
+};
+world.SetContactListener(listener);
+
 if (constants.DEBUG_PHYSICS) {
     debugPhysics(world);
 }
@@ -105,8 +119,15 @@ function processInput () {
 function update () {
     world.Step(constants.FRAME_RATE, constants.VELOCITY_ITERATIONS, constants.POSITION_ITERATIONS);
 
-    ball.updatePosition();
-    paddle.updatePosition();
+    ball.render();
+    paddle.render();
+
+    bricks.forEach((brick) => {
+        if (brick.isGarbage()) {
+            world.DestroyBody(brick.body);
+            stage.removeChild(brick.el);
+        }
+    });
 }
 
 function draw () {
