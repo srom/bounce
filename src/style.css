@@ -16,3 +16,41 @@
 #resumeButton {
     display: none;
 }
+
+.victory {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 200px;
+    background-color: #ffffff;
+    display: none;
+    text-align: center;
+}
+
+.gameOver {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 200px;
+    background-color: #ffffff;
+    display: none;
+    text-align: center;
+}
+
+.caption {
+    margin-top: 18%;
+    font-size: 40px;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.victory .caption {
+    color: #37ab2e;
+}
+
+.gameOver .caption {
+    color: #b6241c;
+}

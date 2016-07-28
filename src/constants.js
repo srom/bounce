@@ -12,5 +12,5 @@ export const FRAME_RATE = 1 / 60;
 export const VELOCITY_ITERATIONS = 8;
 export const POSITION_ITERATIONS = 3;
 
-export const DEBUG_PHYSICS = true;
+export const DEBUG_PHYSICS = false;
 export const DEBUG_CANVAS_CLASS = "debugCanvas";

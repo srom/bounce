@@ -3,6 +3,7 @@ import Box2D from 'box2dweb';
 import fixDef from './fixture';
 import { pixelsToMeters, metersToPixels } from '../util/scale';
 import Entity from './entity';
+import * as constants from '../constants';
 
 const PIXI = window.PIXI;
 
@@ -20,6 +21,8 @@ export default class Ball extends Entity {
     body;
 
     radius;
+
+    dead = false;
 
     _initialX;
     _initialY;
@@ -62,6 +65,10 @@ export default class Ball extends Entity {
     render () {
         this.el.position.x = metersToPixels(this.body.GetPosition().x) - this._initialX;
         this.el.position.y = metersToPixels(this.body.GetPosition().y) - this._initialY;
+
+        if (this.el.position.y - this.radius + this._initialY > constants.STAGE_HEIGHT_PX) {
+            this.dead = true;
+        }
 
         return this;
     }

@@ -128,6 +128,14 @@ function update () {
             stage.removeChild(brick.el);
         }
     });
+
+    if (bricks.every((b) => b.isGarbage())) {
+        youWin();
+    }
+
+    if (ball.dead) {
+        gameOver();
+    }
 }
 
 function draw () {
@@ -137,6 +145,16 @@ function draw () {
 
 function clean () {
     world.ClearForces();
+}
+
+function youWin () {
+    MainLoop.stop();
+    $('.victory').show();
+}
+
+function gameOver () {
+    MainLoop.stop();
+    $('.gameOver').show();
 }
 
 MainLoop.setBegin(processInput).setUpdate(update).setDraw(draw).setEnd(clean);
