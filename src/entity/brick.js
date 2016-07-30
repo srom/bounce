@@ -12,6 +12,9 @@ const b2Body = Box2D.Dynamics.b2Body;
 const b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape;
 
 
+export const BrickLevel1 = 1;
+export const BrickLevel2 = 2;
+
 export default class Brick extends Entity {
 
     el;
@@ -21,9 +24,9 @@ export default class Brick extends Entity {
 
     _garbage  = false;
 
-    constructor (x_px, y_px, width_px, height_px, options = {}) {
+    constructor (lvl, x_px, y_px, width_px, height_px, options = {}) {
         super();
-        this.el = this._createBrick(x_px, y_px, width_px, height_px, options);
+        this.el = this._createBrick(lvl, x_px, y_px, width_px, height_px, options);
     }
 
     createBody (world) {
@@ -47,6 +50,8 @@ export default class Brick extends Entity {
         this.lives--;
         if (this.lives <= 0) {
             this._garbage = true;
+        } else {
+            this.el.texture = PIXI.loader.resources.brickDamagedGreen.texture;
         }
     }
 
@@ -54,8 +59,15 @@ export default class Brick extends Entity {
         return this._garbage;
     }
 
-    _createBrick = (x_px, y_px, width_px, height_px, options) => {
-        const brick = new PIXI.Sprite(PIXI.loader.resources.brickBlue.texture);
+    _createBrick = (lvl, x_px, y_px, width_px, height_px, options) => {
+        let texture;
+        if (lvl === BrickLevel1) {
+            texture = PIXI.loader.resources.brickBlue.texture;
+        } else {
+            texture = PIXI.loader.resources.brickGreen.texture;
+            this.lives = 2;
+        }
+        const brick = new PIXI.Sprite(texture);
         brick.position.x = x_px;
         brick.position.y = y_px;
         brick.height = height_px;

@@ -6,7 +6,7 @@ import * as constants from './constants';
 import Ball from './entity/ball';
 import Paddle from './entity/paddle';
 import Wall from './entity/wall';
-import Brick from './entity/brick';
+import Brick, { BrickLevel1, BrickLevel2 } from './entity/brick';
 import debugPhysics from './util/debug';
 
 const PIXI = window.PIXI;
@@ -41,6 +41,10 @@ PIXI.loader.add(
     'paddle', 'resources/entities/paddle@2x.png'
 ).add(
     'brickBlue', 'resources/entities/brick-blue@2x.png'
+).add(
+    'brickGreen', 'resources/entities/brick-green@2x.png'
+).add(
+    'brickDamagedGreen', 'resources/entities/brick-damaged-green@2x.png'
 ).once(
     'complete', init
 ).load();
@@ -65,30 +69,35 @@ function init () {
 
     const bricks = [
         (new Brick(
+            BrickLevel1,
             40,
             100,
             brickWidth,
             brickHeight
         )).createBody(world),
         (new Brick(
+            BrickLevel2,
             40 + brickWidth + 40,
             100 + brickHeight + 30,
             brickWidth,
             brickHeight
         )).createBody(world),
         (new Brick(
+            BrickLevel1,
             constants.STAGE_WIDTH_PX - brickWidth - 40,
             100,
             brickWidth,
             brickHeight
         )).createBody(world),
         (new Brick(
+            BrickLevel2,
             constants.STAGE_WIDTH_PX - 2 * brickWidth - 40 - 40,
             100 + brickHeight + 30,
             brickWidth,
             brickHeight
         )).createBody(world),
         (new Brick(
+            BrickLevel1,
             (constants.STAGE_WIDTH_PX - brickWidth) / 2,
             80,
             brickWidth,
