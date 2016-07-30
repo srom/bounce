@@ -139,7 +139,9 @@ function update () {
 }
 
 function draw () {
-    world.DrawDebugData();
+    if (constants.DEBUG_PHYSICS) {
+        world.DrawDebugData();
+    }
     renderer.render(stage);
 }
 
