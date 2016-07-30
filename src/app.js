@@ -159,14 +159,3 @@ function gameOver () {
 
 MainLoop.setBegin(processInput).setUpdate(update).setDraw(draw).setEnd(clean);
 MainLoop.start();
-
-$('#stopButton').click(function () {
-    MainLoop.stop();
-    $('#resumeButton').show();
-    $(this).hide();
-});
-$('#resumeButton').click(function () {
-    MainLoop.start();
-    $('#stopButton').show();
-    $(this).hide();
-});
