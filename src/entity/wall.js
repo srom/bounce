@@ -9,6 +9,8 @@ const b2BodyDef = Box2D.Dynamics.b2BodyDef;
 const b2Body = Box2D.Dynamics.b2Body;
 const b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape;
 
+const DEFAULT_COLOR = 0xaaaaaa;
+
 export default class Wall extends Entity {
 
     el;
@@ -51,7 +53,24 @@ export default class Wall extends Entity {
     }
 
     _createWall = (thickness_px, position, options) => {
+        const { color } = options;
+
         this.thickness = thickness_px;
         this._initialPosition = position;
+
+        var wall = new PIXI.Graphics();
+        wall.beginFill(color || DEFAULT_COLOR, 0.5);
+
+        if (this._initialPosition === "top") {
+            wall.drawRect(0, 0, STAGE_WIDTH_PX, this.thickness);
+        } else if (this._initialPosition === "left") {
+            wall.drawRect(0, 0, this.thickness, STAGE_HEIGHT_PX);
+        } else if (this._initialPosition === "right") {
+            wall.drawRect(STAGE_WIDTH_PX - this.thickness, 0, this.thickness, STAGE_HEIGHT_PX);
+        }
+
+        wall.endFill();
+
+        return wall;
     };
 }
