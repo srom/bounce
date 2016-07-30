@@ -7,8 +7,6 @@ import Entity from './entity';
 
 const PIXI = window.PIXI;
 
-const DEFAULT_COLOR = 0x8a5c95;
-
 const b2BodyDef = Box2D.Dynamics.b2BodyDef;
 const b2Body = Box2D.Dynamics.b2Body;
 const b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape;
@@ -57,12 +55,11 @@ export default class Brick extends Entity {
     }
 
     _createBrick = (x_px, y_px, width_px, height_px, options) => {
-        const { color } = options;
-
-        const brick = new PIXI.Graphics();
-        brick.beginFill(color || DEFAULT_COLOR, 0.5);
-        brick.drawRect(x_px, y_px, width_px, height_px);
-        brick.endFill();
+        const brick = new PIXI.Sprite(PIXI.loader.resources.brickBlue.texture);
+        brick.position.x = x_px;
+        brick.position.y = y_px;
+        brick.height = height_px;
+        brick.width = width_px;
 
         this.width = width_px;
         this.height = height_px;

@@ -3,7 +3,9 @@
 }
 
 .canvas {
-    background-color: #87CEFA;
+    background-image: url('../resources/background@2x.png');
+    background-repeat: no-repeat;
+    background-size: 600px 600px;
 }
 
 .debugCanvas {

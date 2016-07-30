@@ -11,8 +11,8 @@ const b2BodyDef = Box2D.Dynamics.b2BodyDef;
 const b2Body = Box2D.Dynamics.b2Body;
 const b2CircleShape = Box2D.Collision.Shapes.b2CircleShape;
 
-const DEFAULT_LINE_COLOR = 0xDEFFA3;
-const DEFAULT_FILL_COLOR = 0xFFFF0B;
+const BALL_LINE_COLOR = 0xDEFFA3;
+const BALL_FILL_COLOR = 0xFFFF0B;
 
 
 export default class Ball extends Entity {
@@ -74,11 +74,9 @@ export default class Ball extends Entity {
     }
 
     _createBall = (x_px, y_px, radius_px, options) => {
-        const { lineColor, fillColor } = options;
-
         var ball = new PIXI.Graphics();
-        ball.lineStyle(1, lineColor || DEFAULT_LINE_COLOR, 1);
-        ball.beginFill(fillColor || DEFAULT_FILL_COLOR, 0.5);
+        ball.lineStyle(1, BALL_LINE_COLOR, 1);
+        ball.beginFill(BALL_FILL_COLOR, 0.5);
         ball.drawCircle(x_px, y_px, radius_px);
         ball.endFill();
 

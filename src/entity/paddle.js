@@ -8,8 +8,6 @@ import Entity from './entity';
 
 const PIXI = window.PIXI;
 
-const DEFAULT_COLOR = 0x407394;
-
 const b2BodyDef = Box2D.Dynamics.b2BodyDef;
 const b2Body = Box2D.Dynamics.b2Body;
 const b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape;
@@ -53,27 +51,27 @@ export default class Paddle extends Entity {
     render () {
         if (input.LEFT_KEY.isDown) {
             let candidatePos_px = this.el.position.x - this.speed_px;
-            if (candidatePos_px + this._initialX < constants.WALL_THICKNESS) {
+            if (candidatePos_px < constants.WALL_THICKNESS) {
                 candidatePos_px += this.speed_px;
             }
 
             this.el.position.x = candidatePos_px;
             this.body.SetPosition(
                 new b2Vec2(
-                    pixelsToMeters(this.el.position.x + this._initialX) + pixelsToMeters(this.width) / 2,
+                    pixelsToMeters(this.el.position.x) + pixelsToMeters(this.width) / 2,
                     this.body.GetPosition().y
                 )
             );
         } else if (input.RIGHT_KEY.isDown) {
             let candidatePos_px = this.el.position.x + this.speed_px;
-            if (candidatePos_px + this._initialX + this.width > constants.STAGE_WIDTH_PX - constants.WALL_THICKNESS) {
+            if (candidatePos_px + this.width > constants.STAGE_WIDTH_PX - constants.WALL_THICKNESS) {
                 candidatePos_px -= this.speed_px;
             }
 
             this.el.position.x = candidatePos_px;
             this.body.SetPosition(
                 new b2Vec2(
-                    pixelsToMeters(this.el.position.x + this._initialX) + pixelsToMeters(this.width) / 2,
+                    pixelsToMeters(this.el.position.x) + pixelsToMeters(this.width) / 2,
                     this.body.GetPosition().y
                 )
             );
@@ -82,12 +80,11 @@ export default class Paddle extends Entity {
     }
 
     _createPaddle = (x_px, y_px, width_px, height_px, options) => {
-        const { color } = options;
-
-        var paddle = new PIXI.Graphics();
-        paddle.beginFill(color || DEFAULT_COLOR, 0.5);
-        paddle.drawRect(x_px, y_px, width_px, height_px);
-        paddle.endFill();
+        const paddle = new PIXI.Sprite(PIXI.loader.resources.paddle.texture);
+        paddle.position.x = x_px;
+        paddle.position.y = y_px;
+        paddle.height = height_px;
+        paddle.width = width_px;
 
         this.width = width_px;
         this.height = height_px;
