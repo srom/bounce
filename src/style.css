@@ -24,7 +24,7 @@
 .victory {
     position: absolute;
     top: 50%;
-    left: 40%;
+    left: 50%;
     transform: translate(-50%, -50%);
     width: 400px;
     height: 200px;
@@ -36,7 +36,7 @@
 .gameOver {
     position: absolute;
     top: 50%;
-    left: 40%;
+    left: 50%;
     transform: translate(-50%, -50%);
     width: 400px;
     height: 200px;
