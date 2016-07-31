@@ -50,6 +50,8 @@ PIXI.loader.add(
     'brickDamagedGreen', 'resources/entities/brick-damaged-green@2x.png'
 ).add(
     'arrow', 'resources/entities/arrow@2x.png'
+).add(
+    'bounceSound', 'resources/sound/bounce.wav'
 ).once(
     'complete', init
 ).load();
@@ -122,10 +124,14 @@ function init () {
         const bodyB = contact.GetFixtureB().GetBody();
 
         const brick = bricks.find((b) => [bodyA, bodyB].includes(b.body));
-
         if (([bodyA, bodyB].includes(ball.body)) && brick) {
             brick.contact();
         }
+
+        if ([bodyA, bodyB].includes(ball.body)) {
+            ball.contact();
+        }
+
     };
     world.SetContactListener(listener);
 

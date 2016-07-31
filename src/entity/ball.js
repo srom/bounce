@@ -26,9 +26,11 @@ export default class Ball extends Entity {
 
     dead = false;
     canMove = false;
+    bouncing = false;
 
     _initialX;
     _initialY;
+    _bounceSound;
 
     constructor (x_px, y_px, radius_px, options = {}) {
         super();
@@ -65,6 +67,10 @@ export default class Ball extends Entity {
         return this;
     }
 
+    contact () {
+        this.bouncing = true;
+    }
+
     render () {
         if (this.canMove) {
             this.el.position.x = metersToPixels(this.body.GetPosition().x) - this._initialX;
@@ -73,6 +79,14 @@ export default class Ball extends Entity {
             if (this.el.position.y - this.radius + this._initialY > constants.STAGE_HEIGHT_PX) {
                 this.dead = true;
             }
+        }
+
+        if (this.bouncing) {
+            if (!this._bounceSound) {
+                this.bounceSound = PIXI.audioManager.getAudio('bounceSound');
+            }
+            this.bounceSound.play();
+            this.bouncing = false;
         }
 
         return this;
