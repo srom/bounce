@@ -6,6 +6,7 @@ import * as constants from './constants';
 import Ball from './entity/ball';
 import Paddle from './entity/paddle';
 import Wall from './entity/wall';
+import Arrow from './entity/arrow';
 import Brick, { BrickLevel1, BrickLevel2 } from './entity/brick';
 import debugPhysics from './util/debug';
 
@@ -15,16 +16,18 @@ const b2World = Box2D.Dynamics.b2World;
 const b2Vec2 = Box2D.Common.Math.b2Vec2;
 const b2Listener = Box2D.Dynamics.b2ContactListener;
 
-const initialBallX = 470;
-const initialBallY = constants.STAGE_HEIGHT_PX - 100;
-const ballRadius = 8;
-const initialBallVelocityX_m = 2.1;
-const initialBallVelocityY_m = 1.6;
-
-const initialPaddleX = 350;
-const initialPaddleY = constants.STAGE_HEIGHT_PX - 50;
 const paddleWidth = 100;
 const paddleHeight = 20;
+const initialPaddleX = constants.STAGE_WIDTH_PX / 2 - paddleWidth / 2;
+const initialPaddleY = constants.STAGE_HEIGHT_PX - 50;
+
+const ballRadius = 6;
+const initialBallX = initialPaddleX + paddleWidth / 2;
+const initialBallY = initialPaddleY - ballRadius - 4;
+const velocityFactor = 1.7;
+
+const initialArrowX = initialBallX + ballRadius / 2;
+const initialArrowY = initialBallY - 2 * ballRadius;
 
 const brickWidth = 70;
 const brickHeight = 30;
@@ -45,6 +48,8 @@ PIXI.loader.add(
     'brickGreen', 'resources/entities/brick-green@2x.png'
 ).add(
     'brickDamagedGreen', 'resources/entities/brick-damaged-green@2x.png'
+).add(
+    'arrow', 'resources/entities/arrow@2x.png'
 ).once(
     'complete', init
 ).load();
@@ -61,11 +66,8 @@ function init () {
     paddle.createBody(world);
 
     const ball = new Ball(initialBallX, initialBallY, ballRadius);
-    ball.createBody(
-        world
-    ).setLinearVelocity(
-        initialBallVelocityX_m, -initialBallVelocityY_m
-    );
+
+    const arrow = new Arrow(initialArrowX, initialArrowY);
 
     const bricks = [
         (new Brick(
@@ -111,6 +113,7 @@ function init () {
 
     paddle.addTo(stage);
     ball.addTo(stage);
+    arrow.addTo(stage);
     bricks.forEach((brick) => brick.addTo(stage));
 
     const listener = new b2Listener;
@@ -142,6 +145,7 @@ function init () {
 
         ball.render();
         paddle.render();
+        arrow.render();
 
         bricks.forEach((brick) => {
             if (brick.isGarbage()) {
@@ -149,6 +153,16 @@ function init () {
                 stage.removeChild(brick.el);
             }
         });
+
+        if (arrow.ready && !ball.canMove) {
+            paddle.canMove = true;
+            ball.canMove = true;
+            ball.createBody(world).setLinearVelocity(
+                velocityFactor * arrow.velocity.x,
+                velocityFactor * arrow.velocity.y
+            );
+            stage.removeChild(arrow.el);
+        }
 
         if (bricks.every((b) => b.isGarbage())) {
             youWin();

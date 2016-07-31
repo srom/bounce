@@ -22,6 +22,7 @@ export default class Paddle extends Entity {
     height;
 
     speed_px = 3;
+    canMove = false;
 
     _initialX;
     _initialY;
@@ -49,6 +50,10 @@ export default class Paddle extends Entity {
     }
 
     render () {
+        if (!this.canMove) {
+            return this;
+        }
+
         if (input.LEFT_KEY.isDown) {
             let candidatePos_px = this.el.position.x - this.speed_px;
             if (candidatePos_px < constants.WALL_THICKNESS) {

@@ -2,6 +2,7 @@ import Box2D from 'box2dweb';
 
 import fixDef from './fixture';
 import { pixelsToMeters, metersToPixels } from '../util/scale';
+import * as input from '../util/input';
 import Entity from './entity';
 import * as constants from '../constants';
 
@@ -10,6 +11,7 @@ const PIXI = window.PIXI;
 const b2BodyDef = Box2D.Dynamics.b2BodyDef;
 const b2Body = Box2D.Dynamics.b2Body;
 const b2CircleShape = Box2D.Collision.Shapes.b2CircleShape;
+const b2Vec2 = Box2D.Common.Math.b2Vec2;
 
 const BALL_LINE_COLOR = 0xDEFFA3;
 const BALL_FILL_COLOR = 0xFFFF0B;
@@ -23,6 +25,7 @@ export default class Ball extends Entity {
     radius;
 
     dead = false;
+    canMove = false;
 
     _initialX;
     _initialY;
@@ -63,11 +66,13 @@ export default class Ball extends Entity {
     }
 
     render () {
-        this.el.position.x = metersToPixels(this.body.GetPosition().x) - this._initialX;
-        this.el.position.y = metersToPixels(this.body.GetPosition().y) - this._initialY;
+        if (this.canMove) {
+            this.el.position.x = metersToPixels(this.body.GetPosition().x) - this._initialX;
+            this.el.position.y = metersToPixels(this.body.GetPosition().y) - this._initialY;
 
-        if (this.el.position.y - this.radius + this._initialY > constants.STAGE_HEIGHT_PX) {
-            this.dead = true;
+            if (this.el.position.y - this.radius + this._initialY > constants.STAGE_HEIGHT_PX) {
+                this.dead = true;
+            }
         }
 
         return this;
