@@ -52,6 +52,10 @@ PIXI.loader.add(
     'arrow', 'resources/entities/arrow@2x.png'
 ).add(
     'bounceSound', 'resources/sound/bounce.wav'
+).add(
+    'gameOverSound', 'resources/sound/game-over.wav'
+).add(
+    'victorySound', 'resources/sound/victory.wav'
 ).once(
     'complete', init
 ).load();
@@ -123,7 +127,7 @@ function init () {
         const bodyA = contact.GetFixtureA().GetBody();
         const bodyB = contact.GetFixtureB().GetBody();
 
-        const containsBall = [bodyA, bodyB].includes(ball.body)
+        const containsBall = [bodyA, bodyB].includes(ball.body);
 
         const brick = bricks.find((b) => [bodyA, bodyB].includes(b.body));
         if (containsBall && brick) {
@@ -138,6 +142,9 @@ function init () {
     world.SetContactListener(listener);
 
     renderer.render(stage);
+
+    const gameOverSound = PIXI.audioManager.getAudio('gameOverSound');
+    const victorySound = PIXI.audioManager.getAudio('victorySound');
 
     if (constants.DEBUG_PHYSICS) {
         debugPhysics(world);
@@ -206,11 +213,13 @@ function init () {
     function youWin () {
         MainLoop.stop();
         $('.victory').show();
+        victorySound.play();
     }
 
     function gameOver () {
         MainLoop.stop();
         $('.gameOver').show();
+        gameOverSound.play();
     }
 
     MainLoop.setBegin(processInput).setUpdate(update).setDraw(draw).setEnd(clean);

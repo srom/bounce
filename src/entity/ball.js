@@ -11,7 +11,6 @@ const PIXI = window.PIXI;
 const b2BodyDef = Box2D.Dynamics.b2BodyDef;
 const b2Body = Box2D.Dynamics.b2Body;
 const b2CircleShape = Box2D.Collision.Shapes.b2CircleShape;
-const b2Vec2 = Box2D.Common.Math.b2Vec2;
 
 const BALL_LINE_COLOR = 0xDEFFA3;
 const BALL_FILL_COLOR = 0xFFFF0B;
