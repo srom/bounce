@@ -35,6 +35,7 @@ export default class Ball extends Entity {
     constructor (x_px, y_px, radius_px, options = {}) {
         super();
         this.el = this._createBall(x_px, y_px, radius_px, options);
+        this._bounceSound = PIXI.audioManager.getAudio('bounceSound');
     }
 
     createBody (world) {
@@ -83,9 +84,10 @@ export default class Ball extends Entity {
 
         if (this.bouncing) {
             if (!this._bounceSound) {
-                this.bounceSound = PIXI.audioManager.getAudio('bounceSound');
+                console.warn("No bounce sound found");
+                return;
             }
-            this.bounceSound.play();
+            this._bounceSound.play();
             this.bouncing = false;
         }
 

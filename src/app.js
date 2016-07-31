@@ -24,7 +24,7 @@ const initialPaddleY = constants.STAGE_HEIGHT_PX - 50;
 const ballRadius = 6;
 const initialBallX = initialPaddleX + paddleWidth / 2;
 const initialBallY = initialPaddleY - ballRadius - 4;
-const velocityFactor = 1.7;
+const velocityFactor = 2;
 
 const initialArrowX = initialBallX + ballRadius / 2;
 const initialArrowY = initialBallY - 2 * ballRadius;
@@ -123,12 +123,14 @@ function init () {
         const bodyA = contact.GetFixtureA().GetBody();
         const bodyB = contact.GetFixtureB().GetBody();
 
+        const containsBall = [bodyA, bodyB].includes(ball.body)
+
         const brick = bricks.find((b) => [bodyA, bodyB].includes(b.body));
-        if (([bodyA, bodyB].includes(ball.body)) && brick) {
+        if (containsBall && brick) {
             brick.contact();
         }
 
-        if ([bodyA, bodyB].includes(ball.body)) {
+        if (containsBall) {
             ball.contact();
         }
 
@@ -141,6 +143,17 @@ function init () {
         debugPhysics(world);
         world.DrawDebugData();
     }
+
+    $('.volumeOn').on('click', function () {
+        $(this).hide();
+        $('.volumeOff').show();
+        PIXI.audioManager.mute();
+    });
+    $('.volumeOff').on('click', function () {
+        $(this).hide();
+        $('.volumeOn').show();
+        PIXI.audioManager.unmute();
+    });
 
     function processInput () {
         PIXI.keyboardManager.update();
