@@ -24,7 +24,6 @@ const initialPaddleY = constants.STAGE_HEIGHT_PX - 50;
 const ballRadius = 6;
 const initialBallX = initialPaddleX + paddleWidth / 2;
 const initialBallY = initialPaddleY - ballRadius - 4;
-const velocityFactor = 2;
 
 const initialArrowX = initialBallX + ballRadius / 2;
 const initialArrowY = initialBallY - 2 * ballRadius;
@@ -137,7 +136,6 @@ function init () {
         if (containsBall) {
             ball.contact();
         }
-
     };
     world.SetContactListener(listener);
 
@@ -184,8 +182,8 @@ function init () {
             paddle.canMove = true;
             ball.canMove = true;
             ball.createBody(world).setLinearVelocity(
-                velocityFactor * arrow.velocity.x,
-                velocityFactor * arrow.velocity.y
+                constants.VELOCITY_FACTOR * arrow.velocity.x,
+                constants.VELOCITY_FACTOR * arrow.velocity.y
             );
             stage.removeChild(arrow.el);
         }

@@ -8,6 +8,8 @@ export const WALL_THICKNESS = 8;
 export const STAGE_WIDTH_M = 5;
 export const RATIO = STAGE_WIDTH_M / STAGE_WIDTH_PX;
 
+export const VELOCITY_FACTOR = 2;
+
 export const FRAME_RATE = 1 / 60;
 export const VELOCITY_ITERATIONS = 6;
 export const POSITION_ITERATIONS = 2;
