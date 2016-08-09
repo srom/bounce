@@ -32,7 +32,7 @@ export default class Ball extends Entity {
     _initialY;
     _bounceSound;
 
-    _trapCount = 0;
+    _targetVelocity;
 
     constructor (x_px, y_px, radius_px, options = {}) {
         super();
@@ -66,6 +66,8 @@ export default class Ball extends Entity {
         velocity.x = x_m;
         velocity.y = y_m;
         this.body.SetLinearVelocity(velocity);
+
+        this._targetVelocity = {x: Math.abs(x_m), y: Math.abs(y_m)};
 
         return this;
     }
@@ -111,7 +113,7 @@ export default class Ball extends Entity {
             this.bouncing = false;
         }
 
-        this._untrap();
+        this._ensureConstantSpeed();
 
         return this;
     }
@@ -130,56 +132,23 @@ export default class Ball extends Entity {
         return ball;
     };
 
-    _mightBeTrapped () {
-        return this.body && (this.body.GetLinearVelocity().x === 0 || this.body.GetLinearVelocity().y === 0);
+    _ensureConstantSpeed() {
+        if (!this._targetVelocity || !this.body) {
+            return;
+        }
+
+        let hasChanged = false;
+        const velocity = this.body.GetLinearVelocity();
+        if (Math.abs(velocity.x) != this._targetVelocity.x) {
+            velocity.x = Math.sign(velocity.x) * this._targetVelocity.x;
+            hasChanged = true;
+        }
+        if (Math.abs(velocity.y) != this._targetVelocity.y) {
+            velocity.y = Math.sign(velocity.y) * this._targetVelocity.y;
+            hasChanged = true;
+        }
+        if (hasChanged) {
+            this.body.SetLinearVelocity(velocity);
+        }
     }
-
-    _untrap = () => {
-        // The ball occasionally ends up with a velocity purely vertical or horizontal, which traps the ball in
-        // a fixed trajectory. I am probably doing something wrong with the physics.
-        // Hack: if velocity is purely vertical or horizontal for 3 steps in a row, then manually set the linear
-        // velocity over x or y to a non null value and teleport the ball so that it doesn't get stuck in the wall.
-        // TODO: find a better solution.
-        if (this._mightBeTrapped()) {
-            this._trapCount++;
-        } else {
-            this._trapCount = 0;
-        }
-
-        if (this._trapCount >= 10) {
-            const linearVelocity = { x: this.body.GetLinearVelocity().x, y: this.body.GetLinearVelocity().y };
-            const position = { x: this.worldPosition().x, y: this.worldPosition().y };
-
-            if (this.body.GetLinearVelocity().x === 0) {
-                if (this.worldPosition().x < constants.STAGE_WIDTH_PX - this.worldPosition().x) {
-                    this.moveTo(this.worldPosition().x + this.radius, this.worldPosition().y);
-                    this.setLinearVelocity(linearVelocity.x + 1.5, linearVelocity.y);
-                } else {
-                    this.moveTo(this.worldPosition().x - this.radius, this.worldPosition().y);
-                    this.setLinearVelocity(linearVelocity.x - 1.5, linearVelocity.y);
-                }
-            }
-            if (this.body.GetLinearVelocity().y === 0) {
-                if (this.worldPosition().y < constants.STAGE_HEIGHT_PX - this.worldPosition().y) {
-                    this.moveTo(this.worldPosition(), this.worldPosition().y + this.radius);
-                    this.setLinearVelocity(linearVelocity.x, linearVelocity.y + 1.5);
-                } else {
-                    this.moveTo(this.worldPosition().x, this.worldPosition().y - this.radius);
-                    this.setLinearVelocity(linearVelocity.x, linearVelocity.y - 1.5);
-                }
-            }
-
-            console.warn(
-                "Adjusting linear velocity from", linearVelocity, "to", this.body.GetLinearVelocity(),
-                "and position from", position, "to", this.worldPosition()
-            );
-        }
-
-        // However this hack might teleport the ball into a brick. re-initialize the ball position in that case.
-        if (isNaN(this.worldPosition().x) || isNaN(this.worldPosition().y)) {
-            this.moveTo(this._initialX, this._initialY);
-            this.setLinearVelocity(1.5, -1.5);
-            console.warn("Reinitializing ball position");
-        }
-    };
 }
