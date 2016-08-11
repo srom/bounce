@@ -159,6 +159,16 @@ function init () {
         $('.volumeOn').show();
         PIXI.audioManager.unmute();
     });
+    $('.play').on('click', function () {
+        $(this).hide();
+        $('.pause').show();
+        MainLoop.start();
+    });
+    $('.pause').on('click', function () {
+        $(this).hide();
+        $('.play').show();
+        MainLoop.stop();
+    });
 
     function processInput () {
         PIXI.keyboardManager.update();

@@ -65,7 +65,13 @@
     bottom: 4px;
 }
 
-.volume {
+.pauseBlock {
+    position: absolute;
+    right: 40px;
+    bottom: 4px;
+}
+
+.volume, .playPause {
     font-size: 20px;
     color: #777777;
     cursor: pointer;
@@ -73,4 +79,8 @@
 
 .volumeOff {
     display: none
+}
+
+.play {
+    display: none;
 }
