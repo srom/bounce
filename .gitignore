@@ -20,3 +20,46 @@ node_modules
 .node_repl_history
 
 build
+
+# Compiled source #
+###################
+*.class
+*.dll
+*.exe
+*.o
+*.so
+chessbotparse
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+
+# Python #
+##########
+*.egg
+*.pyc
+env/
+
+# Misc #
+########
+# text edit temp files
+*~
+.idea
+# Sublime text project files
+*.sublime-workspace
+
+checkpoints/
+.ipynb_checkpoints

@@ -9,28 +9,28 @@ message World {
 }
 
 message Ball {
-    float x_px = 1
-    float y_px = 2
-    float radius_px = 3
-    float linear_velocity_x_m = 4
-    float linear_velocity_y_m = 5
-    bool canMove = 6
-    bool bouncing = 7
-    bool dead = 8
+    float x_px = 1;
+    float y_px = 2;
+    float radius_px = 3;
+    float linear_velocity_x_m = 4;
+    float linear_velocity_y_m = 5;
+    bool canMove = 6;
+    bool bouncing = 7;
+    bool dead = 8;
 }
 
 message Paddle {
-    float x_px = 1
-    float y_px = 2
-    float width_px = 3
-    float height_px = 4
-    bool canMove = 5
+    float x_px = 1;
+    float y_px = 2;
+    float width_px = 3;
+    float height_px = 4;
+    bool canMove = 5;
 }
 
 message Brick {
-    float x_px = 1
-    float y_px = 2
-    float width_px = 3
-    float height_px = 4
-    uint32 lives = 5
+    float x_px = 1;
+    float y_px = 2;
+    float width_px = 3;
+    float height_px = 4;
+    uint32 lives = 5;
 }
