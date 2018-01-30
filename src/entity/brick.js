@@ -1,6 +1,7 @@
 import Box2D from 'box2dweb';
 
 import fixDef from './fixture';
+import * as constants from '../constants';
 import { pixelsToMeters, metersToPixels } from '../util/scale';
 import * as input from '../util/input';
 import Entity from './entity';
@@ -14,6 +15,8 @@ const b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape;
 
 export const BrickLevel1 = 1;
 export const BrickLevel2 = 2;
+export const brickWidth = 70;
+export const brickHeight = 30;
 
 export default class Brick extends Entity {
 
@@ -80,4 +83,44 @@ export default class Brick extends Entity {
 
         return brick;
     };
+}
+
+export function setBricks(world) {
+    return [
+        (new Brick(
+            BrickLevel1,
+            40,
+            100,
+            brickWidth,
+            brickHeight
+        )).createBody(world),
+        (new Brick(
+            BrickLevel2,
+            40 + brickWidth + 40,
+            100 + brickHeight + 30,
+            brickWidth,
+            brickHeight
+        )).createBody(world),
+        (new Brick(
+            BrickLevel1,
+            constants.STAGE_WIDTH_PX - brickWidth - 40,
+            100,
+            brickWidth,
+            brickHeight
+        )).createBody(world),
+        (new Brick(
+            BrickLevel2,
+            constants.STAGE_WIDTH_PX - 2 * brickWidth - 40 - 40,
+            100 + brickHeight + 30,
+            brickWidth,
+            brickHeight
+        )).createBody(world),
+        (new Brick(
+            BrickLevel1,
+            (constants.STAGE_WIDTH_PX - brickWidth) / 2,
+            80,
+            brickWidth,
+            brickHeight
+        )).createBody(world),
+    ];
 }

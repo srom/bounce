@@ -74,3 +74,11 @@ export default class Wall extends Entity {
         return wall;
     };
 }
+
+export function setWalls(world) {
+    return [
+        (new Wall(constants.WALL_THICKNESS, 'top')).createBody(world),
+        (new Wall(constants.WALL_THICKNESS, 'left')).createBody(world),
+        (new Wall(constants.WALL_THICKNESS, 'right')).createBody(world),
+    ]
+}

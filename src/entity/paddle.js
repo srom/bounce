@@ -2,7 +2,6 @@ import Box2D from 'box2dweb';
 
 import fixDef from './fixture';
 import { pixelsToMeters, metersToPixels } from '../util/scale';
-import * as input from '../util/input';
 import * as constants from '../constants';
 import Entity from './entity';
 
@@ -49,7 +48,7 @@ export default class Paddle extends Entity {
         return this;
     }
 
-    render () {
+    render (input) {
         if (!this.canMove) {
             return this;
         }

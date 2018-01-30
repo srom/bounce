@@ -5,10 +5,11 @@ import Box2D from 'box2dweb';
 import * as constants from './constants';
 import Ball from './entity/ball';
 import Paddle from './entity/paddle';
-import Wall from './entity/wall';
+import Wall, { setWalls } from './entity/wall';
 import Arrow from './entity/arrow';
-import Brick, { BrickLevel1, BrickLevel2 } from './entity/brick';
+import Brick, { BrickLevel1, BrickLevel2, setBricks } from './entity/brick';
 import debugPhysics from './util/debug';
+import * as input from './util/input';
 
 const PIXI = window.PIXI;
 
@@ -27,9 +28,6 @@ const initialBallY = initialPaddleY - ballRadius - 4;
 
 const initialArrowX = initialBallX + ballRadius / 2;
 const initialArrowY = initialBallY - 2 * ballRadius;
-
-const brickWidth = 70;
-const brickHeight = 30;
 
 const renderer = PIXI.autoDetectRenderer(constants.STAGE_WIDTH_PX, constants.STAGE_HEIGHT_PX, {
     antialias: true,
@@ -68,58 +66,18 @@ function init () {
     );
 
     const paddle = new Paddle(initialPaddleX, initialPaddleY, paddleWidth, paddleHeight);
-    paddle.createBody(world);
-
     const ball = new Ball(initialBallX, initialBallY, ballRadius);
-
     const arrow = new Arrow(initialArrowX, initialArrowY);
+    const bricks = setBricks(world);
+    const walls = setWalls(world);
 
-    const bricks = [
-        (new Brick(
-            BrickLevel1,
-            40,
-            100,
-            brickWidth,
-            brickHeight
-        )).createBody(world),
-        (new Brick(
-            BrickLevel2,
-            40 + brickWidth + 40,
-            100 + brickHeight + 30,
-            brickWidth,
-            brickHeight
-        )).createBody(world),
-        (new Brick(
-            BrickLevel1,
-            constants.STAGE_WIDTH_PX - brickWidth - 40,
-            100,
-            brickWidth,
-            brickHeight
-        )).createBody(world),
-        (new Brick(
-            BrickLevel2,
-            constants.STAGE_WIDTH_PX - 2 * brickWidth - 40 - 40,
-            100 + brickHeight + 30,
-            brickWidth,
-            brickHeight
-        )).createBody(world),
-        (new Brick(
-            BrickLevel1,
-            (constants.STAGE_WIDTH_PX - brickWidth) / 2,
-            80,
-            brickWidth,
-            brickHeight
-        )).createBody(world),
-    ];
-
-    (new Wall(constants.WALL_THICKNESS, 'top')).createBody(world).addTo(stage);
-    (new Wall(constants.WALL_THICKNESS, 'left')).createBody(world).addTo(stage);
-    (new Wall(constants.WALL_THICKNESS, 'right')).createBody(world).addTo(stage);
+    paddle.createBody(world);
 
     paddle.addTo(stage);
     ball.addTo(stage);
     arrow.addTo(stage);
     bricks.forEach((brick) => brick.addTo(stage));
+    walls.forEach((wall) => wall.addTo(stage));
 
     const listener = new b2Listener;
     listener.EndContact = function (contact) {
@@ -178,8 +136,8 @@ function init () {
         world.Step(constants.FRAME_RATE, constants.VELOCITY_ITERATIONS, constants.POSITION_ITERATIONS);
 
         ball.render();
-        paddle.render();
-        arrow.render();
+        paddle.render(input);
+        arrow.render(input);
 
         bricks.forEach((brick) => {
             if (brick.isGarbage()) {

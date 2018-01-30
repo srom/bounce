@@ -1,6 +1,5 @@
 import { pixelsToMeters, metersToPixels } from '../util/scale';
 import * as constants from '../constants';
-import * as input from '../util/input';
 import Entity from './entity';
 
 const PIXI = window.PIXI;
@@ -24,7 +23,7 @@ export default class Arrow extends Entity {
         this.el = this._createArrow(x_px, y_px);
     }
 
-    render () {
+    render (input) {
         if (this.ready) {
             return this;
         }

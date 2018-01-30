@@ -2,7 +2,6 @@ import Box2D from 'box2dweb';
 
 import fixDef from './fixture';
 import { pixelsToMeters, metersToPixels } from '../util/scale';
-import * as input from '../util/input';
 import Entity from './entity';
 import * as constants from '../constants';
 
@@ -94,7 +93,7 @@ export default class Ball extends Entity {
         );
     }
 
-    render () {
+    render (input) {
         if (this.canMove) {
             this.el.position.x = metersToPixels(this.body.GetPosition().x) - this._initialX;
             this.el.position.y = metersToPixels(this.body.GetPosition().y) - this._initialY;
