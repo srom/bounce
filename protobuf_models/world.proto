@@ -4,8 +4,9 @@ message World {
   Ball ball = 1;
   Paddle paddle = 2;
   repeated Brick bricks = 3;
-  bool won = 4;
-  bool lost = 5;
+  Action action = 4;
+  bool won = 5;
+  bool lost = 6;
 }
 
 message Ball {
@@ -33,4 +34,11 @@ message Brick {
     float width_px = 3;
     float height_px = 4;
     uint32 lives = 5;
+}
+
+enum Action {
+    LEFT = 0;
+    RIGHT = 1;
+    SPACE = 2;
+    HOLD = 3;
 }
