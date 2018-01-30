@@ -13,6 +13,8 @@ import * as input from './util/input';
 
 const PIXI = window.PIXI;
 
+const FRAME_RATE = 1 / 60;
+
 const b2World = Box2D.Dynamics.b2World;
 const b2Vec2 = Box2D.Common.Math.b2Vec2;
 const b2Listener = Box2D.Dynamics.b2ContactListener;
@@ -133,7 +135,7 @@ function init () {
     }
 
     function update () {
-        world.Step(constants.FRAME_RATE, constants.VELOCITY_ITERATIONS, constants.POSITION_ITERATIONS);
+        world.Step(FRAME_RATE, constants.VELOCITY_ITERATIONS, constants.POSITION_ITERATIONS);
 
         ball.render();
         paddle.render(input);
