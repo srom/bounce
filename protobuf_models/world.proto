@@ -9,6 +9,7 @@ message World {
   bool lost = 6;
   int32 frame_nb = 7;
   int32 pre_frame_nb = 8;
+  Request request = 9;
 }
 
 message Ball {
@@ -43,4 +44,9 @@ enum Action {
     RIGHT = 1;
     SPACE = 2;
     HOLD = 3;
+}
+
+message Request {
+    float frame_rate = 1;
+    int32 num_epochs = 2;
 }

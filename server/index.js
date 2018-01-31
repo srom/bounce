@@ -22,7 +22,9 @@ var echo = function(socket) {
   });
   socket.on('data', function(data) {
     // data is a Buffer object
-    console.log('[socket on data]', data);
+    const obj = JSON.parse(data.toString());
+    console.log('[socket on data]', obj);
+    socket.write(JSON.stringify({hi: 'there'}))
   });
   socket.on('end', function() {
     // emitted when the other end sends a FIN packet

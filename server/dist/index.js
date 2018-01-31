@@ -6,7 +6,7 @@ var net = _interopRequireWildcard(_net);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-var unixSocket = '/tmp/bounce.sock';
+var UNIX_SOCKET = '/tmp/bounce.sock';
 
 var log = function log(who, what) {
   return function () {
@@ -27,7 +27,9 @@ var echo = function echo(socket) {
   });
   socket.on('data', function (data) {
     // data is a Buffer object
-    console.log('[socket on data]', data);
+    var obj = JSON.parse(data.toString());
+    console.log('[socket on data]', obj);
+    socket.write(JSON.stringify({ hi: 'there' }));
   });
   socket.on('end', function () {
     // emitted when the other end sends a FIN packet
@@ -35,12 +37,9 @@ var echo = function echo(socket) {
 
   socket.on('timeout', log('socket', 'timeout'));
 
-  socket.on('drain', function () {
-    // emitted when the write buffer becomes empty
-    console.log('[socket on drain]');
-  });
   socket.on('error', log('socket', 'error'));
   socket.on('close', log('socket', 'close'));
+
   socket.pipe(socket);
 };
 
@@ -50,7 +49,7 @@ var echo = function echo(socket) {
  *  methods: listen, address, getConnections,
  */
 var server = net.createServer(echo);
-server.listen(unixSocket);
+server.listen(UNIX_SOCKET);
 
 server.on('listening', function () {
   var ad = server.address();

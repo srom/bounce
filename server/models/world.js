@@ -15,6 +15,7 @@ goog.require('jspb.Message');
 goog.require('proto.Ball');
 goog.require('proto.Brick');
 goog.require('proto.Paddle');
+goog.require('proto.Request');
 
 goog.forwardDeclare('proto.Action');
 
@@ -77,7 +78,10 @@ proto.World.toObject = function(includeInstance, msg) {
     proto.Brick.toObject, includeInstance),
     action: jspb.Message.getFieldWithDefault(msg, 4, 0),
     won: jspb.Message.getFieldWithDefault(msg, 5, false),
-    lost: jspb.Message.getFieldWithDefault(msg, 6, false)
+    lost: jspb.Message.getFieldWithDefault(msg, 6, false),
+    frameNb: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    preFrameNb: jspb.Message.getFieldWithDefault(msg, 8, 0),
+    request: (f = msg.getRequest()) && proto.Request.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -140,6 +144,19 @@ proto.World.deserializeBinaryFromReader = function(msg, reader) {
     case 6:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setLost(value);
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setFrameNb(value);
+      break;
+    case 8:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setPreFrameNb(value);
+      break;
+    case 9:
+      var value = new proto.Request;
+      reader.readMessage(value,proto.Request.deserializeBinaryFromReader);
+      msg.setRequest(value);
       break;
     default:
       reader.skipField();
@@ -213,6 +230,28 @@ proto.World.serializeBinaryToWriter = function(message, writer) {
     writer.writeBool(
       6,
       f
+    );
+  }
+  f = message.getFrameNb();
+  if (f !== 0) {
+    writer.writeInt32(
+      7,
+      f
+    );
+  }
+  f = message.getPreFrameNb();
+  if (f !== 0) {
+    writer.writeInt32(
+      8,
+      f
+    );
+  }
+  f = message.getRequest();
+  if (f != null) {
+    writer.writeMessage(
+      9,
+      f,
+      proto.Request.serializeBinaryToWriter
     );
   }
 };
@@ -355,6 +394,66 @@ proto.World.prototype.getLost = function() {
 /** @param {boolean} value */
 proto.World.prototype.setLost = function(value) {
   jspb.Message.setField(this, 6, value);
+};
+
+
+/**
+ * optional int32 frame_nb = 7;
+ * @return {number}
+ */
+proto.World.prototype.getFrameNb = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/** @param {number} value */
+proto.World.prototype.setFrameNb = function(value) {
+  jspb.Message.setField(this, 7, value);
+};
+
+
+/**
+ * optional int32 pre_frame_nb = 8;
+ * @return {number}
+ */
+proto.World.prototype.getPreFrameNb = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+};
+
+
+/** @param {number} value */
+proto.World.prototype.setPreFrameNb = function(value) {
+  jspb.Message.setField(this, 8, value);
+};
+
+
+/**
+ * optional Request request = 9;
+ * @return {?proto.Request}
+ */
+proto.World.prototype.getRequest = function() {
+  return /** @type{?proto.Request} */ (
+    jspb.Message.getWrapperField(this, proto.Request, 9));
+};
+
+
+/** @param {?proto.Request|undefined} value */
+proto.World.prototype.setRequest = function(value) {
+  jspb.Message.setWrapperField(this, 9, value);
+};
+
+
+proto.World.prototype.clearRequest = function() {
+  this.setRequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.World.prototype.hasRequest = function() {
+  return jspb.Message.getField(this, 9) != null;
 };
 
 
