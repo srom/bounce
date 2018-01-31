@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.default = exports.Request = exports.Brick = exports.Paddle = exports.Ball = exports.World = undefined;
+exports.default = exports.Request = exports.Brick = exports.Arrow = exports.Paddle = exports.Ball = exports.World = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; /*eslint-disable block-scoped-var, no-redeclare, no-control-regex, no-prototype-builtins*/
 
@@ -30,6 +30,7 @@ var World = exports.World = $root.World = function () {
      * @interface IWorld
      * @property {IBall|null} [ball] World ball
      * @property {IPaddle|null} [paddle] World paddle
+     * @property {IArrow|null} [arrow] World arrow
      * @property {Array.<IBrick>|null} [bricks] World bricks
      * @property {Action|null} [action] World action
      * @property {boolean|null} [won] World won
@@ -69,6 +70,14 @@ var World = exports.World = $root.World = function () {
      * @instance
      */
     World.prototype.paddle = null;
+
+    /**
+     * World arrow.
+     * @member {IArrow|null|undefined} arrow
+     * @memberof World
+     * @instance
+     */
+    World.prototype.arrow = null;
 
     /**
      * World bricks.
@@ -151,14 +160,15 @@ var World = exports.World = $root.World = function () {
         if (!writer) writer = $Writer.create();
         if (message.ball != null && message.hasOwnProperty("ball")) $root.Ball.encode(message.ball, writer.uint32( /* id 1, wireType 2 =*/10).fork()).ldelim();
         if (message.paddle != null && message.hasOwnProperty("paddle")) $root.Paddle.encode(message.paddle, writer.uint32( /* id 2, wireType 2 =*/18).fork()).ldelim();
+        if (message.arrow != null && message.hasOwnProperty("arrow")) $root.Arrow.encode(message.arrow, writer.uint32( /* id 3, wireType 2 =*/26).fork()).ldelim();
         if (message.bricks != null && message.bricks.length) for (var i = 0; i < message.bricks.length; ++i) {
-            $root.Brick.encode(message.bricks[i], writer.uint32( /* id 3, wireType 2 =*/26).fork()).ldelim();
-        }if (message.action != null && message.hasOwnProperty("action")) writer.uint32( /* id 4, wireType 0 =*/32).int32(message.action);
-        if (message.won != null && message.hasOwnProperty("won")) writer.uint32( /* id 5, wireType 0 =*/40).bool(message.won);
-        if (message.lost != null && message.hasOwnProperty("lost")) writer.uint32( /* id 6, wireType 0 =*/48).bool(message.lost);
-        if (message.frameNb != null && message.hasOwnProperty("frameNb")) writer.uint32( /* id 7, wireType 0 =*/56).int32(message.frameNb);
-        if (message.preFrameNb != null && message.hasOwnProperty("preFrameNb")) writer.uint32( /* id 8, wireType 0 =*/64).int32(message.preFrameNb);
-        if (message.request != null && message.hasOwnProperty("request")) $root.Request.encode(message.request, writer.uint32( /* id 9, wireType 2 =*/74).fork()).ldelim();
+            $root.Brick.encode(message.bricks[i], writer.uint32( /* id 4, wireType 2 =*/34).fork()).ldelim();
+        }if (message.action != null && message.hasOwnProperty("action")) writer.uint32( /* id 5, wireType 0 =*/40).int32(message.action);
+        if (message.won != null && message.hasOwnProperty("won")) writer.uint32( /* id 6, wireType 0 =*/48).bool(message.won);
+        if (message.lost != null && message.hasOwnProperty("lost")) writer.uint32( /* id 7, wireType 0 =*/56).bool(message.lost);
+        if (message.frameNb != null && message.hasOwnProperty("frameNb")) writer.uint32( /* id 8, wireType 0 =*/64).int32(message.frameNb);
+        if (message.preFrameNb != null && message.hasOwnProperty("preFrameNb")) writer.uint32( /* id 9, wireType 0 =*/72).int32(message.preFrameNb);
+        if (message.request != null && message.hasOwnProperty("request")) $root.Request.encode(message.request, writer.uint32( /* id 10, wireType 2 =*/82).fork()).ldelim();
         return writer;
     };
 
@@ -200,25 +210,28 @@ var World = exports.World = $root.World = function () {
                     message.paddle = $root.Paddle.decode(reader, reader.uint32());
                     break;
                 case 3:
+                    message.arrow = $root.Arrow.decode(reader, reader.uint32());
+                    break;
+                case 4:
                     if (!(message.bricks && message.bricks.length)) message.bricks = [];
                     message.bricks.push($root.Brick.decode(reader, reader.uint32()));
                     break;
-                case 4:
+                case 5:
                     message.action = reader.int32();
                     break;
-                case 5:
+                case 6:
                     message.won = reader.bool();
                     break;
-                case 6:
+                case 7:
                     message.lost = reader.bool();
                     break;
-                case 7:
+                case 8:
                     message.frameNb = reader.int32();
                     break;
-                case 8:
+                case 9:
                     message.preFrameNb = reader.int32();
                     break;
-                case 9:
+                case 10:
                     message.request = $root.Request.decode(reader, reader.uint32());
                     break;
                 default:
@@ -262,11 +275,15 @@ var World = exports.World = $root.World = function () {
             var _error = $root.Paddle.verify(message.paddle);
             if (_error) return "paddle." + _error;
         }
+        if (message.arrow != null && message.hasOwnProperty("arrow")) {
+            var _error2 = $root.Arrow.verify(message.arrow);
+            if (_error2) return "arrow." + _error2;
+        }
         if (message.bricks != null && message.hasOwnProperty("bricks")) {
             if (!Array.isArray(message.bricks)) return "bricks: array expected";
             for (var i = 0; i < message.bricks.length; ++i) {
-                var _error2 = $root.Brick.verify(message.bricks[i]);
-                if (_error2) return "bricks." + _error2;
+                var _error3 = $root.Brick.verify(message.bricks[i]);
+                if (_error3) return "bricks." + _error3;
             }
         }
         if (message.action != null && message.hasOwnProperty("action")) switch (message.action) {
@@ -283,8 +300,8 @@ var World = exports.World = $root.World = function () {
         if (message.frameNb != null && message.hasOwnProperty("frameNb")) if (!$util.isInteger(message.frameNb)) return "frameNb: integer expected";
         if (message.preFrameNb != null && message.hasOwnProperty("preFrameNb")) if (!$util.isInteger(message.preFrameNb)) return "preFrameNb: integer expected";
         if (message.request != null && message.hasOwnProperty("request")) {
-            var _error3 = $root.Request.verify(message.request);
-            if (_error3) return "request." + _error3;
+            var _error4 = $root.Request.verify(message.request);
+            if (_error4) return "request." + _error4;
         }
         return null;
     };
@@ -307,6 +324,10 @@ var World = exports.World = $root.World = function () {
         if (object.paddle != null) {
             if (_typeof(object.paddle) !== "object") throw TypeError(".World.paddle: object expected");
             message.paddle = $root.Paddle.fromObject(object.paddle);
+        }
+        if (object.arrow != null) {
+            if (_typeof(object.arrow) !== "object") throw TypeError(".World.arrow: object expected");
+            message.arrow = $root.Arrow.fromObject(object.arrow);
         }
         if (object.bricks) {
             if (!Array.isArray(object.bricks)) throw TypeError(".World.bricks: array expected");
@@ -361,6 +382,7 @@ var World = exports.World = $root.World = function () {
         if (options.defaults) {
             object.ball = null;
             object.paddle = null;
+            object.arrow = null;
             object.action = options.enums === String ? "LEFT" : 0;
             object.won = false;
             object.lost = false;
@@ -370,6 +392,7 @@ var World = exports.World = $root.World = function () {
         }
         if (message.ball != null && message.hasOwnProperty("ball")) object.ball = $root.Ball.toObject(message.ball, options);
         if (message.paddle != null && message.hasOwnProperty("paddle")) object.paddle = $root.Paddle.toObject(message.paddle, options);
+        if (message.arrow != null && message.hasOwnProperty("arrow")) object.arrow = $root.Arrow.toObject(message.arrow, options);
         if (message.bricks && message.bricks.length) {
             object.bricks = [];
             for (var j = 0; j < message.bricks.length; ++j) {
@@ -938,6 +961,268 @@ var Paddle = exports.Paddle = $root.Paddle = function () {
     };
 
     return Paddle;
+}();
+
+var Arrow = exports.Arrow = $root.Arrow = function () {
+
+    /**
+     * Properties of an Arrow.
+     * @exports IArrow
+     * @interface IArrow
+     * @property {number|null} [xPx] Arrow xPx
+     * @property {number|null} [yPx] Arrow yPx
+     * @property {number|null} [angularVelocityXM] Arrow angularVelocityXM
+     * @property {number|null} [angularVelocityYM] Arrow angularVelocityYM
+     * @property {boolean|null} [ready] Arrow ready
+     * @property {boolean|null} [reversed] Arrow reversed
+     */
+
+    /**
+     * Constructs a new Arrow.
+     * @exports Arrow
+     * @classdesc Represents an Arrow.
+     * @implements IArrow
+     * @constructor
+     * @param {IArrow=} [properties] Properties to set
+     */
+    function Arrow(properties) {
+        if (properties) for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+            if (properties[keys[i]] != null) this[keys[i]] = properties[keys[i]];
+        }
+    }
+
+    /**
+     * Arrow xPx.
+     * @member {number} xPx
+     * @memberof Arrow
+     * @instance
+     */
+    Arrow.prototype.xPx = 0;
+
+    /**
+     * Arrow yPx.
+     * @member {number} yPx
+     * @memberof Arrow
+     * @instance
+     */
+    Arrow.prototype.yPx = 0;
+
+    /**
+     * Arrow angularVelocityXM.
+     * @member {number} angularVelocityXM
+     * @memberof Arrow
+     * @instance
+     */
+    Arrow.prototype.angularVelocityXM = 0;
+
+    /**
+     * Arrow angularVelocityYM.
+     * @member {number} angularVelocityYM
+     * @memberof Arrow
+     * @instance
+     */
+    Arrow.prototype.angularVelocityYM = 0;
+
+    /**
+     * Arrow ready.
+     * @member {boolean} ready
+     * @memberof Arrow
+     * @instance
+     */
+    Arrow.prototype.ready = false;
+
+    /**
+     * Arrow reversed.
+     * @member {boolean} reversed
+     * @memberof Arrow
+     * @instance
+     */
+    Arrow.prototype.reversed = false;
+
+    /**
+     * Creates a new Arrow instance using the specified properties.
+     * @function create
+     * @memberof Arrow
+     * @static
+     * @param {IArrow=} [properties] Properties to set
+     * @returns {Arrow} Arrow instance
+     */
+    Arrow.create = function create(properties) {
+        return new Arrow(properties);
+    };
+
+    /**
+     * Encodes the specified Arrow message. Does not implicitly {@link Arrow.verify|verify} messages.
+     * @function encode
+     * @memberof Arrow
+     * @static
+     * @param {IArrow} message Arrow message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    Arrow.encode = function encode(message, writer) {
+        if (!writer) writer = $Writer.create();
+        if (message.xPx != null && message.hasOwnProperty("xPx")) writer.uint32( /* id 1, wireType 5 =*/13).float(message.xPx);
+        if (message.yPx != null && message.hasOwnProperty("yPx")) writer.uint32( /* id 2, wireType 5 =*/21).float(message.yPx);
+        if (message.angularVelocityXM != null && message.hasOwnProperty("angularVelocityXM")) writer.uint32( /* id 3, wireType 5 =*/29).float(message.angularVelocityXM);
+        if (message.angularVelocityYM != null && message.hasOwnProperty("angularVelocityYM")) writer.uint32( /* id 4, wireType 5 =*/37).float(message.angularVelocityYM);
+        if (message.ready != null && message.hasOwnProperty("ready")) writer.uint32( /* id 5, wireType 0 =*/40).bool(message.ready);
+        if (message.reversed != null && message.hasOwnProperty("reversed")) writer.uint32( /* id 6, wireType 0 =*/48).bool(message.reversed);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified Arrow message, length delimited. Does not implicitly {@link Arrow.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof Arrow
+     * @static
+     * @param {IArrow} message Arrow message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    Arrow.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes an Arrow message from the specified reader or buffer.
+     * @function decode
+     * @memberof Arrow
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {Arrow} Arrow
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    Arrow.decode = function decode(reader, length) {
+        if (!(reader instanceof $Reader)) reader = $Reader.create(reader);
+        var end = length === undefined ? reader.len : reader.pos + length,
+            message = new $root.Arrow();
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.xPx = reader.float();
+                    break;
+                case 2:
+                    message.yPx = reader.float();
+                    break;
+                case 3:
+                    message.angularVelocityXM = reader.float();
+                    break;
+                case 4:
+                    message.angularVelocityYM = reader.float();
+                    break;
+                case 5:
+                    message.ready = reader.bool();
+                    break;
+                case 6:
+                    message.reversed = reader.bool();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes an Arrow message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof Arrow
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {Arrow} Arrow
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    Arrow.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader)) reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies an Arrow message.
+     * @function verify
+     * @memberof Arrow
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    Arrow.verify = function verify(message) {
+        if ((typeof message === "undefined" ? "undefined" : _typeof(message)) !== "object" || message === null) return "object expected";
+        if (message.xPx != null && message.hasOwnProperty("xPx")) if (typeof message.xPx !== "number") return "xPx: number expected";
+        if (message.yPx != null && message.hasOwnProperty("yPx")) if (typeof message.yPx !== "number") return "yPx: number expected";
+        if (message.angularVelocityXM != null && message.hasOwnProperty("angularVelocityXM")) if (typeof message.angularVelocityXM !== "number") return "angularVelocityXM: number expected";
+        if (message.angularVelocityYM != null && message.hasOwnProperty("angularVelocityYM")) if (typeof message.angularVelocityYM !== "number") return "angularVelocityYM: number expected";
+        if (message.ready != null && message.hasOwnProperty("ready")) if (typeof message.ready !== "boolean") return "ready: boolean expected";
+        if (message.reversed != null && message.hasOwnProperty("reversed")) if (typeof message.reversed !== "boolean") return "reversed: boolean expected";
+        return null;
+    };
+
+    /**
+     * Creates an Arrow message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof Arrow
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {Arrow} Arrow
+     */
+    Arrow.fromObject = function fromObject(object) {
+        if (object instanceof $root.Arrow) return object;
+        var message = new $root.Arrow();
+        if (object.xPx != null) message.xPx = Number(object.xPx);
+        if (object.yPx != null) message.yPx = Number(object.yPx);
+        if (object.angularVelocityXM != null) message.angularVelocityXM = Number(object.angularVelocityXM);
+        if (object.angularVelocityYM != null) message.angularVelocityYM = Number(object.angularVelocityYM);
+        if (object.ready != null) message.ready = Boolean(object.ready);
+        if (object.reversed != null) message.reversed = Boolean(object.reversed);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from an Arrow message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof Arrow
+     * @static
+     * @param {Arrow} message Arrow
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    Arrow.toObject = function toObject(message, options) {
+        if (!options) options = {};
+        var object = {};
+        if (options.defaults) {
+            object.xPx = 0;
+            object.yPx = 0;
+            object.angularVelocityXM = 0;
+            object.angularVelocityYM = 0;
+            object.ready = false;
+            object.reversed = false;
+        }
+        if (message.xPx != null && message.hasOwnProperty("xPx")) object.xPx = options.json && !isFinite(message.xPx) ? String(message.xPx) : message.xPx;
+        if (message.yPx != null && message.hasOwnProperty("yPx")) object.yPx = options.json && !isFinite(message.yPx) ? String(message.yPx) : message.yPx;
+        if (message.angularVelocityXM != null && message.hasOwnProperty("angularVelocityXM")) object.angularVelocityXM = options.json && !isFinite(message.angularVelocityXM) ? String(message.angularVelocityXM) : message.angularVelocityXM;
+        if (message.angularVelocityYM != null && message.hasOwnProperty("angularVelocityYM")) object.angularVelocityYM = options.json && !isFinite(message.angularVelocityYM) ? String(message.angularVelocityYM) : message.angularVelocityYM;
+        if (message.ready != null && message.hasOwnProperty("ready")) object.ready = message.ready;
+        if (message.reversed != null && message.hasOwnProperty("reversed")) object.reversed = message.reversed;
+        return object;
+    };
+
+    /**
+     * Converts this Arrow to JSON.
+     * @function toJSON
+     * @memberof Arrow
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    Arrow.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    return Arrow;
 }();
 
 var Brick = exports.Brick = $root.Brick = function () {

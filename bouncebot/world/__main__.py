@@ -4,7 +4,8 @@ from query import query_socket
 
 
 def main():
-    query_socket()
+    result = query_socket()
+    print result
 
 
 if __name__ == '__main__':

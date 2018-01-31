@@ -3,13 +3,14 @@ syntax = "proto3";
 message World {
   Ball ball = 1;
   Paddle paddle = 2;
-  repeated Brick bricks = 3;
-  Action action = 4;
-  bool won = 5;
-  bool lost = 6;
-  int32 frame_nb = 7;
-  int32 pre_frame_nb = 8;
-  Request request = 9;
+  Arrow arrow = 3;
+  repeated Brick bricks = 4;
+  Action action = 5;
+  bool won = 6;
+  bool lost = 7;
+  int32 frame_nb = 8;
+  int32 pre_frame_nb = 9;
+  Request request = 10;
 }
 
 message Ball {
@@ -18,7 +19,7 @@ message Ball {
     float radius_px = 3;
     float linear_velocity_x_m = 4;
     float linear_velocity_y_m = 5;
-    bool canMove = 6;
+    bool can_move = 6;
     bool bouncing = 7;
     bool dead = 8;
 }
@@ -28,7 +29,16 @@ message Paddle {
     float y_px = 2;
     float width_px = 3;
     float height_px = 4;
-    bool canMove = 5;
+    bool can_move = 5;
+}
+
+message Arrow {
+    float x_px = 1;
+    float y_px = 2;
+    float angular_velocity_x_m = 3;
+    float angular_velocity_y_m = 4;
+    bool ready = 5;
+    bool reversed = 6;
 }
 
 message Brick {
