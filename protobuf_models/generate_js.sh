@@ -1,3 +1,3 @@
 #!/bin/bash
 
-protoc --js_out=../server/models/ world.proto
+../node_modules/protobufjs/bin/pbjs -t static-module --es6 -o ../server/models/world.js world.proto

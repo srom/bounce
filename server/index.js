@@ -1,36 +1,35 @@
 import * as net from 'net';
 
+import { parseWorld, getDefaultWorld } from './core';
+import { World } from './models/world';
+
+
 const UNIX_SOCKET = '/tmp/bounce.sock';
 
 
-var log = function(who, what) {
+const log = function(who, what) {
   return function() {
     var args = Array.prototype.slice.call(arguments);
     console.log('[%s on %s]', who, what, args);
   };
 };
 
-var echo = function(socket) {
-  /**
-   *  net.Socket (http://nodejs.org/api/net.html#net_class_net_socket)
-   *  events: end, data, end, timeout, drain, error, close
-   *  methods:
-   */
-  socket.on('end', function() {
-    // exec'd when socket other end of connection sends FIN packet
-    console.log('[socket on end]');
-  });
-  socket.on('data', function(data) {
-    // data is a Buffer object
-    const obj = JSON.parse(data.toString());
-    console.log('[socket on data]', obj);
-    socket.write(JSON.stringify({hi: 'there'}))
-  });
-  socket.on('end', function() {
-    // emitted when the other end sends a FIN packet
-  });
+const bounce_socket = function(socket) {
 
-  socket.on('timeout', log('socket', 'timeout'));
+  socket.on('data', function(data) {
+    // Main logic lives here.
+
+    const inputWorld = parseWorld(data);
+
+    let outputWorld = null;
+    if (!inputWorld) {
+      outputWorld = getDefaultWorld();
+    } else {
+
+    }
+
+    socket.write(World.encode(outputWorld).finish())
+  });
 
   socket.on('error', log('socket', 'error'));
   socket.on('close', log('socket', 'close'));
@@ -38,12 +37,8 @@ var echo = function(socket) {
   socket.pipe(socket);
 };
 
-/**
- *  net.Server (http://nodejs.org/api/net.html#net_class_net_server)
- *  events: listening, connections, close, err
- *  methods: listen, address, getConnections,
- */
-var server = net.createServer(echo);
+const server = net.createServer(bounce_socket);
+
 server.listen(UNIX_SOCKET);
 
 server.on('listening', function() {

@@ -11,7 +11,8 @@
   "dependencies": {
     "box2dweb": "git+https://github.com/mikolalysenko/box2dweb.git",
     "jquery": "^2.1.4",
-    "mainloop.js": "^1.0.3"
+    "mainloop.js": "^1.0.3",
+    "protobufjs": "6.8.4"
   },
   "devDependencies": {
     "babel-core": "^6.4.0",
