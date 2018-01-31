@@ -9,8 +9,6 @@ message World {
   bool lost = 6;
   int32 frame_nb = 7;
   int32 pre_frame_nb = 8;
-  int32 num_epochs = 9;
-  float frame_rate = 10;
 }
 
 message Ball {
