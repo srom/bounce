@@ -103,6 +103,9 @@ const mainLoop = (inputWorld) => {
 
     const num_epochs = request.numEpochs;
     for (let i = 0; i < num_epochs; i++) {
+        if (inputWorld.won || inputWorld.lost) {
+            break;
+        }
         update(b2_world, inputWorld, request.frameRate, ball, paddle, arrow, bricks);
         clean(b2_world);
     }
@@ -135,11 +138,11 @@ const update = (b2_world, inputWorld, frame_rate, ball, paddle, arrow, bricks) =
     }
 
     if (bricks.every((b) => b.isGarbage())) {
-        youWin();
+        youWin(inputWorld);
     }
 
     if (ball.dead) {
-        gameOver();
+        gameOver(inputWorld);
     }
 };
 
@@ -147,11 +150,13 @@ const clean = (world) => {
     world.ClearForces();
 };
 
-const youWin = () => {
+const youWin = (inputWorld) => {
+    inputWorld.won = true;
     console.log("win");
 };
 
-const gameOver = () => {
+const gameOver = (inputWorld) => {
+    inputWorld.lost = true;
     console.log("lose");
 };
 
@@ -239,6 +244,8 @@ const getOutputWorld = (inputWorld, request, ball, paddle, arrow, bricks) => {
         frameNb: getFrameNb(inputWorld, request),
         preFrameNb: getPreFrameNb(inputWorld, request, arrow),
         action: inputWorld.action,
+        won: inputWorld.won,
+        lost: inputWorld.lost,
         ball: {
             xPx: ball.el.position.x,
             yPx: ball.el.position.y,
