@@ -6,15 +6,15 @@ from models.world_pb2 import World, HOLD
 
 
 SOCKET_URL = '/tmp/bounce.sock'
-
 FRAME_RATE = 1.0 / 60
+NUM_EPOCHS = 10
 
 
-def simulation(current_world, action, num_epochs):
+def simulation(current_world, action):
     if not current_world:
         current_world = getDefaultWorld()
 
-    return run_simulation(current_world, action, num_epochs)
+    return run_simulation(current_world, action, NUM_EPOCHS)
 
 
 def run_simulation(current_world, action, num_epochs):

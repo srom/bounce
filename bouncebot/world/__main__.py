@@ -3,11 +3,8 @@ from __future__ import unicode_literals
 from query import simulation
 
 
-NUM_EPOCHS = 10
-
-
 def main():
-    result = simulation(None, None, NUM_EPOCHS)
+    result = simulation(None, None)
     print result
 
 
