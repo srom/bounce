@@ -21,31 +21,31 @@ def run_simulation(current_world, action, num_epochs):
     current_world.action = action if action else current_world.action
     current_world.request.frame_rate = FRAME_RATE
     current_world.request.num_epochs = num_epochs
-    message = current_world.SerializeToString()
-    return query_socket(message)
+
+    data = query_socket(current_world.SerializeToString())
+
+    new_world = World()
+    new_world.ParseFromString(data)
+    return new_world
 
 
 def getDefaultWorld():
     world = World()
     world.action = HOLD
-    message = world.SerializeToString()
-    return query_socket(message)
+
+    data = query_socket(world.SerializeToString())
+
+    new_world = World()
+    new_world.ParseFromString(data)
+    return new_world
 
 
 def query_socket(message):
     sock = socket.socket(socket.AF_UNIX)
     sock.settimeout(1)
     sock.connect(SOCKET_URL)
-
     try:
         sock.sendall(message)
-
-        data = sock.recv(4096)
-
-        new_world = World()
-        new_world.ParseFromString(data)
-
-        return new_world
-
+        return sock.recv(4096)
     finally:
         sock.close()

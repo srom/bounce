@@ -129,6 +129,9 @@ var mainLoop = function mainLoop(inputWorld) {
 
     var num_epochs = request.numEpochs;
     for (var i = 0; i < num_epochs; i++) {
+        if (inputWorld.won || inputWorld.lost) {
+            break;
+        }
         update(b2_world, inputWorld, request.frameRate, ball, paddle, arrow, bricks);
         clean(b2_world);
     }
@@ -160,11 +163,11 @@ var update = function update(b2_world, inputWorld, frame_rate, ball, paddle, arr
     if (bricks.every(function (b) {
         return b.isGarbage();
     })) {
-        youWin();
+        youWin(inputWorld);
     }
 
     if (ball.dead) {
-        gameOver();
+        gameOver(inputWorld);
     }
 };
 
@@ -172,11 +175,13 @@ var clean = function clean(world) {
     world.ClearForces();
 };
 
-var youWin = function youWin() {
+var youWin = function youWin(inputWorld) {
+    inputWorld.won = true;
     console.log("win");
 };
 
-var gameOver = function gameOver() {
+var gameOver = function gameOver(inputWorld) {
+    inputWorld.lost = true;
     console.log("lose");
 };
 
@@ -266,6 +271,8 @@ var getOutputWorld = function getOutputWorld(inputWorld, request, ball, paddle, 
         frameNb: getFrameNb(inputWorld, request),
         preFrameNb: getPreFrameNb(inputWorld, request, arrow),
         action: inputWorld.action,
+        won: inputWorld.won,
+        lost: inputWorld.lost,
         ball: {
             xPx: ball.el.position.x,
             yPx: ball.el.position.y,
