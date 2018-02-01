@@ -39,9 +39,6 @@ var b2Body = _box2dweb2.default.Dynamics.b2Body;
 var b2CircleShape = _box2dweb2.default.Collision.Shapes.b2CircleShape;
 var b2Vec2 = _box2dweb2.default.Common.Math.b2Vec2;
 
-var BALL_LINE_COLOR = 0xDEFFA3;
-var BALL_FILL_COLOR = 0xFFFF0B;
-
 var Ball = function (_Entity) {
     _inherits(Ball, _Entity);
 
@@ -55,7 +52,6 @@ var Ball = function (_Entity) {
         _initialiseProps.call(_this);
 
         _this.el = _this._createBall(x_px, y_px, radius_px, options);
-        //this._bounceSound = PIXI.audioManager.getAudio('bounceSound');
         return _this;
     }
 
@@ -115,7 +111,7 @@ var Ball = function (_Entity) {
         }
     }, {
         key: 'render',
-        value: function render(input) {
+        value: function render() {
             if (this.canMove) {
                 this.el.position.x = (0, _scale.metersToPixels)(this.body.GetPosition().x) - this._initialX;
                 this.el.position.y = (0, _scale.metersToPixels)(this.body.GetPosition().y) - this._initialY;
@@ -126,11 +122,6 @@ var Ball = function (_Entity) {
             }
 
             if (this.bouncing) {
-                if (!this._bounceSound) {
-                    console.warn("No bounce sound found");
-                    return;
-                }
-                this._bounceSound.play();
                 this.bouncing = false;
             }
 

@@ -22,8 +22,6 @@ export default class Brick extends Entity {
 
     lives = 1;
 
-    _garbage  = false;
-
     constructor (lvl, x_px, y_px, width_px, height_px, options = {}) {
         super();
         this.el = this._createBrick(lvl, x_px, y_px, width_px, height_px, options);
@@ -48,15 +46,10 @@ export default class Brick extends Entity {
 
     contact () {
         this.lives--;
-        if (this.lives <= 0) {
-            this._garbage = true;
-        } else {
-            //this.el.texture = PIXI.loader.resources.brickDamagedGreen.texture;
-        }
     }
 
     isGarbage () {
-        return this._garbage;
+        return this.lives <= 0;
     }
 
     _createBrick = (lvl, x_px, y_px, width_px, height_px, options) => {

@@ -29,7 +29,9 @@ var bounce_socket = function bounce_socket(socket) {
     var outputWorld = null;
     if (!inputWorld) {
       outputWorld = (0, _core.getDefaultWorld)();
-    } else {}
+    } else {
+      outputWorld = (0, _core.runMainLoop)(inputWorld);
+    }
 
     socket.write(_world.World.encode(outputWorld).finish());
   });

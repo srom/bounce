@@ -84,16 +84,11 @@ var Brick = function (_Entity) {
         key: 'contact',
         value: function contact() {
             this.lives--;
-            if (this.lives <= 0) {
-                this._garbage = true;
-            } else {
-                //this.el.texture = PIXI.loader.resources.brickDamagedGreen.texture;
-            }
         }
     }, {
         key: 'isGarbage',
         value: function isGarbage() {
-            return this._garbage;
+            return this.lives <= 0;
         }
     }]);
 
@@ -104,7 +99,6 @@ var _initialiseProps = function _initialiseProps() {
     var _this2 = this;
 
     this.lives = 1;
-    this._garbage = false;
 
     this._createBrick = function (lvl, x_px, y_px, width_px, height_px, options) {
         //let texture;

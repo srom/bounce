@@ -1,10 +1,13 @@
 from __future__ import unicode_literals
 
-from query import query_socket
+from query import simulation
+
+
+NUM_EPOCHS = 10
 
 
 def main():
-    result = query_socket()
+    result = simulation(None, None, NUM_EPOCHS)
     print result
 
 

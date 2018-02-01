@@ -1086,6 +1086,7 @@ export const Arrow = $root.Arrow = (() => {
      * @property {number|null} [yPx] Arrow yPx
      * @property {number|null} [angularVelocityXM] Arrow angularVelocityXM
      * @property {number|null} [angularVelocityYM] Arrow angularVelocityYM
+     * @property {number|null} [rotation] Arrow rotation
      * @property {boolean|null} [ready] Arrow ready
      * @property {boolean|null} [reversed] Arrow reversed
      */
@@ -1138,6 +1139,14 @@ export const Arrow = $root.Arrow = (() => {
     Arrow.prototype.angularVelocityYM = 0;
 
     /**
+     * Arrow rotation.
+     * @member {number} rotation
+     * @memberof Arrow
+     * @instance
+     */
+    Arrow.prototype.rotation = 0;
+
+    /**
      * Arrow ready.
      * @member {boolean} ready
      * @memberof Arrow
@@ -1185,10 +1194,12 @@ export const Arrow = $root.Arrow = (() => {
             writer.uint32(/* id 3, wireType 5 =*/29).float(message.angularVelocityXM);
         if (message.angularVelocityYM != null && message.hasOwnProperty("angularVelocityYM"))
             writer.uint32(/* id 4, wireType 5 =*/37).float(message.angularVelocityYM);
+        if (message.rotation != null && message.hasOwnProperty("rotation"))
+            writer.uint32(/* id 5, wireType 5 =*/45).float(message.rotation);
         if (message.ready != null && message.hasOwnProperty("ready"))
-            writer.uint32(/* id 5, wireType 0 =*/40).bool(message.ready);
+            writer.uint32(/* id 6, wireType 0 =*/48).bool(message.ready);
         if (message.reversed != null && message.hasOwnProperty("reversed"))
-            writer.uint32(/* id 6, wireType 0 =*/48).bool(message.reversed);
+            writer.uint32(/* id 7, wireType 0 =*/56).bool(message.reversed);
         return writer;
     };
 
@@ -1236,9 +1247,12 @@ export const Arrow = $root.Arrow = (() => {
                 message.angularVelocityYM = reader.float();
                 break;
             case 5:
-                message.ready = reader.bool();
+                message.rotation = reader.float();
                 break;
             case 6:
+                message.ready = reader.bool();
+                break;
+            case 7:
                 message.reversed = reader.bool();
                 break;
             default:
@@ -1288,6 +1302,9 @@ export const Arrow = $root.Arrow = (() => {
         if (message.angularVelocityYM != null && message.hasOwnProperty("angularVelocityYM"))
             if (typeof message.angularVelocityYM !== "number")
                 return "angularVelocityYM: number expected";
+        if (message.rotation != null && message.hasOwnProperty("rotation"))
+            if (typeof message.rotation !== "number")
+                return "rotation: number expected";
         if (message.ready != null && message.hasOwnProperty("ready"))
             if (typeof message.ready !== "boolean")
                 return "ready: boolean expected";
@@ -1317,6 +1334,8 @@ export const Arrow = $root.Arrow = (() => {
             message.angularVelocityXM = Number(object.angularVelocityXM);
         if (object.angularVelocityYM != null)
             message.angularVelocityYM = Number(object.angularVelocityYM);
+        if (object.rotation != null)
+            message.rotation = Number(object.rotation);
         if (object.ready != null)
             message.ready = Boolean(object.ready);
         if (object.reversed != null)
@@ -1342,6 +1361,7 @@ export const Arrow = $root.Arrow = (() => {
             object.yPx = 0;
             object.angularVelocityXM = 0;
             object.angularVelocityYM = 0;
+            object.rotation = 0;
             object.ready = false;
             object.reversed = false;
         }
@@ -1353,6 +1373,8 @@ export const Arrow = $root.Arrow = (() => {
             object.angularVelocityXM = options.json && !isFinite(message.angularVelocityXM) ? String(message.angularVelocityXM) : message.angularVelocityXM;
         if (message.angularVelocityYM != null && message.hasOwnProperty("angularVelocityYM"))
             object.angularVelocityYM = options.json && !isFinite(message.angularVelocityYM) ? String(message.angularVelocityYM) : message.angularVelocityYM;
+        if (message.rotation != null && message.hasOwnProperty("rotation"))
+            object.rotation = options.json && !isFinite(message.rotation) ? String(message.rotation) : message.rotation;
         if (message.ready != null && message.hasOwnProperty("ready"))
             object.ready = message.ready;
         if (message.reversed != null && message.hasOwnProperty("reversed"))

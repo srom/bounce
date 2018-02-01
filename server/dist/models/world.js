@@ -973,6 +973,7 @@ var Arrow = exports.Arrow = $root.Arrow = function () {
      * @property {number|null} [yPx] Arrow yPx
      * @property {number|null} [angularVelocityXM] Arrow angularVelocityXM
      * @property {number|null} [angularVelocityYM] Arrow angularVelocityYM
+     * @property {number|null} [rotation] Arrow rotation
      * @property {boolean|null} [ready] Arrow ready
      * @property {boolean|null} [reversed] Arrow reversed
      */
@@ -1024,6 +1025,14 @@ var Arrow = exports.Arrow = $root.Arrow = function () {
     Arrow.prototype.angularVelocityYM = 0;
 
     /**
+     * Arrow rotation.
+     * @member {number} rotation
+     * @memberof Arrow
+     * @instance
+     */
+    Arrow.prototype.rotation = 0;
+
+    /**
      * Arrow ready.
      * @member {boolean} ready
      * @memberof Arrow
@@ -1066,8 +1075,9 @@ var Arrow = exports.Arrow = $root.Arrow = function () {
         if (message.yPx != null && message.hasOwnProperty("yPx")) writer.uint32( /* id 2, wireType 5 =*/21).float(message.yPx);
         if (message.angularVelocityXM != null && message.hasOwnProperty("angularVelocityXM")) writer.uint32( /* id 3, wireType 5 =*/29).float(message.angularVelocityXM);
         if (message.angularVelocityYM != null && message.hasOwnProperty("angularVelocityYM")) writer.uint32( /* id 4, wireType 5 =*/37).float(message.angularVelocityYM);
-        if (message.ready != null && message.hasOwnProperty("ready")) writer.uint32( /* id 5, wireType 0 =*/40).bool(message.ready);
-        if (message.reversed != null && message.hasOwnProperty("reversed")) writer.uint32( /* id 6, wireType 0 =*/48).bool(message.reversed);
+        if (message.rotation != null && message.hasOwnProperty("rotation")) writer.uint32( /* id 5, wireType 5 =*/45).float(message.rotation);
+        if (message.ready != null && message.hasOwnProperty("ready")) writer.uint32( /* id 6, wireType 0 =*/48).bool(message.ready);
+        if (message.reversed != null && message.hasOwnProperty("reversed")) writer.uint32( /* id 7, wireType 0 =*/56).bool(message.reversed);
         return writer;
     };
 
@@ -1115,9 +1125,12 @@ var Arrow = exports.Arrow = $root.Arrow = function () {
                     message.angularVelocityYM = reader.float();
                     break;
                 case 5:
-                    message.ready = reader.bool();
+                    message.rotation = reader.float();
                     break;
                 case 6:
+                    message.ready = reader.bool();
+                    break;
+                case 7:
                     message.reversed = reader.bool();
                     break;
                 default:
@@ -1157,6 +1170,7 @@ var Arrow = exports.Arrow = $root.Arrow = function () {
         if (message.yPx != null && message.hasOwnProperty("yPx")) if (typeof message.yPx !== "number") return "yPx: number expected";
         if (message.angularVelocityXM != null && message.hasOwnProperty("angularVelocityXM")) if (typeof message.angularVelocityXM !== "number") return "angularVelocityXM: number expected";
         if (message.angularVelocityYM != null && message.hasOwnProperty("angularVelocityYM")) if (typeof message.angularVelocityYM !== "number") return "angularVelocityYM: number expected";
+        if (message.rotation != null && message.hasOwnProperty("rotation")) if (typeof message.rotation !== "number") return "rotation: number expected";
         if (message.ready != null && message.hasOwnProperty("ready")) if (typeof message.ready !== "boolean") return "ready: boolean expected";
         if (message.reversed != null && message.hasOwnProperty("reversed")) if (typeof message.reversed !== "boolean") return "reversed: boolean expected";
         return null;
@@ -1177,6 +1191,7 @@ var Arrow = exports.Arrow = $root.Arrow = function () {
         if (object.yPx != null) message.yPx = Number(object.yPx);
         if (object.angularVelocityXM != null) message.angularVelocityXM = Number(object.angularVelocityXM);
         if (object.angularVelocityYM != null) message.angularVelocityYM = Number(object.angularVelocityYM);
+        if (object.rotation != null) message.rotation = Number(object.rotation);
         if (object.ready != null) message.ready = Boolean(object.ready);
         if (object.reversed != null) message.reversed = Boolean(object.reversed);
         return message;
@@ -1199,6 +1214,7 @@ var Arrow = exports.Arrow = $root.Arrow = function () {
             object.yPx = 0;
             object.angularVelocityXM = 0;
             object.angularVelocityYM = 0;
+            object.rotation = 0;
             object.ready = false;
             object.reversed = false;
         }
@@ -1206,6 +1222,7 @@ var Arrow = exports.Arrow = $root.Arrow = function () {
         if (message.yPx != null && message.hasOwnProperty("yPx")) object.yPx = options.json && !isFinite(message.yPx) ? String(message.yPx) : message.yPx;
         if (message.angularVelocityXM != null && message.hasOwnProperty("angularVelocityXM")) object.angularVelocityXM = options.json && !isFinite(message.angularVelocityXM) ? String(message.angularVelocityXM) : message.angularVelocityXM;
         if (message.angularVelocityYM != null && message.hasOwnProperty("angularVelocityYM")) object.angularVelocityYM = options.json && !isFinite(message.angularVelocityYM) ? String(message.angularVelocityYM) : message.angularVelocityYM;
+        if (message.rotation != null && message.hasOwnProperty("rotation")) object.rotation = options.json && !isFinite(message.rotation) ? String(message.rotation) : message.rotation;
         if (message.ready != null && message.hasOwnProperty("ready")) object.ready = message.ready;
         if (message.reversed != null && message.hasOwnProperty("reversed")) object.reversed = message.reversed;
         return object;

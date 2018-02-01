@@ -1,6 +1,6 @@
 import * as net from 'net';
 
-import { parseWorld, getDefaultWorld } from './core';
+import { parseWorld, getDefaultWorld, runMainLoop } from './core';
 import { World } from './models/world';
 
 
@@ -25,7 +25,7 @@ const bounce_socket = function(socket) {
     if (!inputWorld) {
       outputWorld = getDefaultWorld();
     } else {
-
+      outputWorld = runMainLoop(inputWorld);
     }
 
     socket.write(World.encode(outputWorld).finish())

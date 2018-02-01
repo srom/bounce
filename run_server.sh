@@ -1,5 +1,7 @@
 #!/bin/bash
 
+rm /tmp/bounce.sock || true
+
 pushd server
 
 ./node_modules/babel-cli/bin/babel.js ./ \

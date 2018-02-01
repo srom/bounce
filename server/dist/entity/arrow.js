@@ -92,7 +92,6 @@ var _initialiseProps = function _initialiseProps() {
     this._reversed = false;
 
     this._createArrow = function (x_px, y_px) {
-        //const arrow = new PIXI.Sprite(PIXI.loader.resources.arrow.texture);
         var arrow = {
             position: {
                 x: x_px,

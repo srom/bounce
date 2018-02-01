@@ -37,8 +37,9 @@ message Arrow {
     float y_px = 2;
     float angular_velocity_x_m = 3;
     float angular_velocity_y_m = 4;
-    bool ready = 5;
-    bool reversed = 6;
+    float rotation = 5;
+    bool ready = 6;
+    bool reversed = 7;
 }
 
 message Brick {

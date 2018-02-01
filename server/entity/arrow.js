@@ -59,7 +59,6 @@ export default class Arrow extends Entity {
     }
 
     _createArrow = (x_px, y_px) => {
-        //const arrow = new PIXI.Sprite(PIXI.loader.resources.arrow.texture);
         const arrow = {
             position: {
                 x: x_px,

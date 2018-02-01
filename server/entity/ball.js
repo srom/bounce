@@ -10,9 +10,6 @@ const b2Body = Box2D.Dynamics.b2Body;
 const b2CircleShape = Box2D.Collision.Shapes.b2CircleShape;
 const b2Vec2 = Box2D.Common.Math.b2Vec2;
 
-const BALL_LINE_COLOR = 0xDEFFA3;
-const BALL_FILL_COLOR = 0xFFFF0B;
-
 
 export default class Ball extends Entity {
 
@@ -27,14 +24,12 @@ export default class Ball extends Entity {
 
     _initialX;
     _initialY;
-    _bounceSound;
 
     _targetVelocity;
 
     constructor (x_px, y_px, radius_px, options = {}) {
         super();
         this.el = this._createBall(x_px, y_px, radius_px, options);
-        //this._bounceSound = PIXI.audioManager.getAudio('bounceSound');
     }
 
     createBody (world) {
@@ -91,7 +86,7 @@ export default class Ball extends Entity {
         );
     }
 
-    render (input) {
+    render () {
         if (this.canMove) {
             this.el.position.x = metersToPixels(this.body.GetPosition().x) - this._initialX;
             this.el.position.y = metersToPixels(this.body.GetPosition().y) - this._initialY;
@@ -102,11 +97,6 @@ export default class Ball extends Entity {
         }
 
         if (this.bouncing) {
-            if (!this._bounceSound) {
-                console.warn("No bounce sound found");
-                return;
-            }
-            this._bounceSound.play();
             this.bouncing = false;
         }
 
