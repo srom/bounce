@@ -60,4 +60,5 @@ enum Action {
 message Request {
     float frame_rate = 1;
     int32 num_epochs = 2;
+    bool movie = 3;
 }

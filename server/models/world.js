@@ -1698,6 +1698,7 @@ export const Request = $root.Request = (() => {
      * @interface IRequest
      * @property {number|null} [frameRate] Request frameRate
      * @property {number|null} [numEpochs] Request numEpochs
+     * @property {boolean|null} [movie] Request movie
      */
 
     /**
@@ -1732,6 +1733,14 @@ export const Request = $root.Request = (() => {
     Request.prototype.numEpochs = 0;
 
     /**
+     * Request movie.
+     * @member {boolean} movie
+     * @memberof Request
+     * @instance
+     */
+    Request.prototype.movie = false;
+
+    /**
      * Creates a new Request instance using the specified properties.
      * @function create
      * @memberof Request
@@ -1759,6 +1768,8 @@ export const Request = $root.Request = (() => {
             writer.uint32(/* id 1, wireType 5 =*/13).float(message.frameRate);
         if (message.numEpochs != null && message.hasOwnProperty("numEpochs"))
             writer.uint32(/* id 2, wireType 0 =*/16).int32(message.numEpochs);
+        if (message.movie != null && message.hasOwnProperty("movie"))
+            writer.uint32(/* id 3, wireType 0 =*/24).bool(message.movie);
         return writer;
     };
 
@@ -1798,6 +1809,9 @@ export const Request = $root.Request = (() => {
                 break;
             case 2:
                 message.numEpochs = reader.int32();
+                break;
+            case 3:
+                message.movie = reader.bool();
                 break;
             default:
                 reader.skipType(tag & 7);
@@ -1840,6 +1854,9 @@ export const Request = $root.Request = (() => {
         if (message.numEpochs != null && message.hasOwnProperty("numEpochs"))
             if (!$util.isInteger(message.numEpochs))
                 return "numEpochs: integer expected";
+        if (message.movie != null && message.hasOwnProperty("movie"))
+            if (typeof message.movie !== "boolean")
+                return "movie: boolean expected";
         return null;
     };
 
@@ -1859,6 +1876,8 @@ export const Request = $root.Request = (() => {
             message.frameRate = Number(object.frameRate);
         if (object.numEpochs != null)
             message.numEpochs = object.numEpochs | 0;
+        if (object.movie != null)
+            message.movie = Boolean(object.movie);
         return message;
     };
 
@@ -1878,11 +1897,14 @@ export const Request = $root.Request = (() => {
         if (options.defaults) {
             object.frameRate = 0;
             object.numEpochs = 0;
+            object.movie = false;
         }
         if (message.frameRate != null && message.hasOwnProperty("frameRate"))
             object.frameRate = options.json && !isFinite(message.frameRate) ? String(message.frameRate) : message.frameRate;
         if (message.numEpochs != null && message.hasOwnProperty("numEpochs"))
             object.numEpochs = message.numEpochs;
+        if (message.movie != null && message.hasOwnProperty("movie"))
+            object.movie = message.movie;
         return object;
     };
 
