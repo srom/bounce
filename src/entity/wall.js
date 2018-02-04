@@ -1,5 +1,6 @@
 import Box2D from 'box2dweb';
 
+import * as constants from '../constants';
 import fixDef from './fixture';
 import { pixelsToMeters } from '../util/scale';
 import { STAGE_WIDTH_PX, STAGE_HEIGHT_PX } from '../constants';

@@ -9,6 +9,7 @@ import Wall, { setWalls } from './entity/wall';
 import Arrow from './entity/arrow';
 import Brick, { BrickLevel1, BrickLevel2, setBricks } from './entity/brick';
 import debugPhysics from './util/debug';
+import { getHashValue } from './util/url';
 import * as input from './util/input';
 
 const PIXI = window.PIXI;
@@ -39,31 +40,41 @@ const container = document.getElementById(constants.CONTAINER_ID);
 const canvas = container.appendChild(renderer.view);
 canvas.className = "canvas";
 
-PIXI.loader.add(
-    'paddle', 'resources/entities/paddle@2x.png'
-).add(
-    'brickBlue', 'resources/entities/brick-blue@2x.png'
-).add(
-    'brickGreen', 'resources/entities/brick-green@2x.png'
-).add(
-    'brickDamagedGreen', 'resources/entities/brick-damaged-green@2x.png'
-).add(
-    'arrow', 'resources/entities/arrow@2x.png'
-).add(
-    'bounceSound', 'resources/sound/bounce.wav'
-).add(
-    'gameOverSound', 'resources/sound/game-over.wav'
-).add(
-    'victorySound', 'resources/sound/victory.wav'
-).add(
-    'movie', 'resources/movie/movie.json'
-).once(
-    'complete', init
-).load();
+const movie = getHashValue('movie', window);
+
+const loadAssets = () => {
+    PIXI.loader.add(
+        'paddle', 'resources/entities/paddle@2x.png'
+    ).add(
+        'brickBlue', 'resources/entities/brick-blue@2x.png'
+    ).add(
+        'brickGreen', 'resources/entities/brick-green@2x.png'
+    ).add(
+        'brickDamagedGreen', 'resources/entities/brick-damaged-green@2x.png'
+    ).add(
+        'arrow', 'resources/entities/arrow@2x.png'
+    ).add(
+        'bounceSound', 'resources/sound/bounce.wav'
+    ).add(
+        'gameOverSound', 'resources/sound/game-over.wav'
+    ).add(
+        'victorySound', 'resources/sound/victory.wav'
+    ).once(
+        'complete', init
+    ).load();
+};
+
+let movieFrames = null;
+if (movie) {
+    $.getJSON('/resources/movie/movie.json').done((frames) => {
+        movieFrames = frames;
+        loadAssets();
+    })
+} else {
+    loadAssets();
+}
 
 function init () {
-    console.log(constants);
-    const movie = true;
     let frame = 0;
 
     const stage = new PIXI.Container();
@@ -109,11 +120,7 @@ function init () {
 
     const gameOverSound = PIXI.audioManager.getAudio('gameOverSound');
     const victorySound = PIXI.audioManager.getAudio('victorySound');
-
-    let movieFrames = null;
-    if (movie) {
-        movieFrames = PIXI.loader.resources.movie;
-    }
+    const bounceSound = PIXI.audioManager.getAudio('bounceSound');
 
     if (constants.DEBUG_PHYSICS) {
         debugPhysics(world);
@@ -187,19 +194,21 @@ function init () {
     }
 
     function updateWithMovie () {
-        if (frame >= movieFrames.worlds.length) {
+        const pbWorld = movieFrames.worlds[frame];
+
+        if (!pbWorld) {
             abort();
+            return;
         }
 
-        const world = movieFrames.worlds[frame];
-
-        updateBall(world, ball);
-        updatePaddle(world, paddle);
-        updateArrow(world, arrow);
-        updateBricks(world, bricks);
+        updateBall(pbWorld, ball);
+        updatePaddle(pbWorld, paddle);
+        updateArrow(pbWorld, arrow);
+        updateBricks(pbWorld, bricks);
 
         bricks.forEach((brick) => {
             if (brick.isGarbage()) {
+                bounceSound.play();
                 stage.removeChild(brick.el);
             }
         });
