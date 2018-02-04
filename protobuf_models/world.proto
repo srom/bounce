@@ -1,5 +1,9 @@
 syntax = "proto3";
 
+message Worlds {
+    repeated World worlds = 1;
+}
+
 message World {
   Ball ball = 1;
   Paddle paddle = 2;

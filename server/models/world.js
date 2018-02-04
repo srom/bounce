@@ -7,6 +7,214 @@ const $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.
 // Exported root namespace
 const $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
 
+export const Worlds = $root.Worlds = (() => {
+
+    /**
+     * Properties of a Worlds.
+     * @exports IWorlds
+     * @interface IWorlds
+     * @property {Array.<IWorld>|null} [worlds] Worlds worlds
+     */
+
+    /**
+     * Constructs a new Worlds.
+     * @exports Worlds
+     * @classdesc Represents a Worlds.
+     * @implements IWorlds
+     * @constructor
+     * @param {IWorlds=} [properties] Properties to set
+     */
+    function Worlds(properties) {
+        this.worlds = [];
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * Worlds worlds.
+     * @member {Array.<IWorld>} worlds
+     * @memberof Worlds
+     * @instance
+     */
+    Worlds.prototype.worlds = $util.emptyArray;
+
+    /**
+     * Creates a new Worlds instance using the specified properties.
+     * @function create
+     * @memberof Worlds
+     * @static
+     * @param {IWorlds=} [properties] Properties to set
+     * @returns {Worlds} Worlds instance
+     */
+    Worlds.create = function create(properties) {
+        return new Worlds(properties);
+    };
+
+    /**
+     * Encodes the specified Worlds message. Does not implicitly {@link Worlds.verify|verify} messages.
+     * @function encode
+     * @memberof Worlds
+     * @static
+     * @param {IWorlds} message Worlds message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    Worlds.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.worlds != null && message.worlds.length)
+            for (let i = 0; i < message.worlds.length; ++i)
+                $root.World.encode(message.worlds[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+        return writer;
+    };
+
+    /**
+     * Encodes the specified Worlds message, length delimited. Does not implicitly {@link Worlds.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof Worlds
+     * @static
+     * @param {IWorlds} message Worlds message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    Worlds.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a Worlds message from the specified reader or buffer.
+     * @function decode
+     * @memberof Worlds
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {Worlds} Worlds
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    Worlds.decode = function decode(reader, length) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.Worlds();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            switch (tag >>> 3) {
+            case 1:
+                if (!(message.worlds && message.worlds.length))
+                    message.worlds = [];
+                message.worlds.push($root.World.decode(reader, reader.uint32()));
+                break;
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a Worlds message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof Worlds
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {Worlds} Worlds
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    Worlds.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a Worlds message.
+     * @function verify
+     * @memberof Worlds
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    Worlds.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.worlds != null && message.hasOwnProperty("worlds")) {
+            if (!Array.isArray(message.worlds))
+                return "worlds: array expected";
+            for (let i = 0; i < message.worlds.length; ++i) {
+                let error = $root.World.verify(message.worlds[i]);
+                if (error)
+                    return "worlds." + error;
+            }
+        }
+        return null;
+    };
+
+    /**
+     * Creates a Worlds message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof Worlds
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {Worlds} Worlds
+     */
+    Worlds.fromObject = function fromObject(object) {
+        if (object instanceof $root.Worlds)
+            return object;
+        let message = new $root.Worlds();
+        if (object.worlds) {
+            if (!Array.isArray(object.worlds))
+                throw TypeError(".Worlds.worlds: array expected");
+            message.worlds = [];
+            for (let i = 0; i < object.worlds.length; ++i) {
+                if (typeof object.worlds[i] !== "object")
+                    throw TypeError(".Worlds.worlds: object expected");
+                message.worlds[i] = $root.World.fromObject(object.worlds[i]);
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a Worlds message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof Worlds
+     * @static
+     * @param {Worlds} message Worlds
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    Worlds.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.arrays || options.defaults)
+            object.worlds = [];
+        if (message.worlds && message.worlds.length) {
+            object.worlds = [];
+            for (let j = 0; j < message.worlds.length; ++j)
+                object.worlds[j] = $root.World.toObject(message.worlds[j], options);
+        }
+        return object;
+    };
+
+    /**
+     * Converts this Worlds to JSON.
+     * @function toJSON
+     * @memberof Worlds
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    Worlds.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    return Worlds;
+})();
+
 export const World = $root.World = (() => {
 
     /**

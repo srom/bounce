@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='world.proto',
   package='',
   syntax='proto3',
-  serialized_pb=_b('\n\x0bworld.proto\"\xdb\x01\n\x05World\x12\x13\n\x04\x62\x61ll\x18\x01 \x01(\x0b\x32\x05.Ball\x12\x17\n\x06paddle\x18\x02 \x01(\x0b\x32\x07.Paddle\x12\x15\n\x05\x61rrow\x18\x03 \x01(\x0b\x32\x06.Arrow\x12\x16\n\x06\x62ricks\x18\x04 \x03(\x0b\x32\x06.Brick\x12\x17\n\x06\x61\x63tion\x18\x05 \x01(\x0e\x32\x07.Action\x12\x0b\n\x03won\x18\x06 \x01(\x08\x12\x0c\n\x04lost\x18\x07 \x01(\x08\x12\x10\n\x08\x66rame_nb\x18\x08 \x01(\x05\x12\x14\n\x0cpre_frame_nb\x18\t \x01(\x05\x12\x19\n\x07request\x18\n \x01(\x0b\x32\x08.Request\"\xa1\x01\n\x04\x42\x61ll\x12\x0c\n\x04x_px\x18\x01 \x01(\x02\x12\x0c\n\x04y_px\x18\x02 \x01(\x02\x12\x11\n\tradius_px\x18\x03 \x01(\x02\x12\x1b\n\x13linear_velocity_x_m\x18\x04 \x01(\x02\x12\x1b\n\x13linear_velocity_y_m\x18\x05 \x01(\x02\x12\x10\n\x08\x63\x61n_move\x18\x06 \x01(\x08\x12\x10\n\x08\x62ouncing\x18\x07 \x01(\x08\x12\x0c\n\x04\x64\x65\x61\x64\x18\x08 \x01(\x08\"[\n\x06Paddle\x12\x0c\n\x04x_px\x18\x01 \x01(\x02\x12\x0c\n\x04y_px\x18\x02 \x01(\x02\x12\x10\n\x08width_px\x18\x03 \x01(\x02\x12\x11\n\theight_px\x18\x04 \x01(\x02\x12\x10\n\x08\x63\x61n_move\x18\x05 \x01(\x08\"\x92\x01\n\x05\x41rrow\x12\x0c\n\x04x_px\x18\x01 \x01(\x02\x12\x0c\n\x04y_px\x18\x02 \x01(\x02\x12\x1c\n\x14\x61ngular_velocity_x_m\x18\x03 \x01(\x02\x12\x1c\n\x14\x61ngular_velocity_y_m\x18\x04 \x01(\x02\x12\x10\n\x08rotation\x18\x05 \x01(\x02\x12\r\n\x05ready\x18\x06 \x01(\x08\x12\x10\n\x08reversed\x18\x07 \x01(\x08\"W\n\x05\x42rick\x12\x0c\n\x04x_px\x18\x01 \x01(\x02\x12\x0c\n\x04y_px\x18\x02 \x01(\x02\x12\x10\n\x08width_px\x18\x03 \x01(\x02\x12\x11\n\theight_px\x18\x04 \x01(\x02\x12\r\n\x05lives\x18\x05 \x01(\r\"@\n\x07Request\x12\x12\n\nframe_rate\x18\x01 \x01(\x02\x12\x12\n\nnum_epochs\x18\x02 \x01(\x05\x12\r\n\x05movie\x18\x03 \x01(\x08*2\n\x06\x41\x63tion\x12\x08\n\x04LEFT\x10\x00\x12\t\n\x05RIGHT\x10\x01\x12\t\n\x05SPACE\x10\x02\x12\x08\n\x04HOLD\x10\x03\x62\x06proto3')
+  serialized_pb=_b('\n\x0bworld.proto\" \n\x06Worlds\x12\x16\n\x06worlds\x18\x01 \x03(\x0b\x32\x06.World\"\xdb\x01\n\x05World\x12\x13\n\x04\x62\x61ll\x18\x01 \x01(\x0b\x32\x05.Ball\x12\x17\n\x06paddle\x18\x02 \x01(\x0b\x32\x07.Paddle\x12\x15\n\x05\x61rrow\x18\x03 \x01(\x0b\x32\x06.Arrow\x12\x16\n\x06\x62ricks\x18\x04 \x03(\x0b\x32\x06.Brick\x12\x17\n\x06\x61\x63tion\x18\x05 \x01(\x0e\x32\x07.Action\x12\x0b\n\x03won\x18\x06 \x01(\x08\x12\x0c\n\x04lost\x18\x07 \x01(\x08\x12\x10\n\x08\x66rame_nb\x18\x08 \x01(\x05\x12\x14\n\x0cpre_frame_nb\x18\t \x01(\x05\x12\x19\n\x07request\x18\n \x01(\x0b\x32\x08.Request\"\xa1\x01\n\x04\x42\x61ll\x12\x0c\n\x04x_px\x18\x01 \x01(\x02\x12\x0c\n\x04y_px\x18\x02 \x01(\x02\x12\x11\n\tradius_px\x18\x03 \x01(\x02\x12\x1b\n\x13linear_velocity_x_m\x18\x04 \x01(\x02\x12\x1b\n\x13linear_velocity_y_m\x18\x05 \x01(\x02\x12\x10\n\x08\x63\x61n_move\x18\x06 \x01(\x08\x12\x10\n\x08\x62ouncing\x18\x07 \x01(\x08\x12\x0c\n\x04\x64\x65\x61\x64\x18\x08 \x01(\x08\"[\n\x06Paddle\x12\x0c\n\x04x_px\x18\x01 \x01(\x02\x12\x0c\n\x04y_px\x18\x02 \x01(\x02\x12\x10\n\x08width_px\x18\x03 \x01(\x02\x12\x11\n\theight_px\x18\x04 \x01(\x02\x12\x10\n\x08\x63\x61n_move\x18\x05 \x01(\x08\"\x92\x01\n\x05\x41rrow\x12\x0c\n\x04x_px\x18\x01 \x01(\x02\x12\x0c\n\x04y_px\x18\x02 \x01(\x02\x12\x1c\n\x14\x61ngular_velocity_x_m\x18\x03 \x01(\x02\x12\x1c\n\x14\x61ngular_velocity_y_m\x18\x04 \x01(\x02\x12\x10\n\x08rotation\x18\x05 \x01(\x02\x12\r\n\x05ready\x18\x06 \x01(\x08\x12\x10\n\x08reversed\x18\x07 \x01(\x08\"W\n\x05\x42rick\x12\x0c\n\x04x_px\x18\x01 \x01(\x02\x12\x0c\n\x04y_px\x18\x02 \x01(\x02\x12\x10\n\x08width_px\x18\x03 \x01(\x02\x12\x11\n\theight_px\x18\x04 \x01(\x02\x12\r\n\x05lives\x18\x05 \x01(\r\"@\n\x07Request\x12\x12\n\nframe_rate\x18\x01 \x01(\x02\x12\x12\n\nnum_epochs\x18\x02 \x01(\x05\x12\r\n\x05movie\x18\x03 \x01(\x08*2\n\x06\x41\x63tion\x12\x08\n\x04LEFT\x10\x00\x12\t\n\x05RIGHT\x10\x01\x12\t\n\x05SPACE\x10\x02\x12\x08\n\x04HOLD\x10\x03\x62\x06proto3')
 )
 
 _ACTION = _descriptor.EnumDescriptor(
@@ -48,8 +48,8 @@ _ACTION = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=798,
-  serialized_end=848,
+  serialized_start=832,
+  serialized_end=882,
 )
 _sym_db.RegisterEnumDescriptor(_ACTION)
 
@@ -59,6 +59,37 @@ RIGHT = 1
 SPACE = 2
 HOLD = 3
 
+
+
+_WORLDS = _descriptor.Descriptor(
+  name='Worlds',
+  full_name='Worlds',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='worlds', full_name='Worlds.worlds', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=15,
+  serialized_end=47,
+)
 
 
 _WORLD = _descriptor.Descriptor(
@@ -150,8 +181,8 @@ _WORLD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=16,
-  serialized_end=235,
+  serialized_start=50,
+  serialized_end=269,
 )
 
 
@@ -230,8 +261,8 @@ _BALL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=238,
-  serialized_end=399,
+  serialized_start=272,
+  serialized_end=433,
 )
 
 
@@ -289,8 +320,8 @@ _PADDLE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=401,
-  serialized_end=492,
+  serialized_start=435,
+  serialized_end=526,
 )
 
 
@@ -362,8 +393,8 @@ _ARROW = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=495,
-  serialized_end=641,
+  serialized_start=529,
+  serialized_end=675,
 )
 
 
@@ -421,8 +452,8 @@ _BRICK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=643,
-  serialized_end=730,
+  serialized_start=677,
+  serialized_end=764,
 )
 
 
@@ -466,16 +497,18 @@ _REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=732,
-  serialized_end=796,
+  serialized_start=766,
+  serialized_end=830,
 )
 
+_WORLDS.fields_by_name['worlds'].message_type = _WORLD
 _WORLD.fields_by_name['ball'].message_type = _BALL
 _WORLD.fields_by_name['paddle'].message_type = _PADDLE
 _WORLD.fields_by_name['arrow'].message_type = _ARROW
 _WORLD.fields_by_name['bricks'].message_type = _BRICK
 _WORLD.fields_by_name['action'].enum_type = _ACTION
 _WORLD.fields_by_name['request'].message_type = _REQUEST
+DESCRIPTOR.message_types_by_name['Worlds'] = _WORLDS
 DESCRIPTOR.message_types_by_name['World'] = _WORLD
 DESCRIPTOR.message_types_by_name['Ball'] = _BALL
 DESCRIPTOR.message_types_by_name['Paddle'] = _PADDLE
@@ -484,6 +517,13 @@ DESCRIPTOR.message_types_by_name['Brick'] = _BRICK
 DESCRIPTOR.message_types_by_name['Request'] = _REQUEST
 DESCRIPTOR.enum_types_by_name['Action'] = _ACTION
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+Worlds = _reflection.GeneratedProtocolMessageType('Worlds', (_message.Message,), dict(
+  DESCRIPTOR = _WORLDS,
+  __module__ = 'world_pb2'
+  # @@protoc_insertion_point(class_scope:Worlds)
+  ))
+_sym_db.RegisterMessage(Worlds)
 
 World = _reflection.GeneratedProtocolMessageType('World', (_message.Message,), dict(
   DESCRIPTOR = _WORLD,
