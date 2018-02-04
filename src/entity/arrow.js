@@ -51,12 +51,6 @@ export default class Arrow extends Entity {
             }
         }
 
-        const deadConeRadius = 0.3;
-        if (-deadConeRadius < this.el.rotation && this.el.rotation < deadConeRadius) {
-            const sign = !this._reversed ? 1 : -1;
-            this.el.rotation = sign * deadConeRadius;
-        }
-
         return this;
     }
 

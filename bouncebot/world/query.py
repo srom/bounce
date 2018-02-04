@@ -1,7 +1,6 @@
 from __future__ import unicode_literals
 
 import socket
-import sys
 
 from models.world_pb2 import World, Worlds, HOLD
 
@@ -36,7 +35,6 @@ def run_simulation(current_world, action, num_epochs, movie):
 
             if any(w.pre_frame_nb == 0 for w in worlds.worlds):
                 error += 1
-                sys.stderr.write('retry {}\n'.format(error))
                 continue
 
             return worlds

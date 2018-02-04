@@ -105,18 +105,18 @@ const mainLoop = (inputWorld) => {
     b2_world.SetContactListener(contactListener(b2Listener));
 
     const num_epochs = request.numEpochs;
+    let currentWorld = inputWorld;
     for (let i = 0; i < num_epochs; i++) {
-        if (inputWorld.won || inputWorld.lost) {
-            console.log(inputWorld.won, inputWorld.lost);
+        if (currentWorld.won || currentWorld.lost) {
+            console.log(currentWorld.won, currentWorld.lost);
             break;
         }
-        update(b2_world, inputWorld, request.frameRate, ball, paddle, arrow, bricks);
+        update(b2_world, currentWorld, request.frameRate, ball, paddle, arrow, bricks);
         clean(b2_world);
-        if (movie) {
-            worlds.push(
-                getOutputWorld(inputWorld, request, ball, paddle, arrow, bricks)
-            );
-        }
+
+        const newWorld = getOutputWorld(currentWorld, request, ball, paddle, arrow, bricks);
+        currentWorld = newWorld;
+        worlds.push(newWorld);
     }
 
     if (movie) {
@@ -124,7 +124,7 @@ const mainLoop = (inputWorld) => {
             worlds: worlds,
         });
     } else {
-        return getOutputWorld(inputWorld, request, ball, paddle, arrow, bricks);
+        return worlds[-1];
     }
 };
 
@@ -267,6 +267,9 @@ const getOutputWorld = (inputWorld, request, ball, paddle, arrow, bricks) => {
             radiusPx: ball.radius,
             linearVelocityXM: ballVelocity.x,
             linearVelocityYM: ballVelocity.y,
+            dead: ball.dead,
+            canMove: ball.canMove,
+            bouncing: ball.bouncing,
         },
         paddle: {
             xPx: paddle.el.position.x,
@@ -280,6 +283,7 @@ const getOutputWorld = (inputWorld, request, ball, paddle, arrow, bricks) => {
             angularVelocityXM : arrow.velocity.x,
             angularVelocityYM: arrow.velocity.y,
             rotation: arrow.el.rotation,
+            reversed: arrow._reversed,
         },
         bricks: bricks.map((brick) => {
             return {

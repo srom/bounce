@@ -70,12 +70,6 @@ var Arrow = function (_Entity) {
                 }
             }
 
-            var deadConeRadius = 0.3;
-            if (-deadConeRadius < this.el.rotation && this.el.rotation < deadConeRadius) {
-                var sign = !this._reversed ? 1 : -1;
-                this.el.rotation = sign * deadConeRadius;
-            }
-
             return this;
         }
     }]);

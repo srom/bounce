@@ -131,16 +131,18 @@ var mainLoop = function mainLoop(inputWorld) {
     b2_world.SetContactListener(contactListener(b2Listener));
 
     var num_epochs = request.numEpochs;
+    var currentWorld = inputWorld;
     for (var i = 0; i < num_epochs; i++) {
-        if (inputWorld.won || inputWorld.lost) {
-            console.log(inputWorld.won, inputWorld.lost);
+        if (currentWorld.won || currentWorld.lost) {
+            console.log(currentWorld.won, currentWorld.lost);
             break;
         }
-        update(b2_world, inputWorld, request.frameRate, ball, paddle, arrow, bricks);
+        update(b2_world, currentWorld, request.frameRate, ball, paddle, arrow, bricks);
         clean(b2_world);
-        if (movie) {
-            worlds.push(getOutputWorld(inputWorld, request, ball, paddle, arrow, bricks));
-        }
+
+        var newWorld = getOutputWorld(currentWorld, request, ball, paddle, arrow, bricks);
+        currentWorld = newWorld;
+        worlds.push(newWorld);
     }
 
     if (movie) {
@@ -148,7 +150,7 @@ var mainLoop = function mainLoop(inputWorld) {
             worlds: worlds
         });
     } else {
-        return getOutputWorld(inputWorld, request, ball, paddle, arrow, bricks);
+        return worlds[-1];
     }
 };
 
@@ -291,7 +293,10 @@ var getOutputWorld = function getOutputWorld(inputWorld, request, ball, paddle, 
             yPx: ball.el.position.y,
             radiusPx: ball.radius,
             linearVelocityXM: ballVelocity.x,
-            linearVelocityYM: ballVelocity.y
+            linearVelocityYM: ballVelocity.y,
+            dead: ball.dead,
+            canMove: ball.canMove,
+            bouncing: ball.bouncing
         },
         paddle: {
             xPx: paddle.el.position.x,
@@ -304,7 +309,8 @@ var getOutputWorld = function getOutputWorld(inputWorld, request, ball, paddle, 
             yPx: arrow.el.position.y,
             angularVelocityXM: arrow.velocity.x,
             angularVelocityYM: arrow.velocity.y,
-            rotation: arrow.el.rotation
+            rotation: arrow.el.rotation,
+            reversed: arrow._reversed
         },
         bricks: bricks.map(function (brick) {
             return {
