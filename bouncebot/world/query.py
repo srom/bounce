@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 import socket
+import sys
 
 from models.world_pb2 import World, Worlds, HOLD
 
@@ -26,7 +27,7 @@ def run_simulation(current_world, action, num_epochs, movie):
     current_world_str = current_world.SerializeToString()
 
     error = 0
-    while error < 3:
+    while error < 10:
         data = query_socket(current_world_str)
 
         if movie:
@@ -34,6 +35,8 @@ def run_simulation(current_world, action, num_epochs, movie):
             worlds.ParseFromString(data)
 
             if any(w.pre_frame_nb == 0 for w in worlds.worlds):
+                error += 1
+                sys.stderr.write('retry {}\n'.format(error))
                 continue
 
             return worlds
@@ -42,11 +45,12 @@ def run_simulation(current_world, action, num_epochs, movie):
             new_world.ParseFromString(data)
 
             if new_world.pre_frame_nb == 0:
+                error += 1
                 continue
 
             return new_world
 
-    raise ValueError('Cannot get valdi output')
+    raise ValueError('Cannot get valid output')
 
 
 def getDefaultWorld():
