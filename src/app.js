@@ -199,6 +199,9 @@ function init () {
         if (!pbWorld) {
             abort();
             return;
+        } else if (!pbWorld.ball) {
+            frame++;
+            return;
         }
 
         updateBall(pbWorld, ball);
@@ -269,7 +272,7 @@ const updateArrow = (world, arrow) => {
     const newArrow = world.arrow;
     arrow.el.position.x = newArrow.xPx;
     arrow.el.position.y = newArrow.yPx;
-    arrow.el.position.rotation = newArrow.rotation;
+    arrow.el.rotation = newArrow.rotation;
     arrow.ready = newArrow.ready;
 };
 

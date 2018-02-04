@@ -107,6 +107,7 @@ const mainLoop = (inputWorld) => {
     const num_epochs = request.numEpochs;
     for (let i = 0; i < num_epochs; i++) {
         if (inputWorld.won || inputWorld.lost) {
+            console.log(inputWorld.won, inputWorld.lost);
             break;
         }
         update(b2_world, inputWorld, request.frameRate, ball, paddle, arrow, bricks);
