@@ -4,7 +4,7 @@ from query import simulation
 
 
 def main():
-    result = simulation(None, None)
+    result = simulation(None, None, movie=True)
     print result
 
 

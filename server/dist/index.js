@@ -26,14 +26,20 @@ var bounce_socket = function bounce_socket(socket) {
 
     var inputWorld = (0, _core.parseWorld)(data);
 
-    var outputWorld = null;
+    var movie = inputWorld ? inputWorld.request.movie : false;
+
+    var output = null;
     if (!inputWorld) {
-      outputWorld = (0, _core.getDefaultWorld)();
+      output = (0, _core.getDefaultWorld)();
     } else {
-      outputWorld = (0, _core.runMainLoop)(inputWorld);
+      output = (0, _core.runMainLoop)(inputWorld);
     }
 
-    socket.write(_world.World.encode(outputWorld).finish());
+    if (movie) {
+      socket.write(_world.Worlds.encode(output).finish());
+    } else {
+      socket.write(_world.World.encode(output).finish());
+    }
   });
 
   socket.on('error', log('socket', 'error'));

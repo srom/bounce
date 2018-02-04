@@ -125,6 +125,9 @@ var mainLoop = function mainLoop(inputWorld) {
     var arrow = parseArrow(inputWorld.arrow);
     var bricks = parseBricks(inputWorld.bricks, b2_world);
 
+    var movie = request.movie;
+    var worlds = [];
+
     b2_world.SetContactListener(contactListener(b2Listener));
 
     var num_epochs = request.numEpochs;
@@ -134,9 +137,18 @@ var mainLoop = function mainLoop(inputWorld) {
         }
         update(b2_world, inputWorld, request.frameRate, ball, paddle, arrow, bricks);
         clean(b2_world);
+        if (movie) {
+            worlds.push(getOutputWorld(inputWorld, request, ball, paddle, arrow, bricks));
+        }
     }
 
-    return getOutputWorld(inputWorld, request, ball, paddle, arrow, bricks);
+    if (movie) {
+        return _world.Worlds.create({
+            worlds: worlds
+        });
+    } else {
+        return getOutputWorld(inputWorld, request, ball, paddle, arrow, bricks);
+    }
 };
 
 var update = function update(b2_world, inputWorld, frame_rate, ball, paddle, arrow, bricks) {

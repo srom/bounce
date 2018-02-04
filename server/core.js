@@ -1,6 +1,6 @@
 import Box2D from 'box2dweb';
 
-import { World } from './models/world';
+import { World, Worlds } from './models/world';
 import * as constants from './constants';
 import Ball from './entity/ball';
 import Paddle from './entity/paddle';
@@ -99,6 +99,9 @@ const mainLoop = (inputWorld) => {
     const arrow = parseArrow(inputWorld.arrow);
     const bricks = parseBricks(inputWorld.bricks, b2_world);
 
+    const movie = request.movie;
+    const worlds = [];
+
     b2_world.SetContactListener(contactListener(b2Listener));
 
     const num_epochs = request.numEpochs;
@@ -108,9 +111,20 @@ const mainLoop = (inputWorld) => {
         }
         update(b2_world, inputWorld, request.frameRate, ball, paddle, arrow, bricks);
         clean(b2_world);
+        if (movie) {
+            worlds.push(
+                getOutputWorld(inputWorld, request, ball, paddle, arrow, bricks)
+            );
+        }
     }
 
-    return getOutputWorld(inputWorld, request, ball, paddle, arrow, bricks);
+    if (movie) {
+        return Worlds.create({
+            worlds: worlds,
+        });
+    } else {
+        return getOutputWorld(inputWorld, request, ball, paddle, arrow, bricks);
+    }
 };
 
 const update = (b2_world, inputWorld, frame_rate, ball, paddle, arrow, bricks) => {

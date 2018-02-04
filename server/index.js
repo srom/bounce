@@ -1,7 +1,7 @@
 import * as net from 'net';
 
 import { parseWorld, getDefaultWorld, runMainLoop } from './core';
-import { World } from './models/world';
+import { World, Worlds } from './models/world';
 
 
 const UNIX_SOCKET = '/tmp/bounce.sock';
@@ -21,14 +21,20 @@ const bounce_socket = function(socket) {
 
     const inputWorld = parseWorld(data);
 
-    let outputWorld = null;
+    const movie = inputWorld ? inputWorld.request.movie : false;
+
+    let output = null;
     if (!inputWorld) {
-      outputWorld = getDefaultWorld();
+      output = getDefaultWorld();
     } else {
-      outputWorld = runMainLoop(inputWorld);
+      output = runMainLoop(inputWorld);
     }
 
-    socket.write(World.encode(outputWorld).finish())
+    if (movie) {
+      socket.write(Worlds.encode(output).finish());
+    } else {
+      socket.write(World.encode(output).finish())
+    }
   });
 
   socket.on('error', log('socket', 'error'));

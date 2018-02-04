@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.default = exports.Request = exports.Brick = exports.Arrow = exports.Paddle = exports.Ball = exports.World = undefined;
+exports.default = exports.Request = exports.Brick = exports.Arrow = exports.Paddle = exports.Ball = exports.World = exports.Worlds = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; /*eslint-disable block-scoped-var, no-redeclare, no-control-regex, no-prototype-builtins*/
 
@@ -21,6 +21,202 @@ var $Reader = $protobuf.Reader,
 
 // Exported root namespace
 var $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
+
+var Worlds = exports.Worlds = $root.Worlds = function () {
+
+    /**
+     * Properties of a Worlds.
+     * @exports IWorlds
+     * @interface IWorlds
+     * @property {Array.<IWorld>|null} [worlds] Worlds worlds
+     */
+
+    /**
+     * Constructs a new Worlds.
+     * @exports Worlds
+     * @classdesc Represents a Worlds.
+     * @implements IWorlds
+     * @constructor
+     * @param {IWorlds=} [properties] Properties to set
+     */
+    function Worlds(properties) {
+        this.worlds = [];
+        if (properties) for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+            if (properties[keys[i]] != null) this[keys[i]] = properties[keys[i]];
+        }
+    }
+
+    /**
+     * Worlds worlds.
+     * @member {Array.<IWorld>} worlds
+     * @memberof Worlds
+     * @instance
+     */
+    Worlds.prototype.worlds = $util.emptyArray;
+
+    /**
+     * Creates a new Worlds instance using the specified properties.
+     * @function create
+     * @memberof Worlds
+     * @static
+     * @param {IWorlds=} [properties] Properties to set
+     * @returns {Worlds} Worlds instance
+     */
+    Worlds.create = function create(properties) {
+        return new Worlds(properties);
+    };
+
+    /**
+     * Encodes the specified Worlds message. Does not implicitly {@link Worlds.verify|verify} messages.
+     * @function encode
+     * @memberof Worlds
+     * @static
+     * @param {IWorlds} message Worlds message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    Worlds.encode = function encode(message, writer) {
+        if (!writer) writer = $Writer.create();
+        if (message.worlds != null && message.worlds.length) for (var i = 0; i < message.worlds.length; ++i) {
+            $root.World.encode(message.worlds[i], writer.uint32( /* id 1, wireType 2 =*/10).fork()).ldelim();
+        }return writer;
+    };
+
+    /**
+     * Encodes the specified Worlds message, length delimited. Does not implicitly {@link Worlds.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof Worlds
+     * @static
+     * @param {IWorlds} message Worlds message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    Worlds.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a Worlds message from the specified reader or buffer.
+     * @function decode
+     * @memberof Worlds
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {Worlds} Worlds
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    Worlds.decode = function decode(reader, length) {
+        if (!(reader instanceof $Reader)) reader = $Reader.create(reader);
+        var end = length === undefined ? reader.len : reader.pos + length,
+            message = new $root.Worlds();
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (!(message.worlds && message.worlds.length)) message.worlds = [];
+                    message.worlds.push($root.World.decode(reader, reader.uint32()));
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a Worlds message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof Worlds
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {Worlds} Worlds
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    Worlds.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader)) reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a Worlds message.
+     * @function verify
+     * @memberof Worlds
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    Worlds.verify = function verify(message) {
+        if ((typeof message === "undefined" ? "undefined" : _typeof(message)) !== "object" || message === null) return "object expected";
+        if (message.worlds != null && message.hasOwnProperty("worlds")) {
+            if (!Array.isArray(message.worlds)) return "worlds: array expected";
+            for (var i = 0; i < message.worlds.length; ++i) {
+                var error = $root.World.verify(message.worlds[i]);
+                if (error) return "worlds." + error;
+            }
+        }
+        return null;
+    };
+
+    /**
+     * Creates a Worlds message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof Worlds
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {Worlds} Worlds
+     */
+    Worlds.fromObject = function fromObject(object) {
+        if (object instanceof $root.Worlds) return object;
+        var message = new $root.Worlds();
+        if (object.worlds) {
+            if (!Array.isArray(object.worlds)) throw TypeError(".Worlds.worlds: array expected");
+            message.worlds = [];
+            for (var i = 0; i < object.worlds.length; ++i) {
+                if (_typeof(object.worlds[i]) !== "object") throw TypeError(".Worlds.worlds: object expected");
+                message.worlds[i] = $root.World.fromObject(object.worlds[i]);
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a Worlds message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof Worlds
+     * @static
+     * @param {Worlds} message Worlds
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    Worlds.toObject = function toObject(message, options) {
+        if (!options) options = {};
+        var object = {};
+        if (options.arrays || options.defaults) object.worlds = [];
+        if (message.worlds && message.worlds.length) {
+            object.worlds = [];
+            for (var j = 0; j < message.worlds.length; ++j) {
+                object.worlds[j] = $root.World.toObject(message.worlds[j], options);
+            }
+        }
+        return object;
+    };
+
+    /**
+     * Converts this Worlds to JSON.
+     * @function toJSON
+     * @memberof Worlds
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    Worlds.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    return Worlds;
+}();
 
 var World = exports.World = $root.World = function () {
 
@@ -1514,6 +1710,7 @@ var Request = exports.Request = $root.Request = function () {
      * @interface IRequest
      * @property {number|null} [frameRate] Request frameRate
      * @property {number|null} [numEpochs] Request numEpochs
+     * @property {boolean|null} [movie] Request movie
      */
 
     /**
@@ -1547,6 +1744,14 @@ var Request = exports.Request = $root.Request = function () {
     Request.prototype.numEpochs = 0;
 
     /**
+     * Request movie.
+     * @member {boolean} movie
+     * @memberof Request
+     * @instance
+     */
+    Request.prototype.movie = false;
+
+    /**
      * Creates a new Request instance using the specified properties.
      * @function create
      * @memberof Request
@@ -1571,6 +1776,7 @@ var Request = exports.Request = $root.Request = function () {
         if (!writer) writer = $Writer.create();
         if (message.frameRate != null && message.hasOwnProperty("frameRate")) writer.uint32( /* id 1, wireType 5 =*/13).float(message.frameRate);
         if (message.numEpochs != null && message.hasOwnProperty("numEpochs")) writer.uint32( /* id 2, wireType 0 =*/16).int32(message.numEpochs);
+        if (message.movie != null && message.hasOwnProperty("movie")) writer.uint32( /* id 3, wireType 0 =*/24).bool(message.movie);
         return writer;
     };
 
@@ -1611,6 +1817,9 @@ var Request = exports.Request = $root.Request = function () {
                 case 2:
                     message.numEpochs = reader.int32();
                     break;
+                case 3:
+                    message.movie = reader.bool();
+                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -1646,6 +1855,7 @@ var Request = exports.Request = $root.Request = function () {
         if ((typeof message === "undefined" ? "undefined" : _typeof(message)) !== "object" || message === null) return "object expected";
         if (message.frameRate != null && message.hasOwnProperty("frameRate")) if (typeof message.frameRate !== "number") return "frameRate: number expected";
         if (message.numEpochs != null && message.hasOwnProperty("numEpochs")) if (!$util.isInteger(message.numEpochs)) return "numEpochs: integer expected";
+        if (message.movie != null && message.hasOwnProperty("movie")) if (typeof message.movie !== "boolean") return "movie: boolean expected";
         return null;
     };
 
@@ -1662,6 +1872,7 @@ var Request = exports.Request = $root.Request = function () {
         var message = new $root.Request();
         if (object.frameRate != null) message.frameRate = Number(object.frameRate);
         if (object.numEpochs != null) message.numEpochs = object.numEpochs | 0;
+        if (object.movie != null) message.movie = Boolean(object.movie);
         return message;
     };
 
@@ -1680,9 +1891,11 @@ var Request = exports.Request = $root.Request = function () {
         if (options.defaults) {
             object.frameRate = 0;
             object.numEpochs = 0;
+            object.movie = false;
         }
         if (message.frameRate != null && message.hasOwnProperty("frameRate")) object.frameRate = options.json && !isFinite(message.frameRate) ? String(message.frameRate) : message.frameRate;
         if (message.numEpochs != null && message.hasOwnProperty("numEpochs")) object.numEpochs = message.numEpochs;
+        if (message.movie != null && message.hasOwnProperty("movie")) object.movie = message.movie;
         return object;
     };
 
