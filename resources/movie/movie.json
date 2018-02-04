@@ -1,0 +1,814 @@
+{
+  "worlds": [
+    {
+      "ball": {
+        "linearVelocityYM": 0.0, 
+        "yPx": 540.0, 
+        "xPx": 300.0, 
+        "radiusPx": 6.0, 
+        "linearVelocityXM": 0.0
+      }, 
+      "preFrameNb": 15, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "frameNb": 15, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "angularVelocityXM": 0.0, 
+        "angularVelocityYM": 0.0, 
+        "yPx": 528.0, 
+        "xPx": 303.0, 
+        "rotation": 0.30000001192092896
+      }, 
+      "action": "HOLD"
+    }, 
+    {
+      "ball": {
+        "linearVelocityYM": 0.0, 
+        "yPx": 540.0, 
+        "xPx": 300.0, 
+        "radiusPx": 6.0, 
+        "linearVelocityXM": 0.0
+      }, 
+      "preFrameNb": 15, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "frameNb": 15, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "angularVelocityXM": 0.0, 
+        "angularVelocityYM": 0.0, 
+        "yPx": 528.0, 
+        "xPx": 303.0, 
+        "rotation": 0.32499998807907104
+      }, 
+      "action": "HOLD"
+    }, 
+    {
+      "ball": {
+        "linearVelocityYM": 0.0, 
+        "yPx": 540.0, 
+        "xPx": 300.0, 
+        "radiusPx": 6.0, 
+        "linearVelocityXM": 0.0
+      }, 
+      "preFrameNb": 15, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "frameNb": 15, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "angularVelocityXM": 0.0, 
+        "angularVelocityYM": 0.0, 
+        "yPx": 528.0, 
+        "xPx": 303.0, 
+        "rotation": 0.3499999940395355
+      }, 
+      "action": "HOLD"
+    }, 
+    {
+      "ball": {
+        "linearVelocityYM": 0.0, 
+        "yPx": 540.0, 
+        "xPx": 300.0, 
+        "radiusPx": 6.0, 
+        "linearVelocityXM": 0.0
+      }, 
+      "preFrameNb": 15, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "frameNb": 15, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "angularVelocityXM": 0.0, 
+        "angularVelocityYM": 0.0, 
+        "yPx": 528.0, 
+        "xPx": 303.0, 
+        "rotation": 0.375
+      }, 
+      "action": "HOLD"
+    }, 
+    {
+      "ball": {
+        "linearVelocityYM": 0.0, 
+        "yPx": 540.0, 
+        "xPx": 300.0, 
+        "radiusPx": 6.0, 
+        "linearVelocityXM": 0.0
+      }, 
+      "preFrameNb": 15, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "frameNb": 15, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "angularVelocityXM": 0.0, 
+        "angularVelocityYM": 0.0, 
+        "yPx": 528.0, 
+        "xPx": 303.0, 
+        "rotation": 0.4000000059604645
+      }, 
+      "action": "HOLD"
+    }, 
+    {
+      "ball": {
+        "linearVelocityYM": 0.0, 
+        "yPx": 540.0, 
+        "xPx": 300.0, 
+        "radiusPx": 6.0, 
+        "linearVelocityXM": 0.0
+      }, 
+      "preFrameNb": 15, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "frameNb": 15, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "angularVelocityXM": 0.0, 
+        "angularVelocityYM": 0.0, 
+        "yPx": 528.0, 
+        "xPx": 303.0, 
+        "rotation": 0.42500001192092896
+      }, 
+      "action": "HOLD"
+    }, 
+    {
+      "ball": {
+        "linearVelocityYM": 0.0, 
+        "yPx": 540.0, 
+        "xPx": 300.0, 
+        "radiusPx": 6.0, 
+        "linearVelocityXM": 0.0
+      }, 
+      "preFrameNb": 15, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "frameNb": 15, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "angularVelocityXM": 0.0, 
+        "angularVelocityYM": 0.0, 
+        "yPx": 528.0, 
+        "xPx": 303.0, 
+        "rotation": 0.44999998807907104
+      }, 
+      "action": "HOLD"
+    }, 
+    {
+      "ball": {
+        "linearVelocityYM": 0.0, 
+        "yPx": 540.0, 
+        "xPx": 300.0, 
+        "radiusPx": 6.0, 
+        "linearVelocityXM": 0.0
+      }, 
+      "preFrameNb": 15, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "frameNb": 15, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "angularVelocityXM": 0.0, 
+        "angularVelocityYM": 0.0, 
+        "yPx": 528.0, 
+        "xPx": 303.0, 
+        "rotation": 0.4749999940395355
+      }, 
+      "action": "HOLD"
+    }, 
+    {
+      "ball": {
+        "linearVelocityYM": 0.0, 
+        "yPx": 540.0, 
+        "xPx": 300.0, 
+        "radiusPx": 6.0, 
+        "linearVelocityXM": 0.0
+      }, 
+      "preFrameNb": 15, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "frameNb": 15, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "angularVelocityXM": 0.0, 
+        "angularVelocityYM": 0.0, 
+        "yPx": 528.0, 
+        "xPx": 303.0, 
+        "rotation": 0.5
+      }, 
+      "action": "HOLD"
+    }, 
+    {
+      "ball": {
+        "linearVelocityYM": 0.0, 
+        "yPx": 540.0, 
+        "xPx": 300.0, 
+        "radiusPx": 6.0, 
+        "linearVelocityXM": 0.0
+      }, 
+      "preFrameNb": 15, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "frameNb": 15, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "angularVelocityXM": 0.0, 
+        "angularVelocityYM": 0.0, 
+        "yPx": 528.0, 
+        "xPx": 303.0, 
+        "rotation": 0.5249999761581421
+      }, 
+      "action": "HOLD"
+    }, 
+    {
+      "ball": {
+        "linearVelocityYM": 0.0, 
+        "yPx": 540.0, 
+        "xPx": 300.0, 
+        "radiusPx": 6.0, 
+        "linearVelocityXM": 0.0
+      }, 
+      "preFrameNb": 15, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "frameNb": 15, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "angularVelocityXM": 0.0, 
+        "angularVelocityYM": 0.0, 
+        "yPx": 528.0, 
+        "xPx": 303.0, 
+        "rotation": 0.550000011920929
+      }, 
+      "action": "HOLD"
+    }, 
+    {
+      "ball": {
+        "linearVelocityYM": 0.0, 
+        "yPx": 540.0, 
+        "xPx": 300.0, 
+        "radiusPx": 6.0, 
+        "linearVelocityXM": 0.0
+      }, 
+      "preFrameNb": 15, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "frameNb": 15, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "angularVelocityXM": 0.0, 
+        "angularVelocityYM": 0.0, 
+        "yPx": 528.0, 
+        "xPx": 303.0, 
+        "rotation": 0.574999988079071
+      }, 
+      "action": "HOLD"
+    }, 
+    {
+      "ball": {
+        "linearVelocityYM": 0.0, 
+        "yPx": 540.0, 
+        "xPx": 300.0, 
+        "radiusPx": 6.0, 
+        "linearVelocityXM": 0.0
+      }, 
+      "preFrameNb": 15, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "frameNb": 15, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "angularVelocityXM": 0.0, 
+        "angularVelocityYM": 0.0, 
+        "yPx": 528.0, 
+        "xPx": 303.0, 
+        "rotation": 0.6000000238418579
+      }, 
+      "action": "HOLD"
+    }, 
+    {
+      "ball": {
+        "linearVelocityYM": 0.0, 
+        "yPx": 540.0, 
+        "xPx": 300.0, 
+        "radiusPx": 6.0, 
+        "linearVelocityXM": 0.0
+      }, 
+      "preFrameNb": 15, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "frameNb": 15, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "angularVelocityXM": 0.0, 
+        "angularVelocityYM": 0.0, 
+        "yPx": 528.0, 
+        "xPx": 303.0, 
+        "rotation": 0.625
+      }, 
+      "action": "HOLD"
+    }, 
+    {
+      "ball": {
+        "linearVelocityYM": 0.0, 
+        "yPx": 540.0, 
+        "xPx": 300.0, 
+        "radiusPx": 6.0, 
+        "linearVelocityXM": 0.0
+      }, 
+      "preFrameNb": 15, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "frameNb": 15, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "angularVelocityXM": 0.0, 
+        "angularVelocityYM": 0.0, 
+        "yPx": 528.0, 
+        "xPx": 303.0, 
+        "rotation": 0.6499999761581421
+      }, 
+      "action": "HOLD"
+    }
+  ]
+}

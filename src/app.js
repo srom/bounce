@@ -55,11 +55,17 @@ PIXI.loader.add(
     'gameOverSound', 'resources/sound/game-over.wav'
 ).add(
     'victorySound', 'resources/sound/victory.wav'
+).add(
+    'movie', 'resources/movie/movie.json'
 ).once(
     'complete', init
 ).load();
 
 function init () {
+    console.log(constants);
+    const movie = true;
+    let frame = 0;
+
     const stage = new PIXI.Container();
 
     const world = new b2World(
@@ -104,6 +110,11 @@ function init () {
     const gameOverSound = PIXI.audioManager.getAudio('gameOverSound');
     const victorySound = PIXI.audioManager.getAudio('victorySound');
 
+    let movieFrames = null;
+    if (movie) {
+        movieFrames = PIXI.loader.resources.movie;
+    }
+
     if (constants.DEBUG_PHYSICS) {
         debugPhysics(world);
         world.DrawDebugData();
@@ -135,6 +146,22 @@ function init () {
     }
 
     function update () {
+        if (movie) {
+            updateWithMovie();
+        } else {
+            updateWithPhysics();
+        }
+
+        if (bricks.every((b) => b.isGarbage())) {
+            youWin();
+        }
+
+        if (ball.dead) {
+            gameOver();
+        }
+    }
+
+    function updateWithPhysics () {
         world.Step(FRAME_RATE, constants.VELOCITY_ITERATIONS, constants.POSITION_ITERATIONS);
 
         ball.render();
@@ -157,14 +184,31 @@ function init () {
             );
             stage.removeChild(arrow.el);
         }
+    }
 
-        if (bricks.every((b) => b.isGarbage())) {
-            youWin();
+    function updateWithMovie () {
+        if (frame >= movieFrames.worlds.length) {
+            abort();
         }
 
-        if (ball.dead) {
-            gameOver();
+        const world = movieFrames.worlds[frame];
+
+        updateBall(world, ball);
+        updatePaddle(world, paddle);
+        updateArrow(world, arrow);
+        updateBricks(world, bricks);
+
+        bricks.forEach((brick) => {
+            if (brick.isGarbage()) {
+                stage.removeChild(brick.el);
+            }
+        });
+
+        if (arrow.ready && !ball.canMove) {
+            stage.removeChild(arrow.el);
         }
+
+        frame++;
     }
 
     function draw () {
@@ -190,6 +234,42 @@ function init () {
         gameOverSound.play();
     }
 
+    function abort () {
+        MainLoop.stop();
+    }
+
     MainLoop.setBegin(processInput).setUpdate(update).setDraw(draw).setEnd(clean);
     MainLoop.start();
 }
+
+const updateBall = (world, ball) => {
+    const newBall = world.ball;
+    ball.el.position.x = newBall.xPx;
+    ball.el.position.y = newBall.yPx;
+    ball.canMove = newBall.canMove;
+    ball.dead = newBall.dead;
+};
+
+const updatePaddle = (world, paddle) => {
+    const newPaddle = world.paddle;
+    paddle.el.position.x = newPaddle.xPx;
+    paddle.el.position.y = newPaddle.yPx;
+};
+
+const updateArrow = (world, arrow) => {
+    const newArrow = world.arrow;
+    arrow.el.position.x = newArrow.xPx;
+    arrow.el.position.y = newArrow.yPx;
+    arrow.el.position.rotation = newArrow.rotation;
+    arrow.ready = newArrow.ready;
+};
+
+const updateBricks = (world, bricks) => {
+    const newBricks = world.bricks;
+    bricks.forEach((brick, index) => {
+        const newBrick = newBricks[index];
+        brick.el.position.x = newBrick.xPx;
+        brick.el.position.y = newBrick.yPx;
+        brick.lives = newBrick.lives;
+    });
+};
