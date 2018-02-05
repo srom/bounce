@@ -2,12 +2,12 @@ from __future__ import unicode_literals
 
 import math
 
-from .models.world_pb2 import LEFT, RIGHT, SPACE, HOLD
+from .models.world_pb2 import LEFT, RIGHT
 
 
 WON_REWARD = +100
 LOST_REWARD = -100
-BRICK_LIFE = +5
+BRICK_LIFE = +10
 EPSILON = +1
 
 MAX_FRAMES = 2 * 60 * 60  # 2 minutes
@@ -24,8 +24,6 @@ def get_reward(inputWorld, outputWorld):
 
     if not outputWorld.arrow.ready and outputWorld.action in (LEFT, RIGHT):
         reward -= EPSILON
-    elif not outputWorld.arrow.ready and outputWorld.action in (SPACE, HOLD):
-        reward += EPSILON
 
     if inputWorld:
         if not inputWorld.arrow.ready and outputWorld.arrow.ready:
