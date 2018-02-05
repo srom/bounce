@@ -17,7 +17,7 @@ MAX_PRE_FRAMES = 5 * 60  # 5 seconds
 def get_reward(inputWorld, outputWorld):
     if outputWorld.won:
         return WON_REWARD, True
-    elif outputWorld.lost or get_post_frame_nb(outputWorld) > MAX_FRAMES:
+    elif lost(outputWorld):
         return LOST_REWARD, True
 
     reward = EPSILON / 3.0
@@ -43,6 +43,14 @@ def get_time_factor(outputWorld):
         return -x * math.log(x, 10)
     else:
         return -math.log(1.0 * get_post_frame_nb(outputWorld) / MAX_FRAMES, 10)
+
+
+def lost(outputWorld):
+    return (
+        outputWorld.lost or
+        outputWorld.pre_frame_nb > MAX_FRAMES or
+        get_post_frame_nb(outputWorld) > MAX_FRAMES
+    )
 
 
 def get_num_lives(world):
