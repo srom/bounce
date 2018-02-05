@@ -10,7 +10,7 @@ LOST_REWARD = -100
 BRICK_LIFE = +5
 EPSILON = +1
 
-MAX_FRAMES = 3 * 60 * 60  # 3 minutes
+MAX_FRAMES = 2 * 60 * 60  # 2 minutes
 MAX_PRE_FRAMES = 5 * 60  # 5 seconds
 
 
