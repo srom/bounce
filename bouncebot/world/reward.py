@@ -13,8 +13,35 @@ EPSILON = +1
 MAX_FRAMES = 2 * 60 * 60  # 2 minutes
 MAX_PRE_FRAMES = 5 * 60  # 5 seconds
 
+DISCOUNT_RATE = 0.95
+MAX_PAST_REWARDS = 50
 
-def get_reward(inputWorld, outputWorld):
+
+def get_reward(inputWorld, outputWorld, recent_rewards):
+    """
+    Note: this function modifies the recent_rewards array in place.
+    """
+    action_reward = get_action_reward(inputWorld, outputWorld)
+    recent_rewards.prepend(action_reward)
+    trim_rewards_list(recent_rewards)
+    return get_full_reward(recent_rewards)
+
+
+def get_full_reward(recent_rewards):
+    reward = 0
+
+    for index, raw_reward in enumerate(recent_rewards):
+        reward += math.pow(DISCOUNT_RATE, index) * raw_reward
+
+    return reward
+
+
+def trim_rewards_list(recent_rewards):
+    if len(recent_rewards) > MAX_PAST_REWARDS:
+        recent_rewards.pop()
+
+
+def get_action_reward(inputWorld, outputWorld):
     if outputWorld.won:
         return WON_REWARD, True
     elif lost(outputWorld):
