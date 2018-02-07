@@ -2,9 +2,9 @@ from __future__ import unicode_literals
 
 from google.protobuf.json_format import MessageToJson
 
-from query import simulation
-from reward import get_reward
-from models.world_pb2 import Worlds, HOLD
+from .world.query import simulation
+from .world.reward import get_reward
+from .world.models.world_pb2 import Worlds, HOLD
 
 NUM_FRAMES = 600
 
