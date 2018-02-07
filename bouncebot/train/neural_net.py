@@ -6,6 +6,7 @@ import tensorflow as tf
 HIDDEN_UNITS = 256
 NUM_INPUTS = 20
 NUM_ACTIONS = 4
+DROPOUT_RATE = 0.5
 
 
 class BounceDNN(object):
@@ -13,6 +14,7 @@ class BounceDNN(object):
     def __init__(self):
         with tf.variable_scope("input"):
             self.X = tf.placeholder(tf.float32, shape=[None, NUM_INPUTS])
+            self.training = tf.placeholder_with_default(False, shape=(), name='training')
 
         with tf.variable_scope("f_p"):
             self.f_explore = self._evaluation_function(explore=True)
@@ -31,8 +33,10 @@ class BounceDNN(object):
 
     def _evaluation_function(self, explore=False):
         hidden_1 = tf.layers.dense(self.X, HIDDEN_UNITS, activation=tf.nn.elu, name='hidden_1')
-        hidden_2 = tf.layers.dense(hidden_1, HIDDEN_UNITS, activation=tf.nn.elu, name='hidden_2')
-        logits = tf.layers.dense(hidden_2, NUM_ACTIONS, activation=tf.nn.elu, name='logits')
+        dropout_1 = tf.layers.dropout(hidden_1, DROPOUT_RATE, training=self.training)
+        hidden_2 = tf.layers.dense(dropout_1, HIDDEN_UNITS, activation=tf.nn.elu, name='hidden_2')
+        dropout_2 = tf.layers.dropout(hidden_2, DROPOUT_RATE, training=self.training)
+        logits = tf.layers.dense(dropout_2, NUM_ACTIONS, activation=tf.nn.elu, name='logits')
         outputs = tf.nn.softmax(logits)
         if explore:
             return tf.multinomial(tf.log(outputs), 1)
