@@ -14,10 +14,11 @@ def main():
     action = HOLD
     # movie = True
 
-    action = simulation(result, action)
+    outputWorld = simulation(result, action)
 
-    recent_rewards = []
-    print get_reward(None, action, recent_rewards)
+    reward, done = get_reward(None, outputWorld)
+
+    print reward, done
 
     # all_worlds = Worlds()
     # frame = 0

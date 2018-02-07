@@ -150,7 +150,7 @@ var mainLoop = function mainLoop(inputWorld) {
             worlds: worlds
         });
     } else {
-        return worlds[-1];
+        return worlds[worlds.length - 1];
     }
 };
 
@@ -283,8 +283,8 @@ var getOutputWorld = function getOutputWorld(inputWorld, request, ball, paddle, 
     var ballVelocity = ball.body ? ball.body.GetLinearVelocity() : { x: 0, y: 0 };
 
     return _world.World.create({
-        frameNb: getFrameNb(inputWorld, request),
-        preFrameNb: getPreFrameNb(inputWorld, request, arrow),
+        frameNb: getFrameNb(inputWorld),
+        preFrameNb: getPreFrameNb(inputWorld, arrow),
         action: inputWorld.action,
         won: inputWorld.won,
         lost: inputWorld.lost,
@@ -324,14 +324,14 @@ var getOutputWorld = function getOutputWorld(inputWorld, request, ball, paddle, 
     });
 };
 
-var getFrameNb = function getFrameNb(inputWorld, request) {
-    return inputWorld.frameNb + request.numEpochs;
+var getFrameNb = function getFrameNb(inputWorld) {
+    return inputWorld.frameNb + 1;
 };
 
-var getPreFrameNb = function getPreFrameNb(inputWorld, request, arrow) {
+var getPreFrameNb = function getPreFrameNb(inputWorld, arrow) {
     if (arrow.ready) {
         return inputWorld.preFrameNb;
     } else {
-        return inputWorld.preFrameNb + request.numEpochs;
+        return inputWorld.preFrameNb + 1;
     }
 };

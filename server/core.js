@@ -124,7 +124,7 @@ const mainLoop = (inputWorld) => {
             worlds: worlds,
         });
     } else {
-        return worlds[-1];
+        return worlds[worlds.length - 1];
     }
 };
 
@@ -256,8 +256,8 @@ const getOutputWorld = (inputWorld, request, ball, paddle, arrow, bricks) => {
     const ballVelocity = ball.body ? ball.body.GetLinearVelocity() : {x: 0, y: 0};
 
     return World.create({
-        frameNb: getFrameNb(inputWorld, request),
-        preFrameNb: getPreFrameNb(inputWorld, request, arrow),
+        frameNb: getFrameNb(inputWorld),
+        preFrameNb: getPreFrameNb(inputWorld, arrow),
         action: inputWorld.action,
         won: inputWorld.won,
         lost: inputWorld.lost,
@@ -297,14 +297,14 @@ const getOutputWorld = (inputWorld, request, ball, paddle, arrow, bricks) => {
     });
 };
 
-const getFrameNb = (inputWorld, request) => {
-    return inputWorld.frameNb + request.numEpochs;
+const getFrameNb = (inputWorld) => {
+    return inputWorld.frameNb + 1;
 };
 
-const getPreFrameNb = (inputWorld, request, arrow) => {
+const getPreFrameNb = (inputWorld, arrow) => {
     if (arrow.ready) {
         return inputWorld.preFrameNb;
     } else {
-        return inputWorld.preFrameNb + request.numEpochs;
+        return inputWorld.preFrameNb + 1;
     }
 };
