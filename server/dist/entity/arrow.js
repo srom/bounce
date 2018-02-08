@@ -12,6 +12,8 @@ var _constants = require('../constants');
 
 var constants = _interopRequireWildcard(_constants);
 
+var _random = require('../util/random');
+
 var _entity = require('./entity');
 
 var _entity2 = _interopRequireDefault(_entity);
@@ -25,6 +27,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var MAX_ANGLE = 3 * Math.PI / 8;
 
 var Arrow = function (_Entity) {
     _inherits(Arrow, _Entity);
@@ -57,13 +61,13 @@ var Arrow = function (_Entity) {
             }
 
             if (this._reversed) {
-                if (this.el.rotation - this._rotationSpeed > -3 * Math.PI / 8) {
+                if (this.el.rotation - this._rotationSpeed > -MAX_ANGLE) {
                     this.el.rotation -= this._rotationSpeed;
                 } else {
                     this._reversed = false;
                 }
             } else {
-                if (this.el.rotation + this._rotationSpeed < 3 * Math.PI / 8) {
+                if (this.el.rotation + this._rotationSpeed < MAX_ANGLE) {
                     this.el.rotation += this._rotationSpeed;
                 } else {
                     this._reversed = true;
@@ -95,6 +99,9 @@ var _initialiseProps = function _initialiseProps() {
 
         _this2._initialX = x_px;
         _this2._initialY = y_px;
+
+        arrow.rotation = (0, _random.randomFloat)(-MAX_ANGLE, MAX_ANGLE);
+        _this2._reversed = (0, _random.randomBoolean)();
 
         return arrow;
     };

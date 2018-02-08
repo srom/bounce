@@ -5,6 +5,8 @@ import Entity from './entity';
 
 const PIXI = window.PIXI;
 
+const MAX_ANGLE = 3 * Math.PI / 8;
+
 
 export default class Arrow extends Entity {
 
@@ -39,13 +41,13 @@ export default class Arrow extends Entity {
         }
 
         if (this._reversed) {
-            if (this.el.rotation - this._rotationSpeed > - 3 * Math.PI / 8) {
+            if (this.el.rotation - this._rotationSpeed > -MAX_ANGLE) {
                 this.el.rotation -= this._rotationSpeed;
             } else {
                 this._reversed = false;
             }
         } else {
-            if (this.el.rotation + this._rotationSpeed < 3 * Math.PI / 8) {
+            if (this.el.rotation + this._rotationSpeed < MAX_ANGLE) {
                 this.el.rotation += this._rotationSpeed;
             } else {
                 this._reversed = true;
@@ -66,8 +68,7 @@ export default class Arrow extends Entity {
         this._initialX = x_px;
         this._initialY = y_px;
 
-        const maxAngle = 3 * Math.PI / 8;
-        arrow.rotation = randomFloat(-maxAngle, maxAngle);
+        arrow.rotation = randomFloat(-MAX_ANGLE, MAX_ANGLE);
         this._reversed = randomBoolean();
 
         return arrow;

@@ -2,6 +2,7 @@ import Box2D from 'box2dweb';
 
 import { World, Worlds } from './models/world';
 import * as constants from './constants';
+import { randomFloat, randomBoolean } from './util/random';
 import Ball from './entity/ball';
 import Paddle from './entity/paddle';
 import Arrow from './entity/arrow';
@@ -69,7 +70,8 @@ const initializeWorld = () => {
             yPx: initialArrowY,
             angularVelocityXM : 0,
             angularVelocityYM: 0,
-            rotation: 0,
+            rotation: randomFloat(-MAX_ANGLE, MAX_ANGLE),
+            reversed: randomBoolean(),
         },
         bricks: bricks.map((brick) => {
             return {

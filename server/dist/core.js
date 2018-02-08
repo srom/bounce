@@ -15,6 +15,8 @@ var _constants = require('./constants');
 
 var constants = _interopRequireWildcard(_constants);
 
+var _random = require('./util/random');
+
 var _ball = require('./entity/ball');
 
 var _ball2 = _interopRequireDefault(_ball);
@@ -96,7 +98,8 @@ var initializeWorld = function initializeWorld() {
             yPx: initialArrowY,
             angularVelocityXM: 0,
             angularVelocityYM: 0,
-            rotation: 0
+            rotation: (0, _random.randomFloat)(-MAX_ANGLE, MAX_ANGLE),
+            reversed: (0, _random.randomBoolean)()
         },
         bricks: bricks.map(function (brick) {
             return {
