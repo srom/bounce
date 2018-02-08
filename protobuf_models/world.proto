@@ -10,11 +10,12 @@ message World {
   Arrow arrow = 3;
   repeated Brick bricks = 4;
   Action action = 5;
-  bool won = 6;
-  bool lost = 7;
-  int32 frame_nb = 8;
-  int32 pre_frame_nb = 9;
-  Request request = 10;
+  float reward = 6;
+  bool won = 7;
+  bool lost = 8;
+  int32 frame_nb = 9;
+  int32 pre_frame_nb = 10;
+  Request request = 11;
 }
 
 message Ball {

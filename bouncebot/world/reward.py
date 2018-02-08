@@ -37,6 +37,10 @@ def get_reward(inputWorld, outputWorld):
     return reward * get_time_factor(outputWorld), False
 
 
+def update_rewards(worlds, rewards):
+    pass
+
+
 def get_time_factor(outputWorld):
     if not outputWorld.arrow.ready:
         x = 1.0 * outputWorld.pre_frame_nb / MAX_PRE_FRAMES

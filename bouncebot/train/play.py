@@ -1,0 +1,27 @@
+from __future__ import unicode_literals
+
+from ..world.models.world_pb2 import Worlds, HOLD
+from ..world.query import simulation
+from ..world.reward import get_reward, update_rewards
+from .features import get_features
+
+
+def play(session, bounce_dnn):
+    inputWorld = None
+    action = HOLD
+    rewards = []
+    worlds = Worlds()
+
+    while 1:
+        outputWorld = simulation(inputWorld, action)
+
+        reward, done = get_reward(inputWorld, outputWorld)
+        rewards.append(reward)
+        worlds.worlds.append(outputWorld)
+
+        if done:
+            return update_rewards(worlds, rewards)
+
+        X = get_features(inputWorld, outputWorld)
+        inputWorld = outputWorld
+        action = bounce_dnn.pick_action(session, X, explore=True)
