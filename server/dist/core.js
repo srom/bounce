@@ -98,7 +98,7 @@ var initializeWorld = function initializeWorld() {
             yPx: initialArrowY,
             angularVelocityXM: 0,
             angularVelocityYM: 0,
-            rotation: (0, _random.randomFloat)(-MAX_ANGLE, MAX_ANGLE),
+            rotation: (0, _random.randomFloat)(-_arrow.MAX_ANGLE, _arrow.MAX_ANGLE),
             reversed: (0, _random.randomBoolean)()
         },
         bricks: bricks.map(function (brick) {

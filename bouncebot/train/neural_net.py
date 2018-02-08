@@ -2,9 +2,10 @@ from __future__ import unicode_literals
 
 import tensorflow as tf
 
+from .features import NUM_FEATURES as NUM_INPUTS
+
 
 HIDDEN_UNITS = 256
-NUM_INPUTS = 20
 NUM_ACTIONS = 4
 DROPOUT_RATE = 0.5
 

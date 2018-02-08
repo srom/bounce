@@ -1,5 +1,7 @@
 from __future__ import unicode_literals
 
+import numpy as np
+
 from ..world.models.world_pb2 import Worlds, HOLD
 from ..world.query import simulation
 from ..world.reward import get_reward, update_rewards
@@ -10,18 +12,21 @@ def play(session, bounce_dnn):
     inputWorld = None
     action = HOLD
     rewards = []
-    worlds = Worlds()
+    all_worlds = []
 
     while 1:
         outputWorld = simulation(inputWorld, action)
 
         reward, done = get_reward(inputWorld, outputWorld)
         rewards.append(reward)
-        worlds.worlds.append(outputWorld)
+        all_worlds.append(outputWorld)
 
         if done:
-            return update_rewards(worlds, rewards)
+            worlds = Worlds()
+            worlds.worlds.extend(all_worlds)
+            won = update_rewards(worlds, rewards)
+            return worlds, won
 
         X = get_features(inputWorld, outputWorld)
         inputWorld = outputWorld
-        action = bounce_dnn.pick_action(session, X, explore=True)
+        action = bounce_dnn.pick_action(session, np.array([X]), explore=True)

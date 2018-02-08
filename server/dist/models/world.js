@@ -229,6 +229,7 @@ var World = exports.World = $root.World = function () {
      * @property {IArrow|null} [arrow] World arrow
      * @property {Array.<IBrick>|null} [bricks] World bricks
      * @property {Action|null} [action] World action
+     * @property {number|null} [reward] World reward
      * @property {boolean|null} [won] World won
      * @property {boolean|null} [lost] World lost
      * @property {number|null} [frameNb] World frameNb
@@ -290,6 +291,14 @@ var World = exports.World = $root.World = function () {
      * @instance
      */
     World.prototype.action = 0;
+
+    /**
+     * World reward.
+     * @member {number} reward
+     * @memberof World
+     * @instance
+     */
+    World.prototype.reward = 0;
 
     /**
      * World won.
@@ -360,11 +369,12 @@ var World = exports.World = $root.World = function () {
         if (message.bricks != null && message.bricks.length) for (var i = 0; i < message.bricks.length; ++i) {
             $root.Brick.encode(message.bricks[i], writer.uint32( /* id 4, wireType 2 =*/34).fork()).ldelim();
         }if (message.action != null && message.hasOwnProperty("action")) writer.uint32( /* id 5, wireType 0 =*/40).int32(message.action);
-        if (message.won != null && message.hasOwnProperty("won")) writer.uint32( /* id 6, wireType 0 =*/48).bool(message.won);
-        if (message.lost != null && message.hasOwnProperty("lost")) writer.uint32( /* id 7, wireType 0 =*/56).bool(message.lost);
-        if (message.frameNb != null && message.hasOwnProperty("frameNb")) writer.uint32( /* id 8, wireType 0 =*/64).int32(message.frameNb);
-        if (message.preFrameNb != null && message.hasOwnProperty("preFrameNb")) writer.uint32( /* id 9, wireType 0 =*/72).int32(message.preFrameNb);
-        if (message.request != null && message.hasOwnProperty("request")) $root.Request.encode(message.request, writer.uint32( /* id 10, wireType 2 =*/82).fork()).ldelim();
+        if (message.reward != null && message.hasOwnProperty("reward")) writer.uint32( /* id 6, wireType 5 =*/53).float(message.reward);
+        if (message.won != null && message.hasOwnProperty("won")) writer.uint32( /* id 7, wireType 0 =*/56).bool(message.won);
+        if (message.lost != null && message.hasOwnProperty("lost")) writer.uint32( /* id 8, wireType 0 =*/64).bool(message.lost);
+        if (message.frameNb != null && message.hasOwnProperty("frameNb")) writer.uint32( /* id 9, wireType 0 =*/72).int32(message.frameNb);
+        if (message.preFrameNb != null && message.hasOwnProperty("preFrameNb")) writer.uint32( /* id 10, wireType 0 =*/80).int32(message.preFrameNb);
+        if (message.request != null && message.hasOwnProperty("request")) $root.Request.encode(message.request, writer.uint32( /* id 11, wireType 2 =*/90).fork()).ldelim();
         return writer;
     };
 
@@ -416,18 +426,21 @@ var World = exports.World = $root.World = function () {
                     message.action = reader.int32();
                     break;
                 case 6:
-                    message.won = reader.bool();
+                    message.reward = reader.float();
                     break;
                 case 7:
-                    message.lost = reader.bool();
+                    message.won = reader.bool();
                     break;
                 case 8:
-                    message.frameNb = reader.int32();
+                    message.lost = reader.bool();
                     break;
                 case 9:
-                    message.preFrameNb = reader.int32();
+                    message.frameNb = reader.int32();
                     break;
                 case 10:
+                    message.preFrameNb = reader.int32();
+                    break;
+                case 11:
                     message.request = $root.Request.decode(reader, reader.uint32());
                     break;
                 default:
@@ -491,6 +504,7 @@ var World = exports.World = $root.World = function () {
             case 3:
                 break;
         }
+        if (message.reward != null && message.hasOwnProperty("reward")) if (typeof message.reward !== "number") return "reward: number expected";
         if (message.won != null && message.hasOwnProperty("won")) if (typeof message.won !== "boolean") return "won: boolean expected";
         if (message.lost != null && message.hasOwnProperty("lost")) if (typeof message.lost !== "boolean") return "lost: boolean expected";
         if (message.frameNb != null && message.hasOwnProperty("frameNb")) if (!$util.isInteger(message.frameNb)) return "frameNb: integer expected";
@@ -551,6 +565,7 @@ var World = exports.World = $root.World = function () {
                 message.action = 3;
                 break;
         }
+        if (object.reward != null) message.reward = Number(object.reward);
         if (object.won != null) message.won = Boolean(object.won);
         if (object.lost != null) message.lost = Boolean(object.lost);
         if (object.frameNb != null) message.frameNb = object.frameNb | 0;
@@ -580,6 +595,7 @@ var World = exports.World = $root.World = function () {
             object.paddle = null;
             object.arrow = null;
             object.action = options.enums === String ? "LEFT" : 0;
+            object.reward = 0;
             object.won = false;
             object.lost = false;
             object.frameNb = 0;
@@ -596,6 +612,7 @@ var World = exports.World = $root.World = function () {
             }
         }
         if (message.action != null && message.hasOwnProperty("action")) object.action = options.enums === String ? $root.Action[message.action] : message.action;
+        if (message.reward != null && message.hasOwnProperty("reward")) object.reward = options.json && !isFinite(message.reward) ? String(message.reward) : message.reward;
         if (message.won != null && message.hasOwnProperty("won")) object.won = message.won;
         if (message.lost != null && message.hasOwnProperty("lost")) object.lost = message.lost;
         if (message.frameNb != null && message.hasOwnProperty("frameNb")) object.frameNb = message.frameNb;

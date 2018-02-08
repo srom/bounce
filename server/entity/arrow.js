@@ -4,7 +4,7 @@ import { randomFloat, randomBoolean } from '../util/random';
 import Entity from './entity';
 
 
-const MAX_ANGLE = 3 * Math.PI / 8;
+export const MAX_ANGLE = 3 * Math.PI / 8;
 
 
 export default class Arrow extends Entity {

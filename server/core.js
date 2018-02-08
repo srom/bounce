@@ -5,7 +5,7 @@ import * as constants from './constants';
 import { randomFloat, randomBoolean } from './util/random';
 import Ball from './entity/ball';
 import Paddle from './entity/paddle';
-import Arrow from './entity/arrow';
+import Arrow, { MAX_ANGLE } from './entity/arrow';
 import Brick, { BrickLevel1, BrickLevel2, setBricks } from './entity/brick';
 
 export const parseWorld = (data) => {

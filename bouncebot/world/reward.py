@@ -38,7 +38,20 @@ def get_reward(inputWorld, outputWorld):
 
 
 def update_rewards(worlds, rewards):
-    pass
+    latest_world = worlds[-1]
+
+    for index, world in worlds.worlds:
+        update_reward(world, rewards[index:])
+
+    return latest_world.won
+
+
+def update_reward(world, rewards):
+    world.reward = sum(
+        reward * math.pow(DISCOUNT_RATE, index)
+        for index, reward in enumerate(rewards)
+    )
+    return world.reward
 
 
 def get_time_factor(outputWorld):
