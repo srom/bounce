@@ -32,7 +32,8 @@ class BounceDNN(object):
             })
 
     def _evaluation_function(self, explore=False):
-        hidden_1 = tf.layers.dense(self.X, HIDDEN_UNITS, activation=tf.nn.elu, name='hidden_1')
+        input_dropout = tf.layers.dropout(self.X, DROPOUT_RATE, training=self.training)
+        hidden_1 = tf.layers.dense(input_dropout, HIDDEN_UNITS, activation=tf.nn.elu, name='hidden_1')
         dropout_1 = tf.layers.dropout(hidden_1, DROPOUT_RATE, training=self.training)
         hidden_2 = tf.layers.dense(dropout_1, HIDDEN_UNITS, activation=tf.nn.elu, name='hidden_2')
         dropout_2 = tf.layers.dropout(hidden_2, DROPOUT_RATE, training=self.training)
