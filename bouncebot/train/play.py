@@ -30,3 +30,4 @@ def play(session, bounce_dnn):
         X = get_features(inputWorld, outputWorld)
         inputWorld = outputWorld
         action = bounce_dnn.pick_action(session, np.array([X]), explore=True)
+        print 'action:', action

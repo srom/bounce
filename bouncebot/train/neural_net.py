@@ -24,13 +24,13 @@ class BounceDNN(object):
 
     def pick_action(self, session, X, explore=False):
         if explore:
-            session.run(self.f_explore, feed_dict={
+            return session.run(self.f_explore, feed_dict={
                 self.X: X,
-            })
+            })[0][0]
         else:
-            session.run(self.f_evaluate, feed_dict={
+            return session.run(self.f_evaluate, feed_dict={
                 self.X: X,
-            })
+            })[0][0]
 
     def _evaluation_function(self, explore=False):
         input_dropout = tf.layers.dropout(self.X, DROPOUT_RATE, training=self.training)
