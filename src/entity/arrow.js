@@ -1,5 +1,6 @@
 import { pixelsToMeters, metersToPixels } from '../util/scale';
 import * as constants from '../constants';
+import { randomFloat, randomBoolean } from '../util/random';
 import Entity from './entity';
 
 const PIXI = window.PIXI;
@@ -64,6 +65,10 @@ export default class Arrow extends Entity {
 
         this._initialX = x_px;
         this._initialY = y_px;
+
+        const maxAngle = 3 * Math.PI / 8;
+        arrow.rotation = randomFloat(-maxAngle, maxAngle);
+        this._reversed = randomBoolean();
 
         return arrow;
     };
