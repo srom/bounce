@@ -22,10 +22,10 @@ def main(model_dir='checkpoints'):
 
     saver = tf.train.Saver()
     with tf.Session() as session:
-        # if not checkpoint_path:
-        session.run(tf.global_variables_initializer())
-        # else:
-        #     saver.restore(session, checkpoint_path)
+        if not checkpoint_path:
+            session.run(tf.global_variables_initializer())
+        else:
+            saver.restore(session, checkpoint_path)
 
         worlds, won = play(session, bounce_dnn)
 
