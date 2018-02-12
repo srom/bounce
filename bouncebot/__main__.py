@@ -10,7 +10,6 @@ from .train.play import play
 
 
 def main(model_dir='checkpoints'):
-    start = time.time()
     tf.reset_default_graph()
 
     iteration = 0
@@ -27,6 +26,7 @@ def main(model_dir='checkpoints'):
         else:
             saver.restore(session, checkpoint_path)
 
+        start = time.time()
         worlds, won = play(session, bounce_dnn)
 
         print 'WON' if won else 'LOST'
