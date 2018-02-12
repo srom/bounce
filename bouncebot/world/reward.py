@@ -2,6 +2,8 @@ from __future__ import unicode_literals
 
 import math
 
+import numpy as np
+
 from .models.world_pb2 import LEFT, RIGHT
 
 
@@ -40,18 +42,25 @@ def get_reward(inputWorld, outputWorld):
 def update_rewards(worlds, rewards):
     latest_world = worlds.worlds[-1]
 
+    discounted_rewards = []
     for index, world in enumerate(worlds.worlds):
-        update_reward(world, rewards[index:])
+        discounted_reward = discount_reward(world, rewards[index:])
+        discounted_rewards.append(discounted_reward)
+
+    X = np.array(discounted_rewards)
+    X_norm = (X - np.mean(X)) / np.std(X)
+
+    for index, world in enumerate(worlds.worlds):
+        world.reward = X_norm[index]
 
     return latest_world.won
 
 
-def update_reward(world, rewards):
-    world.reward = sum(
+def discount_reward(world, rewards):
+    return sum(
         reward * math.pow(DISCOUNT_RATE, index)
         for index, reward in enumerate(rewards)
     )
-    return world.reward
 
 
 def get_time_factor(outputWorld):
