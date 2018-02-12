@@ -33,7 +33,13 @@ def get_world_features(world):
     for brick in world.bricks:
         update_features_from_field(features, brick)
 
-    return np.array(features, dtype=np.float32)
+    X = np.array(features, dtype=np.float32)
+
+    return normalize(X)
+
+
+def normalize(X):
+    return (X - np.mean(X, axis=0)) / np.std(X, axis=0)
 
 
 def update_features_from_field(features, field):
