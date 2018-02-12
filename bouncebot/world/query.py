@@ -42,6 +42,10 @@ def run_simulation(current_world, action, num_epochs, movie):
             new_world = World()
             new_world.ParseFromString(data)
 
+            if len(new_world.bricks) > 5:
+                # TODO investigate further: 5 bricks on JS side => 10 bricks on python side sometimes.
+                del new_world.bricks[5:]
+
             if new_world.pre_frame_nb == 0:
                 error += 1
                 continue

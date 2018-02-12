@@ -38,9 +38,9 @@ def get_reward(inputWorld, outputWorld):
 
 
 def update_rewards(worlds, rewards):
-    latest_world = worlds[-1]
+    latest_world = worlds.worlds[-1]
 
-    for index, world in worlds.worlds:
+    for index, world in enumerate(worlds.worlds):
         update_reward(world, rewards[index:])
 
     return latest_world.won
