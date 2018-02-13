@@ -2,9 +2,30 @@ from __future__ import unicode_literals
 
 import numpy as np
 
+from ..world.models.world_pb2 import LEFT, RIGHT, SPACE, HOLD
+
 
 NUM_WORLD_FEATURES = 49
 NUM_FEATURES = 2 * NUM_WORLD_FEATURES
+TRAIN_TEST_RATIO = 0.8
+
+
+def get_training_features(worlds):
+    features = []
+    for input_world, output_world in zip([None] + worlds.worlds, worlds.worlds):
+        features.append(get_features(input_world, output_world))
+
+    X = np.array(features, dtype=np.float32)
+    rewards = np.array([world.reward for world in worlds.worlds], dtype=np.float32)
+    labels = np.array([get_action_label(world.action) for world in worlds.worlds], dtype=np.float32)
+
+    return X, rewards, labels
+
+
+def split_features(X, rewards, labels):
+    l = X.shape[0]
+    index = int(TRAIN_TEST_RATIO * l) - 1
+    return X[:index+1,:], X[index+1:,:], rewards[:index+1], rewards[index+1:], labels[:index+1], labels[index+1:]
 
 
 def get_features(inputWorld, outputWorld):
@@ -13,6 +34,17 @@ def get_features(inputWorld, outputWorld):
         get_world_features(outputWorld),
     ))
     return res
+
+
+def get_action_label(action):
+    if action == LEFT:
+        return [1, 0, 0, 0]
+    elif action == RIGHT:
+        return [0, 1, 0, 0]
+    elif action == SPACE:
+        return [0, 0, 1, 0]
+    else:
+        return [0, 0, 0, 1]
 
 
 def get_world_features(world):

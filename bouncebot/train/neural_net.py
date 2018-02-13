@@ -21,7 +21,9 @@ class BounceDNN(object):
 
         with tf.variable_scope("f_p"):
             self.logits = self._get_logits()
-            self.f = self._evaluation_function()
+            self.outputs = tf.nn.softmax(self.logits)
+            self.f_explore = self._evaluation_function(explore=True)
+            self.f_evaluate = self._evaluation_function(explore=False)
 
         with tf.name_scope('loss'):
             self.cross_entropy = self._get_loss()
@@ -30,10 +32,31 @@ class BounceDNN(object):
             self.training_op = self._get_training_op(learning_rate)
 
     def pick_action(self, session, X, explore=False):
-        return session.run(self.f, feed_dict={
+        if explore:
+            f = self.f_explore
+        else:
+            f = self.f_evaluate
+
+        return session.run(f, feed_dict={
             self.X: X,
-            self.training_op: explore
+            self.training: explore
         })[0][0]
+
+    def train(self, session, X, rewards, labels):
+        return session.run(self.training_op, feed_dict={
+            self.X: X,
+            self.rewards: rewards,
+            self.actions: labels,
+            self.training: True
+        })
+
+    def compute_loss(self, session, X, rewards, labels):
+        session.run(self.cross_entropy, feed_dict={
+            self.X: X,
+            self.rewards: rewards,
+            self.actions: labels,
+            self.training: False
+        })
 
     def _get_logits(self):
         input_dropout = tf.layers.dropout(self.X, DROPOUT_RATE, training=self.training)
@@ -43,20 +66,17 @@ class BounceDNN(object):
         dropout_2 = tf.layers.dropout(hidden_2, DROPOUT_RATE, training=self.training)
         return tf.layers.dense(dropout_2, NUM_ACTIONS, activation=tf.nn.elu, name='logits')
 
-    def _evaluation_function(self):
+    def _evaluation_function(self, explore):
         """
-        In training mode, explore by returning picking a random action drawn from a multinomial
+        In training mode, explore by picking a random action drawn from a multinomial
         distribution of the output probabilities.
 
         In evaluation mode, simply returns the action with the highest probability (argmax).
         """
-        outputs = tf.nn.softmax(self.logits)
-        factor = tf.cond(tf.equal(self.training, tf.constant(True)), lambda: tf.constant(1), lambda: tf.constant(0))
-        multinomial = tf.multinomial(tf.log(outputs), 1)
-        argmax = tf.argmax(outputs)
-        return (
-            factor * multinomial + (1 - factor) * argmax
-        )
+        if explore:
+            return tf.multinomial(tf.log(self.outputs), 1)
+        else:
+            return tf.argmax(self.outputs)
 
     def _get_loss(self):
         return tf.nn.sigmoid_cross_entropy_with_logits(labels=self.actions, logits=self.logits)
@@ -65,6 +85,10 @@ class BounceDNN(object):
         optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate)
 
         grads_and_vars = optimizer.compute_gradients(self.cross_entropy)
+
+        import pprint
+        pprint.pprint(grads_and_vars)
+
         gradients = [grad for grad, _ in grads_and_vars]
 
         rewarded_gradients = tf.multiply(gradients, self.rewards)
