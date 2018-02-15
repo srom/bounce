@@ -12,11 +12,11 @@ TRAIN_TEST_RATIO = 0.8
 
 def get_training_features(worlds):
     features = []
-    for input_world, output_world in zip([None] + worlds.worlds, worlds.worlds):
+    for input_world, output_world in zip([None] + list(worlds.worlds), list(worlds.worlds)):
         features.append(get_features(input_world, output_world))
 
     X = np.array(features, dtype=np.float32)
-    rewards = np.array([world.reward for world in worlds.worlds], dtype=np.float32)
+    rewards = np.array([[world.reward] for world in worlds.worlds], dtype=np.float32)
     labels = np.array([get_action_label(world.action) for world in worlds.worlds], dtype=np.float32)
 
     return X, rewards, labels

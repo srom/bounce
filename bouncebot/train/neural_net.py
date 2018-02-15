@@ -14,9 +14,8 @@ class BounceDNN(object):
 
     def __init__(self, learning_rate):
         with tf.variable_scope("input"):
-            self.X = tf.placeholder(tf.float32, shape=[None, NUM_INPUTS])
-            self.rewards = tf.placeholder(tf.float32, shape=[None, 1])
-            self.actions = tf.placeholder(tf.float32, shape=[None, NUM_ACTIONS])
+            self.X = tf.placeholder(tf.float32, shape=[None, NUM_INPUTS], name='X')
+            self.actions = tf.placeholder(tf.float32, shape=[None, NUM_ACTIONS], name='actions')
             self.training = tf.placeholder_with_default(False, shape=(), name='training')
 
         with tf.variable_scope("f_p"):
@@ -29,7 +28,13 @@ class BounceDNN(object):
             self.cross_entropy = self._get_loss()
 
         with tf.variable_scope("train"):
-            self.training_op = self._get_training_op(learning_rate)
+            optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate)
+
+            (self.compute_gradients_op,
+             self.grads_and_vars,
+             self.gradients) = self._get_compute_gradients_op(optimizer, learning_rate)
+
+            self.apply_gradients_op = self._get_apply_gradients_op(optimizer)
 
     def pick_action(self, session, X, explore=False):
         if explore:
@@ -42,18 +47,35 @@ class BounceDNN(object):
             self.training: explore
         })[0][0]
 
-    def train(self, session, X, rewards, labels):
-        return session.run(self.training_op, feed_dict={
-            self.X: X,
-            self.rewards: rewards,
-            self.actions: labels,
-            self.training: True
-        })
+    def compute_gradients(self, session, X, rewards, labels):
+        all_gradients = []
 
-    def compute_loss(self, session, X, rewards, labels):
-        session.run(self.cross_entropy, feed_dict={
+        for i in xrange(X.shape[0]):
+            x = X[i,...]
+            reward = rewards[i]
+            label = labels[i]
+
+            gradients = session.run(self.compute_gradients_op, feed_dict={
+                self.X: [x],
+                self.actions: [label],
+                self.training: True
+            })
+
+            all_gradients.append(reward * gradients)
+
+        return all_gradients
+
+    def apply_gradients(self, session, new_gradients):
+        feed_dict = {self.training: True}
+
+        for i, gradient_placeholder in enumerate(self.gradients):
+            feed_dict[gradient_placeholder] = new_gradients[i]
+
+        session.run(self.apply_gradients_op, feed_dict=feed_dict)
+
+    def compute_loss(self, session, X, labels):
+        return session.run(self.cross_entropy, feed_dict={
             self.X: X,
-            self.rewards: rewards,
             self.actions: labels,
             self.training: False
         })
@@ -81,22 +103,19 @@ class BounceDNN(object):
     def _get_loss(self):
         return tf.nn.sigmoid_cross_entropy_with_logits(labels=self.actions, logits=self.logits)
 
-    def _get_training_op(self, learning_rate):
-        optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate)
-
+    def _get_compute_gradients_op(self, optimizer, learning_rate):
         grads_and_vars = optimizer.compute_gradients(self.cross_entropy)
-
-        import pprint
-        pprint.pprint(grads_and_vars)
 
         gradients = [grad for grad, _ in grads_and_vars]
 
-        rewarded_gradients = tf.multiply(gradients, self.rewards)
-
+        gradient_placeholders = []
         grads_and_vars_feed = []
-        for index, (grad, variable) in grads_and_vars:
-            shape = grad.get_shape()
-            gradient = tf.slice(rewarded_gradients, [index], shape)
-            grads_and_vars_feed.append((gradient, variable))
+        for gradient, variable in grads_and_vars:
+            gradient_placeholder = tf.placeholder(tf.float32, shape=gradient.get_shape())
+            gradient_placeholders.append(gradient_placeholder)
+            grads_and_vars_feed.append((gradient_placeholder, variable))
 
-        return optimizer.apply_gradients(grads_and_vars_feed)
+        return gradients, grads_and_vars_feed, gradient_placeholders
+
+    def _get_apply_gradients_op(self, optimizer):
+        return optimizer.apply_gradients(self.grads_and_vars)

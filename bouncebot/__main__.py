@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 import os
 import time
 
+import numpy as np
 import tensorflow as tf
 
 from train.features import get_training_features, split_features
@@ -38,9 +39,25 @@ def main(model_dir='checkpoints'):
 
         X_train, X_test, rewards_train, rewards_test, labels_train, labels_test = split_features(X, rewards, labels)
 
-        bounce_dnn.train(session, X_train, rewards_train, labels_train)
+        print '------------------------------------'
+        print 'X_train', X_train.shape
+        print 'X_test', X_test.shape
+        print 'rewards_train', rewards_train.shape
+        print 'rewards_test', rewards_test.shape
+        print 'labels_train', labels_train.shape
+        print 'labels_test', labels_test.shape
+        print '------------------------------------'
 
-        loss = bounce_dnn.compute_loss(session, X_test, rewards_test, labels_test)
+        all_gradients = bounce_dnn.compute_gradients(session, X_train, rewards_train, labels_train)
+
+        new_gradients = np.mean(all_gradients, axis=0)
+
+        bounce_dnn.apply_gradients(session, new_gradients)
+
+        loss = np.mean(
+            bounce_dnn.compute_loss(session, X_test, labels_test),
+            axis=0
+        )
 
         print 'loss:', loss
         print 'WON' if won else 'LOST'
