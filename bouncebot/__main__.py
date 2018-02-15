@@ -34,6 +34,7 @@ def main(model_dir='checkpoints'):
 
         start = time.time()
         worlds, won = play(session, bounce_dnn)
+        print 'Elapsed (play):', time.time() - start
 
         X, rewards, labels = get_training_features(worlds)
 
@@ -48,11 +49,14 @@ def main(model_dir='checkpoints'):
         print 'labels_test', labels_test.shape
         print '------------------------------------'
 
+        learning_start = time.time()
         all_gradients = bounce_dnn.compute_gradients(session, X_train, rewards_train, labels_train)
 
         new_gradients = np.mean(all_gradients, axis=0)
 
         bounce_dnn.apply_gradients(session, new_gradients)
+
+        print 'Elapsed (train):', time.time() - learning_start
 
         loss = np.mean(
             bounce_dnn.compute_loss(session, X_test, labels_test),
@@ -61,7 +65,7 @@ def main(model_dir='checkpoints'):
 
         print 'loss:', loss
         print 'WON' if won else 'LOST'
-        print 'elapsed:', time.time() - start
+        print 'Elapsed (total):', time.time() - start
         print 'len(worlds)', len(worlds.worlds)
 
         saver.save(session, save_path, global_step=iteration)
