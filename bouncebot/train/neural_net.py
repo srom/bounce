@@ -118,4 +118,4 @@ class BounceDNN(object):
         return gradients, grads_and_vars_feed, gradient_placeholders
 
     def _get_apply_gradients_op(self, optimizer):
-        return optimizer.apply_gradients(self.grads_and_vars, 'apply_gradients')
+        return optimizer.apply_gradients(self.grads_and_vars, name='apply_gradients')

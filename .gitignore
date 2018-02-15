@@ -63,3 +63,5 @@ env/
 
 checkpoints/
 .ipynb_checkpoints
+
+summary_log/

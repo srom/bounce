@@ -70,6 +70,8 @@ def main(model_dir='checkpoints'):
 
         saver.save(session, save_path, global_step=iteration)
 
+        # tf.summary.FileWriter('./summary_log', session.graph)
+
 
 if __name__ == '__main__':
     main()
