@@ -96,12 +96,12 @@ class BounceDNN(object):
         In evaluation mode, simply returns the action with the highest probability (argmax).
         """
         if explore:
-            return tf.multinomial(tf.log(self.outputs), 1)
+            return tf.multinomial(tf.log(self.outputs), 1, name='f_explore')
         else:
-            return tf.argmax(self.outputs)
+            return tf.argmax(self.outputs, name='f_evaluate')
 
     def _get_loss(self):
-        return tf.nn.sigmoid_cross_entropy_with_logits(labels=self.actions, logits=self.logits)
+        return tf.nn.sigmoid_cross_entropy_with_logits(labels=self.actions, logits=self.logits, name="cross_entropy")
 
     def _get_compute_gradients_op(self, optimizer, learning_rate):
         grads_and_vars = optimizer.compute_gradients(self.cross_entropy)
@@ -118,4 +118,4 @@ class BounceDNN(object):
         return gradients, grads_and_vars_feed, gradient_placeholders
 
     def _get_apply_gradients_op(self, optimizer):
-        return optimizer.apply_gradients(self.grads_and_vars)
+        return optimizer.apply_gradients(self.grads_and_vars, 'apply_gradients')
