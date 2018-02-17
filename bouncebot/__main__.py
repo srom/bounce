@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 
+import argparse
 import logging
 from multiprocessing.dummy import Pool as ThreadPool, cpu_count
 import os
@@ -8,6 +9,7 @@ import time
 import numpy as np
 import tensorflow as tf
 
+from .train.export import export_model
 from train.features import get_training_features, split_features, get_features_from_games
 from .train.neural_net import BounceDNN
 from .train.play import play
@@ -34,7 +36,7 @@ def play_game((session, bounce_dnn)):
     return X, rewards, labels
 
 
-def main(model_dir='checkpoints'):
+def main(model_dir='checkpoints', export=False):
     logging.basicConfig(level=logging.INFO, format="%(asctime)s (%(levelname)s) %(message)s")
     tf.reset_default_graph()
 
@@ -57,7 +59,10 @@ def main(model_dir='checkpoints'):
         saver.save(session, save_path, global_step=iteration)
 
         best_loss = float('Inf')
+        last_saved_loss = float('Inf')
+
         while True:
+            iteration += 1
             start = time.time()
 
             logger.info('------ Play -------')
@@ -69,11 +74,12 @@ def main(model_dir='checkpoints'):
 
             logger.info('------ Train ------')
 
+            learning_start = time.time()
+
             X, rewards, labels = get_features_from_games(games)
 
             X_train, X_test, rewards_train, _, labels_train, labels_test = split_features(X, rewards, labels)
 
-            learning_start = time.time()
             all_gradients = bounce_dnn.compute_gradients(session, X_train, rewards_train, labels_train)
 
             new_gradients = np.mean(all_gradients, axis=0)
@@ -94,8 +100,17 @@ def main(model_dir='checkpoints'):
                 saver.save(session, save_path, global_step=iteration)
                 best_loss = mean_loss
 
-        logger.info('-------------------')
+            if export and iteration % 10 == 0 and best_loss < last_saved_loss:
+                export_model(saver, model_dir)
+                last_saved_loss = best_loss
+
+            logger.info('-------------------')
 
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--export', default=False, action='store_true')
+
+    args = parser.parse_args()
+
+    main(export=args.export)
