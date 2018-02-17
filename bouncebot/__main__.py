@@ -56,41 +56,43 @@ def main(model_dir='checkpoints'):
 
         saver.save(session, save_path, global_step=iteration)
 
-        start = time.time()
+        best_loss = float('Inf')
+        while True:
+            start = time.time()
 
-        logger.info('------ Play -------')
+            logger.info('------ Play -------')
 
-        pool = ThreadPool(cpu_count())
-        games = pool.map(play_game, [(session, bounce_dnn)] * BATCH_SIZE)
+            pool = ThreadPool(cpu_count())
+            games = pool.map(play_game, [(session, bounce_dnn)] * BATCH_SIZE)
 
-        logger.info('Elapsed (play): %f', time.time() - start)
+            logger.info('Elapsed (play): %f', time.time() - start)
 
-        logger.info('------ Train ------')
+            logger.info('------ Train ------')
 
-        X, rewards, labels = get_features_from_games(games)
+            X, rewards, labels = get_features_from_games(games)
 
-        X_train, X_test, rewards_train, _, labels_train, labels_test = split_features(X, rewards, labels)
+            X_train, X_test, rewards_train, _, labels_train, labels_test = split_features(X, rewards, labels)
 
-        learning_start = time.time()
-        all_gradients = bounce_dnn.compute_gradients(session, X_train, rewards_train, labels_train)
+            learning_start = time.time()
+            all_gradients = bounce_dnn.compute_gradients(session, X_train, rewards_train, labels_train)
 
-        new_gradients = np.mean(all_gradients, axis=0)
+            new_gradients = np.mean(all_gradients, axis=0)
 
-        bounce_dnn.apply_gradients(session, new_gradients)
+            bounce_dnn.apply_gradients(session, new_gradients)
 
-        logger.info('Elapsed (train): %f', time.time() - learning_start)
+            logger.info('Elapsed (train): %f', time.time() - learning_start)
 
-        loss = np.mean(
-            bounce_dnn.compute_loss(session, X_test, labels_test),
-            axis=0
-        )
+            loss = bounce_dnn.compute_loss(session, X_test, labels_test)
+            mean_loss = np.mean(loss)
 
-        logger.info('loss: %s', loss)
-        logger.info('Elapsed (total): %f', time.time() - start)
+            logger.info('loss: %f', mean_loss)
+            logger.info('best loss: %f', best_loss)
+            logger.info('Elapsed (total): %f', time.time() - start)
 
-        saver.save(session, save_path, global_step=iteration)
-
-        # tf.summary.FileWriter('./summary_log', session.graph)
+            if mean_loss < best_loss:
+                logger.info('Saving new best model')
+                saver.save(session, save_path, global_step=iteration)
+                best_loss = mean_loss
 
         logger.info('-------------------')
 
