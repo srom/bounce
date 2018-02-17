@@ -14,13 +14,11 @@ OUTPUT_KEY_NAME = 'model/bouncebot.pb'
 logger = logging.getLogger(__name__)
 
 
-def export_model(saver, model_dir):
+def export_model(saver, model_save_path):
     logger.info('Exporting model')
 
-    checkpoint_path = tf.train.latest_checkpoint(model_dir)
-
     with tf.Session() as session:
-        saver.restore(session, checkpoint_path)
+        saver.restore(session, model_save_path)
 
         output_node_names = ['f_p/f_evaluate']
 

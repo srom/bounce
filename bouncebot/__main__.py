@@ -51,6 +51,7 @@ def main(model_dir='checkpoints', export=False):
     checkpoint_path = tf.train.latest_checkpoint(model_path)
 
     saver = tf.train.Saver()
+    model_save_path = None
     with tf.Session() as session:
         if not checkpoint_path:
             session.run(tf.global_variables_initializer())
@@ -101,11 +102,11 @@ def main(model_dir='checkpoints', export=False):
 
             if mean_loss < best_loss:
                 logger.info('Saving new best model')
-                saver.save(session, save_path, global_step=iteration)
+                model_save_path = saver.save(session, save_path, global_step=iteration)
                 best_loss = mean_loss
 
             if export and iteration % ITERATIONS_BETWEEN_SAVE == 0 and best_loss < last_saved_loss:
-                export_model(saver, model_dir)
+                export_model(saver, model_save_path)
                 last_saved_loss = best_loss
 
             logger.info('Writing train summary')
