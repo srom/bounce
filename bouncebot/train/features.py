@@ -2,12 +2,21 @@ from __future__ import unicode_literals
 
 import numpy as np
 
-from ..world.models.world_pb2 import LEFT, RIGHT, SPACE, HOLD
+from ..world.models.world_pb2 import LEFT, RIGHT, SPACE
 
 
 NUM_WORLD_FEATURES = 49
 NUM_FEATURES = 2 * NUM_WORLD_FEATURES
 TRAIN_TEST_RATIO = 0.8
+
+
+def get_features_from_games(games):
+    games_array = np.array(games)
+    return (
+        np.concatenate(games_array[...,0]),
+        np.concatenate(games_array[...,1]),
+        np.concatenate(games_array[...,2]),
+    )
 
 
 def get_training_features(worlds):
