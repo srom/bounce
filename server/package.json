@@ -9,7 +9,8 @@
   "author": "srom",
   "license": "MIT",
   "dependencies": {
-    "box2dweb": "git+https://github.com/mikolalysenko/box2dweb.git"
+    "box2dweb": "git+https://github.com/mikolalysenko/box2dweb.git",
+    "protobufjs": "^6.8.4"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

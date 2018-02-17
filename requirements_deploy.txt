@@ -1,0 +1,4 @@
+boto3==1.5.31
+numpy==1.14.0
+protobuf==3.4.0
+tensorflow-gpu
