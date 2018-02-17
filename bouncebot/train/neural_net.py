@@ -80,6 +80,13 @@ class BounceDNN(object):
             self.training: False
         })
 
+    def compute_summary(self, session, X, labels, training):
+        return session.run(self.summary, feed_dict={
+            self.X: X,
+            self.actions: labels,
+            self.training: training
+        })
+
     def _get_logits(self):
         input_dropout = tf.layers.dropout(self.X, DROPOUT_RATE, training=self.training)
         hidden_1 = tf.layers.dense(input_dropout, HIDDEN_UNITS, activation=tf.nn.elu, name='hidden_1')

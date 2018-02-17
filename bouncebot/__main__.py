@@ -58,6 +58,9 @@ def main(model_dir='checkpoints', export=False):
 
         saver.save(session, save_path, global_step=iteration)
 
+        # Uncomment to write graph summary for TensorBoard visualization
+        # tf.summary.FileWriter('./summary_log', session.graph)
+
         best_loss = float('Inf')
         last_saved_loss = float('Inf')
 
