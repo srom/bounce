@@ -17,6 +17,7 @@ from .train.play import play
 
 LEARNING_RATE = 0.01
 BATCH_SIZE = 10  # Number of games to play between training steps
+ITERATIONS_BETWEEN_SAVE = 10
 
 logger = logging.getLogger(__name__)
 
@@ -103,7 +104,7 @@ def main(model_dir='checkpoints', export=False):
                 saver.save(session, save_path, global_step=iteration)
                 best_loss = mean_loss
 
-            if export and iteration % 10 == 0 and best_loss < last_saved_loss:
+            if export and iteration % ITERATIONS_BETWEEN_SAVE == 0 and best_loss < last_saved_loss:
                 export_model(saver, model_dir)
                 last_saved_loss = best_loss
 
@@ -111,14 +112,11 @@ def main(model_dir='checkpoints', export=False):
             train_summary, _ = bounce_dnn.compute_summary(session, X_train, labels_train, training=True)
             summary_writer_train.add_summary(train_summary, global_step=iteration)
 
-            if iteration == 1 or iteration % 10 == 0:
+            if iteration % ITERATIONS_BETWEEN_SAVE == 0:
                 logger.info('Writing test summary')
                 summary_writer_test.add_summary(test_summary, global_step=iteration)
 
             logger.info('-------------------')
-
-            if iteration >= 10:
-                break
 
 
 if __name__ == '__main__':
