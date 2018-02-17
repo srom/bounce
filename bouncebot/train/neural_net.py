@@ -36,6 +36,11 @@ class BounceDNN(object):
 
             self.apply_gradients_op = self._get_apply_gradients_op(optimizer)
 
+        with tf.variable_scope('summary'):
+            tf.summary.scalar('cross_entropy_mean', tf.reduce_mean(self.cross_entropy))
+            tf.summary.scalar('learning_rate', optimizer._lr_t)
+            self.summary = tf.summary.merge_all()
+
     def pick_action(self, session, X, explore=False):
         if explore:
             f = self.f_explore
@@ -80,8 +85,8 @@ class BounceDNN(object):
             self.training: False
         })
 
-    def compute_summary(self, session, X, labels, training):
-        return session.run(self.summary, feed_dict={
+    def compute_summary(self, session, X, labels, training=False):
+        return session.run([self.summary, self.cross_entropy], feed_dict={
             self.X: X,
             self.actions: labels,
             self.training: training

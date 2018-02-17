@@ -58,8 +58,8 @@ def main(model_dir='checkpoints', export=False):
 
         saver.save(session, save_path, global_step=iteration)
 
-        # Uncomment to write graph summary for TensorBoard visualization
-        # tf.summary.FileWriter('./summary_log', session.graph)
+        summary_writer_train = tf.summary.FileWriter('./summary_log/train', session.graph)
+        summary_writer_test = tf.summary.FileWriter('./summary_log/test', session.graph)
 
         best_loss = float('Inf')
         last_saved_loss = float('Inf')
@@ -91,7 +91,7 @@ def main(model_dir='checkpoints', export=False):
 
             logger.info('Elapsed (train): %f', time.time() - learning_start)
 
-            loss = bounce_dnn.compute_loss(session, X_test, labels_test)
+            test_summary, loss = bounce_dnn.compute_summary(session, X_test, labels_test)
             mean_loss = np.mean(loss)
 
             logger.info('loss: %f', mean_loss)
@@ -107,7 +107,18 @@ def main(model_dir='checkpoints', export=False):
                 export_model(saver, model_dir)
                 last_saved_loss = best_loss
 
+            logger.info('Writing train summary')
+            train_summary, _ = bounce_dnn.compute_summary(session, X_train, labels_train, training=True)
+            summary_writer_train.add_summary(train_summary, global_step=iteration)
+
+            if iteration == 1 or iteration % 10 == 0:
+                logger.info('Writing test summary')
+                summary_writer_test.add_summary(test_summary, global_step=iteration)
+
             logger.info('-------------------')
+
+            if iteration >= 10:
+                break
 
 
 if __name__ == '__main__':
