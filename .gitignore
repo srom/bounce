@@ -65,4 +65,5 @@ checkpoints/
 .ipynb_checkpoints
 
 summary_log/
+summary2/
 bouncebot.tar.gz
