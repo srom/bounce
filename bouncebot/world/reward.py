@@ -67,12 +67,12 @@ def discount_reward(world, rewards):
 
 
 def get_time_factor(outputWorld):
-    # if not outputWorld.arrow.ready:
-    #     x = 1.0 * outputWorld.pre_frame_nb / MAX_PRE_FRAMES
-    #     return -x * math.log(x, 10)
-    # else:
-    #     return -math.log(1.0 * get_post_frame_nb(outputWorld) / MAX_FRAMES, 10)
-    return 1.0
+    if not outputWorld.arrow.ready:
+        x = 1.0 * outputWorld.pre_frame_nb / MAX_PRE_FRAMES
+    else:
+        x = 1.0 * get_post_frame_nb(outputWorld) / MAX_FRAMES
+
+    return - 100 * x * math.log(x, 10)
 
 
 def lost(outputWorld):
