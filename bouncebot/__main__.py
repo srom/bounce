@@ -46,7 +46,7 @@ def main(model_dir='checkpoints', export=False):
     model_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), model_dir)
 
     logger.info('Loading the graph')
-    bounce_dnn = BounceDNN(learning_rate=LEARNING_RATE, reuse=False)
+    bounce_dnn = BounceDNN(learning_rate=LEARNING_RATE)
 
     checkpoint_path = tf.train.latest_checkpoint(model_path)
 
