@@ -15,7 +15,7 @@ from .train.neural_net import BounceDNN
 from .train.play import play
 
 
-LEARNING_RATE = 0.01
+LEARNING_RATE = 0.05
 BATCH_SIZE = 10  # Number of games to play between training steps
 ITERATIONS_BETWEEN_SAVE = 10
 
