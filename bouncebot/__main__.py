@@ -15,7 +15,7 @@ from .train.neural_net import BounceDNN
 from .train.play import play
 
 
-LEARNING_RATE = 0.05
+LEARNING_RATE = 0.01
 BATCH_SIZE = 10  # Number of games to play between training steps
 ITERATIONS_BETWEEN_SAVE = 10
 
@@ -29,10 +29,11 @@ def play_game((session, bounce_dnn)):
 
     X, rewards, labels = get_training_features(worlds)
     logger.info(
-        'Game end: %s (%d worlds) - elapsed: %f',
+        'Game end: %s (%d worlds) - elapsed: %f | mean reward: %s',
         'WON' if won else 'LOST',
         len(worlds.worlds),
         time.time() - game_start,
+        np.mean(rewards)
     )
     return X, rewards, labels
 
@@ -73,8 +74,11 @@ def main(model_dir='checkpoints', export=False):
 
             logger.info('------ Play -------')
 
-            pool = ThreadPool(cpu_count())
-            games = pool.map(play_game, [(session, bounce_dnn)] * BATCH_SIZE)
+            try:
+                pool = ThreadPool(cpu_count())
+                games = pool.map(play_game, [(session, bounce_dnn)] * BATCH_SIZE)
+            finally:
+                pool.close()
 
             logger.info('Elapsed (play): %f', time.time() - start)
 
@@ -112,13 +116,10 @@ def main(model_dir='checkpoints', export=False):
                 export_model(saver, model_save_path)
                 last_saved_loss = best_loss
 
-            logger.info('Writing train summary')
+            logger.info('Writing summary')
             train_summary, _ = bounce_dnn.compute_summary(session, X_train, labels_train, training=True)
             summary_writer_train.add_summary(train_summary, global_step=iteration)
-
-            if iteration % ITERATIONS_BETWEEN_SAVE == 0:
-                logger.info('Writing test summary')
-                summary_writer_test.add_summary(test_summary, global_step=iteration)
+            summary_writer_test.add_summary(test_summary, global_step=iteration)
 
             logger.info('-------------------')
 

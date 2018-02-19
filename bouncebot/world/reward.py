@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 
+import logging
 import math
 
 import numpy as np
@@ -17,6 +18,8 @@ MAX_PRE_FRAMES = 5 * 60  # 5 seconds
 
 DISCOUNT_RATE = 0.99
 
+logger = logging.getLogger(__name__)
+
 
 def get_reward(inputWorld, outputWorld):
     if outputWorld.won:
@@ -27,7 +30,7 @@ def get_reward(inputWorld, outputWorld):
     reward = EPSILON
 
     if not outputWorld.arrow.ready and outputWorld.action in (LEFT, RIGHT):
-        reward -= EPSILON
+        reward -= 2 * EPSILON
 
     if inputWorld:
         # if not inputWorld.arrow.ready and outputWorld.arrow.ready:
@@ -48,7 +51,7 @@ def update_rewards(worlds, rewards):
         discounted_rewards.append(discounted_reward)
 
     X = np.array(discounted_rewards)
-    X_norm = (X - np.mean(X)) / np.std(X)
+    X_norm = X / np.std(X)
 
     for index, world in enumerate(worlds.worlds):
         world.reward = X_norm[index]
