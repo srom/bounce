@@ -64,6 +64,7 @@ def main(model_dir='checkpoints', export=False):
         summary_writer_test = tf.summary.FileWriter('./summary_log/test', session.graph)
 
         best_loss = float('Inf')
+        best_loss_iteration = 0
         last_saved_loss = float('Inf')
 
         while True:
@@ -96,14 +97,16 @@ def main(model_dir='checkpoints', export=False):
             test_summary, loss = bounce_dnn.compute_summary(session, X_test, labels_test)
             mean_loss = np.mean(loss)
 
-            logger.info('loss: %f', mean_loss)
-            logger.info('best loss: %f', best_loss)
-            logger.info('Elapsed (total): %f', time.time() - start)
-
             if mean_loss < best_loss:
                 logger.info('Saving new best model')
                 model_save_path = saver.save(session, save_path, global_step=iteration)
                 best_loss = mean_loss
+                best_loss_iteration = iteration
+
+            logger.info('iteration: %d', iteration)
+            logger.info('loss: %f', mean_loss)
+            logger.info('best loss: %f (%d)', best_loss, best_loss_iteration)
+            logger.info('Elapsed (total): %f', time.time() - start)
 
             if export and iteration % ITERATIONS_BETWEEN_SAVE == 0 and best_loss < last_saved_loss:
                 export_model(saver, model_save_path)

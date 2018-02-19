@@ -7,15 +7,15 @@ import numpy as np
 from .models.world_pb2 import LEFT, RIGHT
 
 
-WON_REWARD = +100
-LOST_REWARD = -100
-BRICK_LIFE = +10
+WON_REWARD = +10
+LOST_REWARD = -10
+BRICK_LIFE = +5
 EPSILON = +1
 
 MAX_FRAMES = 2 * 60 * 60  # 2 minutes
 MAX_PRE_FRAMES = 5 * 60  # 5 seconds
 
-DISCOUNT_RATE = 0.95
+DISCOUNT_RATE = 0.99
 
 
 def get_reward(inputWorld, outputWorld):
@@ -24,14 +24,14 @@ def get_reward(inputWorld, outputWorld):
     elif lost(outputWorld):
         return LOST_REWARD, True
 
-    reward = EPSILON / 3.0
+    reward = EPSILON
 
     if not outputWorld.arrow.ready and outputWorld.action in (LEFT, RIGHT):
         reward -= EPSILON
 
     if inputWorld:
-        if not inputWorld.arrow.ready and outputWorld.arrow.ready:
-            reward += EPSILON
+        # if not inputWorld.arrow.ready and outputWorld.arrow.ready:
+        #     reward += EPSILON
 
         lives_down = get_num_lives(inputWorld) - get_num_lives(outputWorld)
         reward += lives_down * BRICK_LIFE
@@ -64,11 +64,12 @@ def discount_reward(world, rewards):
 
 
 def get_time_factor(outputWorld):
-    if not outputWorld.arrow.ready:
-        x = 1.0 * outputWorld.pre_frame_nb / MAX_PRE_FRAMES
-        return -x * math.log(x, 10)
-    else:
-        return -math.log(1.0 * get_post_frame_nb(outputWorld) / MAX_FRAMES, 10)
+    # if not outputWorld.arrow.ready:
+    #     x = 1.0 * outputWorld.pre_frame_nb / MAX_PRE_FRAMES
+    #     return -x * math.log(x, 10)
+    # else:
+    #     return -math.log(1.0 * get_post_frame_nb(outputWorld) / MAX_FRAMES, 10)
+    return 1.0
 
 
 def lost(outputWorld):
