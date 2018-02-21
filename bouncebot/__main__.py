@@ -23,6 +23,26 @@ ITERATIONS_BETWEEN_SAVE = 10
 logger = logging.getLogger(__name__)
 
 
+def play_batch(session, bounce_dnn):
+    num_retry = 1
+    while True:
+        pool = ThreadPool(cpu_count())
+        try:
+            return pool.map(play_game, [(session, bounce_dnn)] * BATCH_SIZE)
+        except KeyboardInterrupt:
+            raise
+        except BaseException as e:
+            logger.exception(e)
+            logger.error('Retrying...')
+            num_retry -= 1
+            if num_retry == 0:
+                raise
+            else:
+                continue
+        finally:
+            pool.close()
+
+
 def play_game((session, bounce_dnn)):
     game_start = time.time()
     logger.info('Game start')
@@ -30,9 +50,10 @@ def play_game((session, bounce_dnn)):
 
     X, rewards, labels = get_training_features(worlds)
     logger.info(
-        'Game end: %s (%d worlds) - elapsed: %f | mean reward: %s',
+        'Game end: %s (%d worlds; %d frames) - elapsed: %f | mean reward: %s',
         'WON' if won else 'LOST',
         len(worlds.worlds),
+        worlds.worlds[-1].frame_nb,
         time.time() - game_start,
         np.mean(rewards)
     )
@@ -75,11 +96,7 @@ def main(model_dir='checkpoints', export=False):
 
             logger.info('------ Play -------')
 
-            try:
-                pool = ThreadPool(cpu_count())
-                games = pool.map(play_game, [(session, bounce_dnn)] * BATCH_SIZE)
-            finally:
-                pool.close()
+            games = play_batch(session, bounce_dnn)
 
             logger.info('Elapsed (play): %f', time.time() - start)
 
@@ -87,7 +104,7 @@ def main(model_dir='checkpoints', export=False):
 
             learning_start = time.time()
 
-            mean_reward = compute_game_statistics(games)
+            mean_reward, mean_worlds_length = compute_game_statistics(games)
 
             X, rewards, labels = get_features_from_games(games)
 
@@ -122,7 +139,7 @@ def main(model_dir='checkpoints', export=False):
             logger.info('Writing summary')
             train_summary, _ = bounce_dnn.compute_summary(
                 session, X_train, labels_train,
-                statistics=dict(mean_reward=mean_reward),
+                statistics=dict(mean_reward=mean_reward, mean_worlds_length=mean_worlds_length),
                 training=True
             )
             summary_writer_train.add_summary(train_summary, global_step=iteration)

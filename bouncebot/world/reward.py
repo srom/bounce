@@ -8,9 +8,9 @@ import numpy as np
 from .models.world_pb2 import LEFT, RIGHT
 
 
-WON_REWARD = +10
-LOST_REWARD = -10
-BRICK_LIFE = +5
+WON_REWARD = +5
+LOST_REWARD = -5
+BRICK_LIFE = +3
 EPSILON = +1
 
 MAX_FRAMES = 2 * 60 * 60  # 2 minutes
@@ -30,7 +30,7 @@ def get_reward(inputWorld, outputWorld):
     reward = EPSILON
 
     if not outputWorld.arrow.ready and outputWorld.action in (LEFT, RIGHT):
-        reward -= 2 * EPSILON
+        reward -= EPSILON
 
     if inputWorld:
         # if not inputWorld.arrow.ready and outputWorld.arrow.ready:
@@ -67,12 +67,14 @@ def discount_reward(world, rewards):
 
 
 def get_time_factor(outputWorld):
-    if not outputWorld.arrow.ready:
-        x = 1.0 * outputWorld.pre_frame_nb / MAX_PRE_FRAMES
-    else:
-        x = 1.0 * get_post_frame_nb(outputWorld) / MAX_FRAMES
+    # if not outputWorld.arrow.ready:
+    #     x = 1.0 * outputWorld.pre_frame_nb / MAX_PRE_FRAMES
+    # else:
+    #     x = 1.0 * get_post_frame_nb(outputWorld) / MAX_FRAMES
+    #
+    # return - 100 * x * math.log(x, 10)
 
-    return - 100 * x * math.log(x, 10)
+    return 1.0
 
 
 def lost(outputWorld):
