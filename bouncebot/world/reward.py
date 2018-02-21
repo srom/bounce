@@ -10,7 +10,7 @@ from .models.world_pb2 import LEFT, RIGHT
 
 WON_REWARD = +5
 LOST_REWARD = -5
-BRICK_LIFE = +10
+BRICK_LIFE = +5
 EPSILON = +1
 
 MAX_FRAMES = 2 * 60 * 60  # 2 minutes
