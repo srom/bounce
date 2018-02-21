@@ -13,6 +13,7 @@ from .train.export import export_model
 from train.features import get_training_features, split_features, get_features_from_games
 from .train.neural_net import BounceDNN
 from .train.play import play
+from .train.summary import compute_game_statistics
 
 
 LEARNING_RATE = 0.01
@@ -86,6 +87,8 @@ def main(model_dir='checkpoints', export=False):
 
             learning_start = time.time()
 
+            mean_reward = compute_game_statistics(games)
+
             X, rewards, labels = get_features_from_games(games)
 
             X_train, X_test, rewards_train, _, labels_train, labels_test = split_features(X, rewards, labels)
@@ -117,7 +120,11 @@ def main(model_dir='checkpoints', export=False):
                 last_saved_loss = best_loss
 
             logger.info('Writing summary')
-            train_summary, _ = bounce_dnn.compute_summary(session, X_train, labels_train, training=True)
+            train_summary, _ = bounce_dnn.compute_summary(
+                session, X_train, labels_train,
+                statistics=dict(mean_reward=mean_reward),
+                training=True
+            )
             summary_writer_train.add_summary(train_summary, global_step=iteration)
             summary_writer_test.add_summary(test_summary, global_step=iteration)
 

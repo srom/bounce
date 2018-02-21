@@ -37,8 +37,10 @@ class BounceDNN(object):
             self.apply_gradients_op = self._get_apply_gradients_op(optimizer)
 
         with tf.variable_scope('summary'):
+            self.mean_reward = tf.placeholder(tf.float32, shape=[], name='mean_reward')
             tf.summary.scalar('cross_entropy_mean', tf.reduce_mean(self.cross_entropy))
             tf.summary.scalar('learning_rate', optimizer._lr_t)
+            tf.summary.scalar('mean_reward', self.mean_reward)
             self.summary = tf.summary.merge_all()
 
     def pick_action(self, session, X, explore=False):
@@ -85,12 +87,17 @@ class BounceDNN(object):
             self.training: False
         })
 
-    def compute_summary(self, session, X, labels, training=False):
-        return session.run([self.summary, self.cross_entropy], feed_dict={
+    def compute_summary(self, session, X, labels, statistics=None, training=False):
+        if not statistics:
+            statistics = {}
+
+        feed_dict = {
             self.X: X,
             self.actions: labels,
-            self.training: training
-        })
+            self.training: training,
+            self.mean_reward: statistics.get('mean_reward', 0)
+        }
+        return session.run([self.summary, self.cross_entropy], feed_dict=feed_dict)
 
     def _get_logits(self):
         input_dropout = tf.layers.dropout(self.X, DROPOUT_RATE, training=self.training)
