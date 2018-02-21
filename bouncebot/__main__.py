@@ -50,10 +50,11 @@ def play_game((session, bounce_dnn)):
 
     X, rewards, labels = get_training_features(worlds)
     logger.info(
-        'Game end: %s (%d worlds; %d frames) - elapsed: %f | mean reward: %s',
+        'Game end: %s (%d worlds; %d frames; %d bricks left) - elapsed: %f | mean reward: %s',
         'WON' if won else 'LOST',
         len(worlds.worlds),
         worlds.worlds[-1].frame_nb,
+        len(worlds.worlds[-1].bricks),
         time.time() - game_start,
         np.mean(rewards)
     )
