@@ -33,11 +33,11 @@ def play_batch(session, bounce_dnn):
             raise
         except BaseException as e:
             logger.exception(e)
-            logger.error('Retrying...')
             num_retry -= 1
             if num_retry == 0:
                 raise
             else:
+                logger.error('Retrying...')
                 continue
         finally:
             pool.close()
