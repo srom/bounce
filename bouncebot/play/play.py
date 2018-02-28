@@ -30,4 +30,3 @@ def play(bouncebot):
         X = get_features(inputWorld, outputWorld)
         inputWorld = outputWorld
         action = bouncebot.evaluate(np.array([X]))
-        print action

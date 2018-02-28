@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 import logging
 
+from google.protobuf.json_format import MessageToJson
 import tensorflow as tf
 
 from .play import play
@@ -25,6 +26,8 @@ def main():
             worlds.worlds[-1].frame_nb,
             len(worlds.worlds[-1].bricks),
         )
+
+        print MessageToJson(worlds)
 
 
 if __name__ == '__main__':

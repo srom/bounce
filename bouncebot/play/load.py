@@ -38,6 +38,4 @@ def load_model():
         x = graph.get_tensor_by_name('bouncebot/input/X:0')
         f_x = graph.get_tensor_by_name('bouncebot/f_p/f_evaluate:0')
 
-        print f_x
-
         return BounceBotModel(session, x, f_x)

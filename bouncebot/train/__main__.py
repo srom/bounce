@@ -133,8 +133,7 @@ def main(model_dir='checkpoints', export=False):
             logger.info('best loss: %f (%d)', best_loss, best_loss_iteration)
             logger.info('Elapsed (total): %f', time.time() - start)
 
-            # if export and iteration % ITERATIONS_BETWEEN_SAVE == 0 and best_loss < last_saved_loss:
-            if export:
+            if export and iteration % ITERATIONS_BETWEEN_SAVE == 0 and best_loss < last_saved_loss:
                 export_model(saver, model_save_path)
                 last_saved_loss = best_loss
 
