@@ -120,7 +120,7 @@ class BounceDNN(object):
         if explore:
             return tf.multinomial(tf.log(self.outputs), 1, name='f_explore')
         else:
-            return tf.argmax(self.outputs, name='f_evaluate')
+            return tf.argmax(self.outputs, axis=1, name='f_evaluate')
 
     def _get_loss(self):
         return tf.nn.sigmoid_cross_entropy_with_logits(labels=self.actions, logits=self.logits, name="cross_entropy")

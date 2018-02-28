@@ -9,11 +9,11 @@ import time
 import numpy as np
 import tensorflow as tf
 
-from .train.export import export_model
-from train.features import get_training_features, split_features, get_features_from_games
-from .train.neural_net import BounceDNN
-from .train.play import play
-from .train.summary import compute_game_statistics
+from .export import export_model
+from .features import get_training_features, split_features, get_features_from_games
+from .neural_net import BounceDNN
+from .play import play
+from .summary import compute_game_statistics
 
 
 LEARNING_RATE = 0.01
@@ -133,7 +133,8 @@ def main(model_dir='checkpoints', export=False):
             logger.info('best loss: %f (%d)', best_loss, best_loss_iteration)
             logger.info('Elapsed (total): %f', time.time() - start)
 
-            if export and iteration % ITERATIONS_BETWEEN_SAVE == 0 and best_loss < last_saved_loss:
+            # if export and iteration % ITERATIONS_BETWEEN_SAVE == 0 and best_loss < last_saved_loss:
+            if export:
                 export_model(saver, model_save_path)
                 last_saved_loss = best_loss
 
