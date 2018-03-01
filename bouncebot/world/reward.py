@@ -74,7 +74,10 @@ def get_time_factor(outputWorld):
     #
     # return - 100 * x * math.log(x, 10)
 
-    return 1.0
+    if outputWorld.arrow.ready:
+        return 1.0
+    else:
+        return 0.1
 
 
 def lost(outputWorld):

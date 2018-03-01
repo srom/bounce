@@ -131,7 +131,8 @@ var mainLoop = function mainLoop(inputWorld) {
     var movie = request.movie;
     var worlds = [];
 
-    b2_world.SetContactListener(contactListener(b2Listener));
+    var listener = new b2Listener();
+    b2_world.SetContactListener(contactListener(listener));
 
     var num_epochs = request.numEpochs;
     var currentWorld = inputWorld;
@@ -203,9 +204,9 @@ var gameOver = function gameOver(inputWorld) {
     console.log("lose");
 };
 
-var contactListener = function contactListener(b2Listener) {
-    var listener = new b2Listener();
+var contactListener = function contactListener(listener) {
     listener.EndContact = function (contact) {
+        console.log('=== CONTACT');
         var bodyA = contact.GetFixtureA().GetBody();
         var bodyB = contact.GetFixtureB().GetBody();
 
@@ -235,6 +236,7 @@ var parseBall = function parseBall(pb_ball, world) {
     ball.canMove = pb_ball.canMove;
     ball.bouncing = pb_ball.bouncing;
     if (ball.canMove) {
+        console.log("Create ball body");
         ball.createBody(world);
         ball.setLinearVelocity(pb_ball.linearVelocityXM, pb_ball.linearVelocityYM);
     }
@@ -313,7 +315,8 @@ var getOutputWorld = function getOutputWorld(inputWorld, request, ball, paddle, 
             angularVelocityXM: arrow.velocity.x,
             angularVelocityYM: arrow.velocity.y,
             rotation: arrow.el.rotation,
-            reversed: arrow._reversed
+            reversed: arrow._reversed,
+            ready: arrow.ready
         },
         bricks: bricks.map(function (brick) {
             return {

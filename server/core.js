@@ -104,7 +104,8 @@ const mainLoop = (inputWorld) => {
     const movie = request.movie;
     const worlds = [];
 
-    b2_world.SetContactListener(contactListener(b2Listener));
+    const listener = new b2Listener;
+    b2_world.SetContactListener(contactListener(listener));
 
     const num_epochs = request.numEpochs;
     let currentWorld = inputWorld;
@@ -177,9 +178,9 @@ const gameOver = (inputWorld) => {
     console.log("lose");
 };
 
-const contactListener = (b2Listener) => {
-    const listener = new b2Listener;
+const contactListener = (listener) => {
     listener.EndContact = function (contact) {
+        console.log('=== CONTACT');
         const bodyA = contact.GetFixtureA().GetBody();
         const bodyB = contact.GetFixtureB().GetBody();
 
@@ -286,6 +287,7 @@ const getOutputWorld = (inputWorld, request, ball, paddle, arrow, bricks) => {
             angularVelocityYM: arrow.velocity.y,
             rotation: arrow.el.rotation,
             reversed: arrow._reversed,
+            ready: arrow.ready,
         },
         bricks: bricks.map((brick) => {
             return {
