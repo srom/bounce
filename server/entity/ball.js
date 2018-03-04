@@ -94,6 +94,9 @@ export default class Ball extends Entity {
 
             if (this.worldPosition().y - this.radius > constants.STAGE_HEIGHT_PX) {
                 this.dead = true;
+            } else if (this.worldPosition().y - this.radius < 0) {
+                console.log('Off canvas');
+                this.dead = true;
             }
         }
 

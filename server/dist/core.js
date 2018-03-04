@@ -35,6 +35,8 @@ var _brick2 = _interopRequireDefault(_brick);
 
 var _wall = require('./entity/wall');
 
+var _wall2 = _interopRequireDefault(_wall);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -141,7 +143,7 @@ var mainLoop = function mainLoop(inputWorld) {
     var currentWorld = inputWorld;
     for (var i = 0; i < num_epochs; i++) {
         if (currentWorld.won || currentWorld.lost) {
-            console.log(currentWorld.won, currentWorld.lost);
+            console.log('GAME OVER', currentWorld.won, currentWorld.lost);
             break;
         }
         update(b2_world, currentWorld, request.frameRate, ball, paddle, arrow, bricks);
@@ -209,39 +211,42 @@ var gameOver = function gameOver(inputWorld) {
 
 var contactListener = function contactListener(listener) {
     listener.EndContact = function (contact) {
-        console.log('=== CONTACT');
         var bodyA = contact.GetFixtureA().GetBody();
         var bodyB = contact.GetFixtureB().GetBody();
 
-        console.log('BODY A', contact.GetFixtureA().GetBody().GetUserData());
-        console.log('BODY B', contact.GetFixtureB().GetBody().GetUserData());
-
-        var ball = getBallOrNull(bodyA, bodyB);
-        var brick = getBrickOrNull(bodyA, bodyB);
+        var ball = getInstanceOrNull(bodyA, bodyB, _ball2.default);
+        var brick = getInstanceOrNull(bodyA, bodyB, _brick2.default);
+        var wall = getInstanceOrNull(bodyA, bodyB, _wall2.default);
+        var paddle = getInstanceOrNull(bodyA, bodyB, _paddle2.default);
 
         if (ball !== null && brick !== null) {
             console.log('=== CONTACT BALL & BRICK');
             brick.contact();
         }
 
-        if (ball != null) {
-            console.log('=== BALL & PADDLE or WALL');
+        if (ball !== null) {
             ball.contact();
+
+            if (wall !== null) {
+                console.log('=== CONTACT BALL & WALL', wall._initialPosition);
+            } else if (paddle !== null) {
+                console.log('=== CONTACT BALL & PADDLE');
+            } else {
+                console.log('=== CONTACT BALL & ????');
+                console.log('BODY A', contact.GetFixtureA().GetBody().GetUserData());
+                console.log('BODY B', contact.GetFixtureB().GetBody().GetUserData());
+            }
+        } else {
+            console.log('WTF');
         }
     };
     return listener;
 };
 
-var getBallOrNull = function getBallOrNull(bodyA, bodyB) {
+var getInstanceOrNull = function getInstanceOrNull(bodyA, bodyB, cls) {
     var userDataA = bodyA.GetUserData();
     var userDataB = bodyB.GetUserData();
-    return getIfInstanceOfElseNull(userDataA, _ball2.default) || getIfInstanceOfElseNull(userDataB, _ball2.default);
-};
-
-var getBrickOrNull = function getBrickOrNull(bodyA, bodyB) {
-    var userDataA = bodyA.GetUserData();
-    var userDataB = bodyB.GetUserData();
-    return getIfInstanceOfElseNull(userDataA, _brick2.default) || getIfInstanceOfElseNull(userDataB, _brick2.default);
+    return getIfInstanceOfElseNull(userDataA, cls) || getIfInstanceOfElseNull(userDataB, cls);
 };
 
 var getIfInstanceOfElseNull = function getIfInstanceOfElseNull(userData, cls) {
@@ -288,13 +293,12 @@ var parseArrow = function parseArrow(pb_arrow) {
 
 var parseBricks = function parseBricks(pb_bricks, world) {
     var bricks = pb_bricks.map(function (pb_brick) {
-        var brick = new _brick2.default({}, pb_brick.xPx, pb_brick.yPx, pb_brick.widthPx, pb_brick.heightPx);
+        var brick = new _brick2.default(pb_brick.lives, pb_brick.xPx, pb_brick.yPx, pb_brick.widthPx, pb_brick.heightPx);
         brick.lives = pb_brick.lives;
         return brick;
     });
     bricks.forEach(function (brick) {
         if (brick.lives > 0) {
-            console.log('CREATE BRICK BODY');
             brick.createBody(world);
         }
     });

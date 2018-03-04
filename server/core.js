@@ -7,7 +7,7 @@ import Ball from './entity/ball';
 import Paddle from './entity/paddle';
 import Arrow, { MAX_ANGLE } from './entity/arrow';
 import Brick, { BrickLevel1, BrickLevel2, setBricks } from './entity/brick';
-import { setWalls } from './entity/wall';
+import Wall, { setWalls } from './entity/wall';
 
 export const parseWorld = (data) => {
     const world = World.decode(data);
@@ -113,7 +113,7 @@ const mainLoop = (inputWorld) => {
     let currentWorld = inputWorld;
     for (let i = 0; i < num_epochs; i++) {
         if (currentWorld.won || currentWorld.lost) {
-            console.log(currentWorld.won, currentWorld.lost);
+            console.log('GAME OVER', currentWorld.won, currentWorld.lost);
             break;
         }
         update(b2_world, currentWorld, request.frameRate, ball, paddle, arrow, bricks);
@@ -182,39 +182,44 @@ const gameOver = (inputWorld) => {
 
 const contactListener = (listener) => {
     listener.EndContact = function (contact) {
-        console.log('=== CONTACT');
         const bodyA = contact.GetFixtureA().GetBody();
         const bodyB = contact.GetFixtureB().GetBody();
 
-        console.log('BODY A', contact.GetFixtureA().GetBody().GetUserData());
-        console.log('BODY B', contact.GetFixtureB().GetBody().GetUserData());
-
-        const ball = getBallOrNull(bodyA, bodyB);
-        const brick = getBrickOrNull(bodyA, bodyB);
+        const ball = getInstanceOrNull(bodyA, bodyB, Ball);
+        const brick = getInstanceOrNull(bodyA, bodyB, Brick);
+        const wall = getInstanceOrNull(bodyA, bodyB, Wall);
+        const paddle = getInstanceOrNull(bodyA, bodyB, Paddle);
 
         if (ball !== null && brick !== null) {
             console.log('=== CONTACT BALL & BRICK');
             brick.contact();
         }
 
-        if (ball != null) {
-            console.log('=== BALL & PADDLE or WALL');
+        if (ball !== null) {
             ball.contact();
+
+            if (wall !== null) {
+                console.log('=== CONTACT BALL & WALL', wall._initialPosition);
+            } else if (paddle !== null) {
+                console.log('=== CONTACT BALL & PADDLE');
+            } else {
+                console.log('=== CONTACT BALL & ????');
+                console.log('BODY A', contact.GetFixtureA().GetBody().GetUserData());
+                console.log('BODY B', contact.GetFixtureB().GetBody().GetUserData());
+            }
+        } else {
+            console.log('=== CONTACT WTF');
+            console.log('BODY A', contact.GetFixtureA().GetBody().GetUserData());
+            console.log('BODY B', contact.GetFixtureB().GetBody().GetUserData());
         }
     };
     return listener
 };
 
-const getBallOrNull = (bodyA, bodyB) => {
+const getInstanceOrNull = (bodyA, bodyB, cls) => {
     const userDataA = bodyA.GetUserData();
     const userDataB = bodyB.GetUserData();
-    return getIfInstanceOfElseNull(userDataA, Ball) || getIfInstanceOfElseNull(userDataB, Ball);
-};
-
-const getBrickOrNull = (bodyA, bodyB) => {
-    const userDataA = bodyA.GetUserData();
-    const userDataB = bodyB.GetUserData();
-    return getIfInstanceOfElseNull(userDataA, Brick) || getIfInstanceOfElseNull(userDataB, Brick);
+    return getIfInstanceOfElseNull(userDataA, cls) || getIfInstanceOfElseNull(userDataB, cls);
 };
 
 const getIfInstanceOfElseNull = (userData, cls) => {
@@ -261,7 +266,7 @@ const parseArrow = (pb_arrow) => {
 
 const parseBricks = (pb_bricks, world) => {
     const bricks = pb_bricks.map((pb_brick) => {
-        let brick = new Brick({}, pb_brick.xPx, pb_brick.yPx, pb_brick.widthPx, pb_brick.heightPx);
+        let brick = new Brick(pb_brick.lives, pb_brick.xPx, pb_brick.yPx, pb_brick.widthPx, pb_brick.heightPx);
         brick.lives = pb_brick.lives;
         return brick;
     });

@@ -104,16 +104,10 @@ var _initialiseProps = function _initialiseProps() {
     this._createBrick = function (lvl, x_px, y_px, width_px, height_px, options) {
         //let texture;
         if (lvl === BrickLevel1) {
-            //texture = PIXI.loader.resources.brickBlue.texture;
+            _this2.lives = 1;
         } else {
-            //texture = PIXI.loader.resources.brickGreen.texture;
             _this2.lives = 2;
         }
-        //const brick = new PIXI.Sprite(texture);
-        //brick.position.x = x_px;
-        //brick.position.y = y_px;
-        //brick.height = height_px;
-        //brick.width = width_px;
 
         _this2.width = width_px;
         _this2.height = height_px;
