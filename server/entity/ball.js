@@ -35,14 +35,15 @@ export default class Ball extends Entity {
     createBody (world) {
         const bodyDef = new b2BodyDef;
         bodyDef.type = b2Body.b2_dynamicBody;
-        bodyDef.position.x = pixelsToMeters(this._initialX);
-        bodyDef.position.y = pixelsToMeters(this._initialY);
+        bodyDef.position.x = pixelsToMeters(this.el.position.x);
+        bodyDef.position.y = pixelsToMeters(this.el.position.y);
 
         fixDef.shape = new b2CircleShape(pixelsToMeters(this.radius));
 
         const body = world.CreateBody(bodyDef);
         body.CreateFixture(fixDef);
         body.SetBullet(true);
+        body.SetUserData(this);
 
         this.body = body;
 

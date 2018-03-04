@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "box2dweb": "git+https://github.com/mikolalysenko/box2dweb.git",
+    "box2dweb-commonjs": "^2.1.0",
     "jquery": "^2.1.4",
     "mainloop.js": "^1.0.3",
     "protobufjs": "6.8.4"

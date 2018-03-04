@@ -38,6 +38,7 @@ export default class Brick extends Entity {
 
         const body = world.CreateBody(bodyDef);
         body.CreateFixture(fixDef);
+        body.SetUserData(this);
 
         this.body = body;
 

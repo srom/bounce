@@ -7,6 +7,7 @@ import Ball from './entity/ball';
 import Paddle from './entity/paddle';
 import Arrow, { MAX_ANGLE } from './entity/arrow';
 import Brick, { BrickLevel1, BrickLevel2, setBricks } from './entity/brick';
+import { setWalls } from './entity/wall';
 
 export const parseWorld = (data) => {
     const world = World.decode(data);
@@ -43,7 +44,7 @@ const initializeWorld = () => {
 
     const world = new b2World(
         new b2Vec2(0, 0),  // gravity
-        true               // allow sleep
+        false               // allow sleep
     );
 
     const bricks = setBricks(world);
@@ -100,6 +101,7 @@ const mainLoop = (inputWorld) => {
     const paddle = parsePaddle(inputWorld.paddle, b2_world);
     const arrow = parseArrow(inputWorld.arrow);
     const bricks = parseBricks(inputWorld.bricks, b2_world);
+    setWalls(b2_world);
 
     const movie = request.movie;
     const worlds = [];
@@ -184,18 +186,42 @@ const contactListener = (listener) => {
         const bodyA = contact.GetFixtureA().GetBody();
         const bodyB = contact.GetFixtureB().GetBody();
 
-        const containsBall = [bodyA, bodyB].includes(ball.body);
+        console.log('BODY A', contact.GetFixtureA().GetBody().GetUserData());
+        console.log('BODY B', contact.GetFixtureB().GetBody().GetUserData());
 
-        const brick = bricks.find((b) => [bodyA, bodyB].includes(b.body));
-        if (containsBall && brick) {
+        const ball = getBallOrNull(bodyA, bodyB);
+        const brick = getBrickOrNull(bodyA, bodyB);
+
+        if (ball !== null && brick !== null) {
+            console.log('=== CONTACT BALL & BRICK');
             brick.contact();
         }
 
-        if (containsBall) {
+        if (ball != null) {
+            console.log('=== BALL & PADDLE or WALL');
             ball.contact();
         }
     };
     return listener
+};
+
+const getBallOrNull = (bodyA, bodyB) => {
+    const userDataA = bodyA.GetUserData();
+    const userDataB = bodyB.GetUserData();
+    return getIfInstanceOfElseNull(userDataA, Ball) || getIfInstanceOfElseNull(userDataB, Ball);
+};
+
+const getBrickOrNull = (bodyA, bodyB) => {
+    const userDataA = bodyA.GetUserData();
+    const userDataB = bodyB.GetUserData();
+    return getIfInstanceOfElseNull(userDataA, Brick) || getIfInstanceOfElseNull(userDataB, Brick);
+};
+
+const getIfInstanceOfElseNull = (userData, cls) => {
+    if (userData instanceof cls) {
+        return userData
+    }
+    return null;
 };
 
 const parseRequest = (pb_request) => {

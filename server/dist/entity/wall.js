@@ -36,9 +36,6 @@ var b2BodyDef = _box2dweb2.default.Dynamics.b2BodyDef;
 var b2Body = _box2dweb2.default.Dynamics.b2Body;
 var b2PolygonShape = _box2dweb2.default.Collision.Shapes.b2PolygonShape;
 
-var WALL_LINE_COLOR = 0x9ECBEA;
-var WALL_FILL_COLOR = 0x407394;
-
 var Wall = function (_Entity) {
     _inherits(Wall, _Entity);
 
@@ -78,6 +75,7 @@ var Wall = function (_Entity) {
 
             var body = world.CreateBody(bodyDef);
             body.CreateFixture(_fixture2.default);
+            body.SetUserData(this);
 
             this.body = body;
 
@@ -94,26 +92,11 @@ var _initialiseProps = function _initialiseProps() {
     this._createWall = function (thickness_px, position, options) {
         _this2.thickness = thickness_px;
         _this2._initialPosition = position;
-
-        var wall = new PIXI.Graphics();
-        wall.lineStyle(1, WALL_LINE_COLOR, 1);
-        wall.beginFill(WALL_FILL_COLOR, 1);
-
-        if (_this2._initialPosition === "top") {
-            wall.drawRect(0, 0, _constants.STAGE_WIDTH_PX, _this2.thickness);
-        } else if (_this2._initialPosition === "left") {
-            wall.drawRect(0, 0, _this2.thickness, _constants.STAGE_HEIGHT_PX);
-        } else if (_this2._initialPosition === "right") {
-            wall.drawRect(_constants.STAGE_WIDTH_PX - _this2.thickness, 0, _this2.thickness, _constants.STAGE_HEIGHT_PX);
-        }
-
-        wall.endFill();
-
-        return wall;
+        return null;
     };
 };
 
 exports.default = Wall;
 function setWalls(world) {
-    return [new Wall(constants.WALL_THICKNESS, 'top').createBody(world), new Wall(constants.WALL_THICKNESS, 'left').createBody(world), new Wall(constants.WALL_THICKNESS, 'right').createBody(world)];
+    return [new Wall(_constants.WALL_THICKNESS, 'top').createBody(world), new Wall(_constants.WALL_THICKNESS, 'left').createBody(world), new Wall(_constants.WALL_THICKNESS, 'right').createBody(world)];
 }

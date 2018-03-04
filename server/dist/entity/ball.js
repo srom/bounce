@@ -60,14 +60,15 @@ var Ball = function (_Entity) {
         value: function createBody(world) {
             var bodyDef = new b2BodyDef();
             bodyDef.type = b2Body.b2_dynamicBody;
-            bodyDef.position.x = (0, _scale.pixelsToMeters)(this._initialX);
-            bodyDef.position.y = (0, _scale.pixelsToMeters)(this._initialY);
+            bodyDef.position.x = (0, _scale.pixelsToMeters)(this.el.position.x);
+            bodyDef.position.y = (0, _scale.pixelsToMeters)(this.el.position.y);
 
             _fixture2.default.shape = new b2CircleShape((0, _scale.pixelsToMeters)(this.radius));
 
             var body = world.CreateBody(bodyDef);
             body.CreateFixture(_fixture2.default);
             body.SetBullet(true);
+            body.SetUserData(this);
 
             this.body = body;
 

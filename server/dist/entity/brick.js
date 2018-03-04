@@ -75,6 +75,7 @@ var Brick = function (_Entity) {
 
             var body = world.CreateBody(bodyDef);
             body.CreateFixture(_fixture2.default);
+            body.SetUserData(this);
 
             this.body = body;
 

@@ -2,15 +2,12 @@ import Box2D from 'box2dweb';
 
 import fixDef from './fixture';
 import { pixelsToMeters } from '../util/scale';
-import { STAGE_WIDTH_PX, STAGE_HEIGHT_PX } from '../constants';
+import { STAGE_WIDTH_PX, STAGE_HEIGHT_PX, WALL_THICKNESS } from '../constants';
 import Entity from './entity';
 
 const b2BodyDef = Box2D.Dynamics.b2BodyDef;
 const b2Body = Box2D.Dynamics.b2Body;
 const b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape;
-
-const WALL_LINE_COLOR = 0x9ECBEA;
-const WALL_FILL_COLOR = 0x407394;
 
 export default class Wall extends Entity {
 
@@ -47,6 +44,7 @@ export default class Wall extends Entity {
 
         const body = world.CreateBody(bodyDef);
         body.CreateFixture(fixDef);
+        body.SetUserData(this);
 
         this.body = body;
 
@@ -56,29 +54,14 @@ export default class Wall extends Entity {
     _createWall = (thickness_px, position, options) => {
         this.thickness = thickness_px;
         this._initialPosition = position;
-
-        var wall = new PIXI.Graphics();
-        wall.lineStyle(1, WALL_LINE_COLOR, 1);
-        wall.beginFill(WALL_FILL_COLOR, 1);
-
-        if (this._initialPosition === "top") {
-            wall.drawRect(0, 0, STAGE_WIDTH_PX, this.thickness);
-        } else if (this._initialPosition === "left") {
-            wall.drawRect(0, 0, this.thickness, STAGE_HEIGHT_PX);
-        } else if (this._initialPosition === "right") {
-            wall.drawRect(STAGE_WIDTH_PX - this.thickness, 0, this.thickness, STAGE_HEIGHT_PX);
-        }
-
-        wall.endFill();
-
-        return wall;
+        return null;
     };
 }
 
 export function setWalls(world) {
     return [
-        (new Wall(constants.WALL_THICKNESS, 'top')).createBody(world),
-        (new Wall(constants.WALL_THICKNESS, 'left')).createBody(world),
-        (new Wall(constants.WALL_THICKNESS, 'right')).createBody(world),
+        (new Wall(WALL_THICKNESS, 'top')).createBody(world),
+        (new Wall(WALL_THICKNESS, 'left')).createBody(world),
+        (new Wall(WALL_THICKNESS, 'right')).createBody(world),
     ]
 }

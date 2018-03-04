@@ -33,6 +33,8 @@ var _brick = require('./entity/brick');
 
 var _brick2 = _interopRequireDefault(_brick);
 
+var _wall = require('./entity/wall');
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -71,7 +73,7 @@ var initializeWorld = function initializeWorld() {
     var initialArrowY = initialBallY - 2 * ballRadius;
 
     var world = new b2World(new b2Vec2(0, 0), // gravity
-    true // allow sleep
+    false // allow sleep
     );
 
     var bricks = (0, _brick.setBricks)(world);
@@ -127,6 +129,7 @@ var mainLoop = function mainLoop(inputWorld) {
     var paddle = parsePaddle(inputWorld.paddle, b2_world);
     var arrow = parseArrow(inputWorld.arrow);
     var bricks = parseBricks(inputWorld.bricks, b2_world);
+    (0, _wall.setWalls)(b2_world);
 
     var movie = request.movie;
     var worlds = [];
@@ -210,20 +213,42 @@ var contactListener = function contactListener(listener) {
         var bodyA = contact.GetFixtureA().GetBody();
         var bodyB = contact.GetFixtureB().GetBody();
 
-        var containsBall = [bodyA, bodyB].includes(ball.body);
+        console.log('BODY A', contact.GetFixtureA().GetBody().GetUserData());
+        console.log('BODY B', contact.GetFixtureB().GetBody().GetUserData());
 
-        var brick = bricks.find(function (b) {
-            return [bodyA, bodyB].includes(b.body);
-        });
-        if (containsBall && brick) {
+        var ball = getBallOrNull(bodyA, bodyB);
+        var brick = getBrickOrNull(bodyA, bodyB);
+
+        if (ball !== null && brick !== null) {
+            console.log('=== CONTACT BALL & BRICK');
             brick.contact();
         }
 
-        if (containsBall) {
+        if (ball != null) {
+            console.log('=== BALL & PADDLE or WALL');
             ball.contact();
         }
     };
     return listener;
+};
+
+var getBallOrNull = function getBallOrNull(bodyA, bodyB) {
+    var userDataA = bodyA.GetUserData();
+    var userDataB = bodyB.GetUserData();
+    return getIfInstanceOfElseNull(userDataA, _ball2.default) || getIfInstanceOfElseNull(userDataB, _ball2.default);
+};
+
+var getBrickOrNull = function getBrickOrNull(bodyA, bodyB) {
+    var userDataA = bodyA.GetUserData();
+    var userDataB = bodyB.GetUserData();
+    return getIfInstanceOfElseNull(userDataA, _brick2.default) || getIfInstanceOfElseNull(userDataB, _brick2.default);
+};
+
+var getIfInstanceOfElseNull = function getIfInstanceOfElseNull(userData, cls) {
+    if (userData instanceof cls) {
+        return userData;
+    }
+    return null;
 };
 
 var parseRequest = function parseRequest(pb_request) {
@@ -236,7 +261,6 @@ var parseBall = function parseBall(pb_ball, world) {
     ball.canMove = pb_ball.canMove;
     ball.bouncing = pb_ball.bouncing;
     if (ball.canMove) {
-        console.log("Create ball body");
         ball.createBody(world);
         ball.setLinearVelocity(pb_ball.linearVelocityXM, pb_ball.linearVelocityYM);
     }
@@ -270,6 +294,7 @@ var parseBricks = function parseBricks(pb_bricks, world) {
     });
     bricks.forEach(function (brick) {
         if (brick.lives > 0) {
+            console.log('CREATE BRICK BODY');
             brick.createBody(world);
         }
     });

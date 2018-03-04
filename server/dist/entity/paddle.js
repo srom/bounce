@@ -60,14 +60,15 @@ var Paddle = function (_Entity) {
         value: function createBody(world) {
             var bodyDef = new b2BodyDef();
             bodyDef.type = b2Body.b2_staticBody;
-            bodyDef.position.x = (0, _scale.pixelsToMeters)(this._initialX) + (0, _scale.pixelsToMeters)(this.width) / 2;
-            bodyDef.position.y = (0, _scale.pixelsToMeters)(this._initialY) + (0, _scale.pixelsToMeters)(this.height) / 2;
+            bodyDef.position.x = (0, _scale.pixelsToMeters)(this.el.position.x) + (0, _scale.pixelsToMeters)(this.width) / 2;
+            bodyDef.position.y = (0, _scale.pixelsToMeters)(this.el.position.x) + (0, _scale.pixelsToMeters)(this.height) / 2;
 
             _fixture2.default.shape = new b2PolygonShape();
             _fixture2.default.shape.SetAsBox((0, _scale.pixelsToMeters)(this.width) / 2, (0, _scale.pixelsToMeters)(this.height) / 2);
 
             var body = world.CreateBody(bodyDef);
             body.CreateFixture(_fixture2.default);
+            body.SetUserData(this);
 
             this.body = body;
 
