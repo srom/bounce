@@ -98,7 +98,11 @@ def main(model_dir='checkpoints', export=False):
 
             logger.info('------ Play -------')
 
-            games = play_batch(session, bounce_dnn)
+            # games = play_batch(session, bounce_dnn)
+
+            games = []
+            for _ in xrange(BATCH_SIZE):
+                games.append(play_game((session, bounce_dnn)))
 
             logger.info('Elapsed (play): %f', time.time() - start)
 
