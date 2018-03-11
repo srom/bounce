@@ -64,8 +64,8 @@ export default class Arrow extends Entity {
             }
         };
 
-        this._initialX = x_px;
-        this._initialY = y_px;
+        //this._initialX = x_px;
+        //this._initialY = y_px;
 
         arrow.rotation = randomFloat(-MAX_ANGLE, MAX_ANGLE);
         this._reversed = randomBoolean();

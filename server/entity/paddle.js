@@ -21,8 +21,8 @@ export default class Paddle extends Entity {
     speed_px = 3;
     canMove = false;
 
-    _initialX;
-    _initialY;
+    _initialX = constants.STAGE_WIDTH_PX / 2 - 100 / 2;
+    _initialY = constants.STAGE_HEIGHT_PX - 50;
 
     constructor (x_px, y_px, width_px, height_px, options = {}) {
         super();
@@ -91,8 +91,8 @@ export default class Paddle extends Entity {
 
         this.width = width_px;
         this.height = height_px;
-        this._initialX = x_px;
-        this._initialY = y_px;
+        //this._initialX = x_px;
+        //this._initialY = y_px;
 
         return {
             position: {

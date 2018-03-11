@@ -93,7 +93,7 @@ const mainLoop = (inputWorld) => {
 
     const b2_world = new b2World(
         new b2Vec2(0, 0),  // gravity
-        true               // allow sleep
+        false               // allow sleep
     );
 
     const request = parseRequest(inputWorld.request);
@@ -102,6 +102,13 @@ const mainLoop = (inputWorld) => {
     const arrow = parseArrow(inputWorld.arrow);
     const bricks = parseBricks(inputWorld.bricks, b2_world);
     setWalls(b2_world);
+
+    console.log('Arrow position: ', arrow.el.position);
+    console.log('Ball position: ', ball.el.position);
+    console.log('Paddle position: ', paddle.el.position);
+    bricks.forEach((brick, index) => {
+        console.log('brick positions: ', index, brick.el.position);
+    });
 
     const movie = request.movie;
     const worlds = [];
@@ -113,11 +120,14 @@ const mainLoop = (inputWorld) => {
     let currentWorld = inputWorld;
     for (let i = 0; i < num_epochs; i++) {
         if (currentWorld.won || currentWorld.lost) {
-            console.log('GAME OVER', currentWorld.won, currentWorld.lost);
             break;
         }
         update(b2_world, currentWorld, request.frameRate, ball, paddle, arrow, bricks);
         clean(b2_world);
+
+        if (ball.body) {
+            console.log('Ball position: ', ball.el.position, ball.body.GetPosition());
+        }
 
         const newWorld = getOutputWorld(currentWorld, request, ball, paddle, arrow, bricks);
         currentWorld = newWorld;
@@ -143,7 +153,7 @@ const update = (b2_world, inputWorld, frame_rate, ball, paddle, arrow, bricks) =
     arrow.render(input);
 
     bricks.forEach((brick) => {
-        if (brick.isGarbage()) {
+        if (brick.isGarbage() && brick.body) {
             b2_world.DestroyBody(brick.body);
         }
     });
@@ -172,12 +182,12 @@ const clean = (world) => {
 
 const youWin = (inputWorld) => {
     inputWorld.won = true;
-    console.log("win");
+    console.log("WON");
 };
 
 const gameOver = (inputWorld) => {
     inputWorld.lost = true;
-    console.log("lose");
+    console.log("LOST");
 };
 
 const contactListener = (listener) => {
@@ -202,10 +212,6 @@ const contactListener = (listener) => {
                 console.log('=== CONTACT BALL & WALL', wall._initialPosition);
             } else if (paddle !== null) {
                 console.log('=== CONTACT BALL & PADDLE');
-            } else {
-                console.log('=== CONTACT BALL & ????');
-                console.log('BODY A', contact.GetFixtureA().GetBody().GetUserData());
-                console.log('BODY B', contact.GetFixtureB().GetBody().GetUserData());
             }
         } else {
             console.log('=== CONTACT WTF');

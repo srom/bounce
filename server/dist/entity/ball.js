@@ -99,8 +99,8 @@ var Ball = function (_Entity) {
         key: 'worldPosition',
         value: function worldPosition() {
             return {
-                x: this.el.position.x + this._initialX,
-                y: this.el.position.y + this._initialY
+                x: this.el.position.x, // + this._initialX,
+                y: this.el.position.y // + this._initialY
             };
         }
     }, {
@@ -114,8 +114,8 @@ var Ball = function (_Entity) {
         key: 'render',
         value: function render() {
             if (this.canMove) {
-                this.el.position.x = (0, _scale.metersToPixels)(this.body.GetPosition().x) - this._initialX;
-                this.el.position.y = (0, _scale.metersToPixels)(this.body.GetPosition().y) - this._initialY;
+                this.el.position.x = (0, _scale.metersToPixels)(this.body.GetPosition().x); // - this._initialX;
+                this.el.position.y = (0, _scale.metersToPixels)(this.body.GetPosition().y); // - this._initialY;
 
                 if (this.worldPosition().y - this.radius > constants.STAGE_HEIGHT_PX) {
                     this.dead = true;
@@ -165,6 +165,8 @@ var _initialiseProps = function _initialiseProps() {
     this.dead = false;
     this.canMove = false;
     this.bouncing = false;
+    this._initialX = 300;
+    this._initialY = 540;
 
     this._createBall = function (x_px, y_px, radius_px, options) {
         //var ball = new PIXI.Graphics();
@@ -174,8 +176,8 @@ var _initialiseProps = function _initialiseProps() {
         //ball.endFill();
 
         _this2.radius = radius_px;
-        _this2._initialX = x_px;
-        _this2._initialY = y_px;
+        //this._initialX = x_px;
+        //this._initialY = y_px;
 
         return {
             position: {

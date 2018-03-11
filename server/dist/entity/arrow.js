@@ -98,8 +98,8 @@ var _initialiseProps = function _initialiseProps() {
             }
         };
 
-        _this2._initialX = x_px;
-        _this2._initialY = y_px;
+        //this._initialX = x_px;
+        //this._initialY = y_px;
 
         arrow.rotation = (0, _random.randomFloat)(-MAX_ANGLE, MAX_ANGLE);
         _this2._reversed = (0, _random.randomBoolean)();

@@ -123,7 +123,7 @@ var mainLoop = function mainLoop(inputWorld) {
     var b2Listener = _box2dweb2.default.Dynamics.b2ContactListener;
 
     var b2_world = new b2World(new b2Vec2(0, 0), // gravity
-    true // allow sleep
+    false // allow sleep
     );
 
     var request = parseRequest(inputWorld.request);
@@ -132,6 +132,13 @@ var mainLoop = function mainLoop(inputWorld) {
     var arrow = parseArrow(inputWorld.arrow);
     var bricks = parseBricks(inputWorld.bricks, b2_world);
     (0, _wall.setWalls)(b2_world);
+
+    console.log('Arrow position: ', arrow.el.position);
+    console.log('Ball position: ', ball.el.position);
+    console.log('Paddle position: ', paddle.el.position);
+    bricks.forEach(function (brick, index) {
+        console.log('brick positions: ', index, brick.el.position);
+    });
 
     var movie = request.movie;
     var worlds = [];
@@ -143,11 +150,14 @@ var mainLoop = function mainLoop(inputWorld) {
     var currentWorld = inputWorld;
     for (var i = 0; i < num_epochs; i++) {
         if (currentWorld.won || currentWorld.lost) {
-            console.log('GAME OVER', currentWorld.won, currentWorld.lost);
             break;
         }
         update(b2_world, currentWorld, request.frameRate, ball, paddle, arrow, bricks);
         clean(b2_world);
+
+        if (ball.body) {
+            console.log('Ball position: ', ball.el.position, ball.body.GetPosition());
+        }
 
         var newWorld = getOutputWorld(currentWorld, request, ball, paddle, arrow, bricks);
         currentWorld = newWorld;
@@ -173,7 +183,8 @@ var update = function update(b2_world, inputWorld, frame_rate, ball, paddle, arr
     arrow.render(input);
 
     bricks.forEach(function (brick) {
-        if (brick.isGarbage()) {
+        if (brick.isGarbage() && brick.body) {
+            console.log('DESTROYYY', brick);
             b2_world.DestroyBody(brick.body);
         }
     });
@@ -201,12 +212,12 @@ var clean = function clean(world) {
 
 var youWin = function youWin(inputWorld) {
     inputWorld.won = true;
-    console.log("win");
+    console.log("WON");
 };
 
 var gameOver = function gameOver(inputWorld) {
     inputWorld.lost = true;
-    console.log("lose");
+    console.log("LOST");
 };
 
 var contactListener = function contactListener(listener) {
@@ -231,13 +242,11 @@ var contactListener = function contactListener(listener) {
                 console.log('=== CONTACT BALL & WALL', wall._initialPosition);
             } else if (paddle !== null) {
                 console.log('=== CONTACT BALL & PADDLE');
-            } else {
-                console.log('=== CONTACT BALL & ????');
-                console.log('BODY A', contact.GetFixtureA().GetBody().GetUserData());
-                console.log('BODY B', contact.GetFixtureB().GetBody().GetUserData());
             }
         } else {
-            console.log('WTF');
+            console.log('=== CONTACT WTF');
+            console.log('BODY A', contact.GetFixtureA().GetBody().GetUserData());
+            console.log('BODY B', contact.GetFixtureB().GetBody().GetUserData());
         }
     };
     return listener;

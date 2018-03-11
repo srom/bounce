@@ -110,6 +110,8 @@ var _initialiseProps = function _initialiseProps() {
 
     this.speed_px = 3;
     this.canMove = false;
+    this._initialX = constants.STAGE_WIDTH_PX / 2 - 100 / 2;
+    this._initialY = constants.STAGE_HEIGHT_PX - 50;
 
     this._createPaddle = function (x_px, y_px, width_px, height_px, options) {
         //const paddle = new PIXI.Sprite(PIXI.loader.resources.paddle.texture);
@@ -120,8 +122,8 @@ var _initialiseProps = function _initialiseProps() {
 
         _this2.width = width_px;
         _this2.height = height_px;
-        _this2._initialX = x_px;
-        _this2._initialY = y_px;
+        //this._initialX = x_px;
+        //this._initialY = y_px;
 
         return {
             position: {

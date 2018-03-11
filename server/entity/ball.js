@@ -22,8 +22,8 @@ export default class Ball extends Entity {
     canMove = false;
     bouncing = false;
 
-    _initialX;
-    _initialY;
+    _initialX = 300;
+    _initialY = 540;
 
     _targetVelocity;
 
@@ -71,8 +71,8 @@ export default class Ball extends Entity {
 
     worldPosition () {
         return {
-            x: this.el.position.x + this._initialX,
-            y: this.el.position.y + this._initialY
+            x: this.el.position.x, // + this._initialX,
+            y: this.el.position.y, // + this._initialY
         };
     }
 
@@ -89,8 +89,8 @@ export default class Ball extends Entity {
 
     render () {
         if (this.canMove) {
-            this.el.position.x = metersToPixels(this.body.GetPosition().x) - this._initialX;
-            this.el.position.y = metersToPixels(this.body.GetPosition().y) - this._initialY;
+            this.el.position.x = metersToPixels(this.body.GetPosition().x); // - this._initialX;
+            this.el.position.y = metersToPixels(this.body.GetPosition().y); // - this._initialY;
 
             if (this.worldPosition().y - this.radius > constants.STAGE_HEIGHT_PX) {
                 this.dead = true;
@@ -117,8 +117,8 @@ export default class Ball extends Entity {
         //ball.endFill();
 
         this.radius = radius_px;
-        this._initialX = x_px;
-        this._initialY = y_px;
+        //this._initialX = x_px;
+        //this._initialY = y_px;
 
         return {
             position: {
