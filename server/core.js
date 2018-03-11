@@ -103,13 +103,6 @@ const mainLoop = (inputWorld) => {
     const bricks = parseBricks(inputWorld.bricks, b2_world);
     setWalls(b2_world);
 
-    console.log('Arrow position: ', arrow.el.position);
-    console.log('Ball position: ', ball.el.position);
-    console.log('Paddle position: ', paddle.el.position);
-    bricks.forEach((brick, index) => {
-        console.log('brick positions: ', index, brick.el.position);
-    });
-
     const movie = request.movie;
     const worlds = [];
 
@@ -124,10 +117,6 @@ const mainLoop = (inputWorld) => {
         }
         update(b2_world, currentWorld, request.frameRate, ball, paddle, arrow, bricks);
         clean(b2_world);
-
-        if (ball.body) {
-            console.log('Ball position: ', ball.el.position, ball.body.GetPosition());
-        }
 
         const newWorld = getOutputWorld(currentWorld, request, ball, paddle, arrow, bricks);
         currentWorld = newWorld;

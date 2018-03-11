@@ -133,13 +133,6 @@ var mainLoop = function mainLoop(inputWorld) {
     var bricks = parseBricks(inputWorld.bricks, b2_world);
     (0, _wall.setWalls)(b2_world);
 
-    console.log('Arrow position: ', arrow.el.position);
-    console.log('Ball position: ', ball.el.position);
-    console.log('Paddle position: ', paddle.el.position);
-    bricks.forEach(function (brick, index) {
-        console.log('brick positions: ', index, brick.el.position);
-    });
-
     var movie = request.movie;
     var worlds = [];
 
@@ -154,10 +147,6 @@ var mainLoop = function mainLoop(inputWorld) {
         }
         update(b2_world, currentWorld, request.frameRate, ball, paddle, arrow, bricks);
         clean(b2_world);
-
-        if (ball.body) {
-            console.log('Ball position: ', ball.el.position, ball.body.GetPosition());
-        }
 
         var newWorld = getOutputWorld(currentWorld, request, ball, paddle, arrow, bricks);
         currentWorld = newWorld;
@@ -184,7 +173,6 @@ var update = function update(b2_world, inputWorld, frame_rate, ball, paddle, arr
 
     bricks.forEach(function (brick) {
         if (brick.isGarbage() && brick.body) {
-            console.log('DESTROYYY', brick);
             b2_world.DestroyBody(brick.body);
         }
     });
