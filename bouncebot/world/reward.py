@@ -10,10 +10,10 @@ from .models.world_pb2 import LEFT, RIGHT
 
 WON_REWARD = +10
 LOST_REWARD = -5
-BRICK_LIFE = +20
+BRICK_LIFE = +50
 EPSILON = +1
 
-MAX_FRAMES = 10 * 60 * 60  # 10 minutes
+MAX_FRAMES = 5 * 60 * 60  # 5 minutes
 MAX_PRE_FRAMES = 60 * 60  # 1 minute
 
 DISCOUNT_RATE = 0.99
@@ -51,7 +51,8 @@ def update_rewards(worlds, rewards):
         discounted_rewards.append(discounted_reward)
 
     X = np.array(discounted_rewards)
-    X_norm = X / np.std(X)
+    # X_norm = X / np.std(X)
+    X_norm = X
 
     for index, world in enumerate(worlds.worlds):
         world.reward = X_norm[index]
