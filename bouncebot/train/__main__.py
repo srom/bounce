@@ -59,7 +59,7 @@ def play_game((session, bounce_dnn)):
         np.mean(rewards),
         "| dead" if worlds.worlds[-1].ball.dead else ""
     )
-    return X, rewards, labels
+    return X, rewards, labels, worlds
 
 
 def main(model_dir='checkpoints', export=False):
@@ -110,7 +110,7 @@ def main(model_dir='checkpoints', export=False):
 
             learning_start = time.time()
 
-            mean_reward, mean_worlds_length = compute_game_statistics(games)
+            mean_reward, mean_worlds_length, mean_num_lives = compute_game_statistics(games)
 
             X, rewards, labels = get_features_from_games(games)
 
@@ -145,7 +145,11 @@ def main(model_dir='checkpoints', export=False):
             logger.info('Writing summary')
             train_summary, _ = bounce_dnn.compute_summary(
                 session, X_train, labels_train,
-                statistics=dict(mean_reward=mean_reward, mean_worlds_length=mean_worlds_length),
+                statistics=dict(
+                    mean_reward=mean_reward,
+                    mean_worlds_length=mean_worlds_length,
+                    mean_num_lives=mean_num_lives,
+                ),
                 training=True
             )
             summary_writer_train.add_summary(train_summary, global_step=iteration)

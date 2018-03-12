@@ -26,7 +26,7 @@ def run_simulation(current_world, action, num_epochs, movie):
     current_world_str = current_world.SerializeToString()
 
     error = 0
-    while error < 100:
+    while error < 200:
         data = query_socket(current_world_str)
 
         if movie:

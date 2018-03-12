@@ -8,7 +8,7 @@ import numpy as np
 from .models.world_pb2 import LEFT, RIGHT
 
 
-WON_REWARD = +10
+WON_REWARD = +50
 LOST_REWARD = -5
 BRICK_LIFE = +50
 EPSILON = +1
