@@ -8,13 +8,13 @@ import numpy as np
 from .models.world_pb2 import LEFT, RIGHT
 
 
-WON_REWARD = +5
+WON_REWARD = +10
 LOST_REWARD = -5
-BRICK_LIFE = +5
+BRICK_LIFE = +20
 EPSILON = +1
 
-MAX_FRAMES = 2 * 60 * 60  # 2 minutes
-MAX_PRE_FRAMES = 5 * 60  # 5 seconds
+MAX_FRAMES = 10 * 60 * 60  # 10 minutes
+MAX_PRE_FRAMES = 60 * 60  # 1 minute
 
 DISCOUNT_RATE = 0.99
 
@@ -67,17 +67,17 @@ def discount_reward(world, rewards):
 
 
 def get_time_factor(outputWorld):
-    # if not outputWorld.arrow.ready:
-    #     x = 1.0 * outputWorld.pre_frame_nb / MAX_PRE_FRAMES
-    # else:
-    #     x = 1.0 * get_post_frame_nb(outputWorld) / MAX_FRAMES
-    #
-    # return - 100 * x * math.log(x, 10)
-
-    if outputWorld.arrow.ready:
-        return 1.0
+    if not outputWorld.arrow.ready:
+        x = 1.0 * outputWorld.pre_frame_nb / MAX_PRE_FRAMES
     else:
-        return 0.1
+        x = 1.0 * get_post_frame_nb(outputWorld) / MAX_FRAMES
+
+    return - 100 * x * math.log(x, 10)
+
+    # if outputWorld.arrow.ready:
+    #     return 1.0
+    # else:
+    #     return 0.1
 
 
 def lost(outputWorld):

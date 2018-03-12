@@ -56,138 +56,77 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.17810001969337463, 
+        "ready": false, 
+        "rotation": -1.163100004196167, 
+        "reversed": true, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": 2.0211096085509315
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 120, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 120, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": 0.31189998984336853, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 3.2857027258903573
-    }, 
-    {
-      "ball": {
-        "radiusPx": 6.0, 
-        "linearVelocityYM": 0.0, 
-        "bouncing": false, 
-        "yPx": 540.0, 
-        "dead": false, 
-        "linearVelocityXM": 0.0, 
-        "canMove": false, 
-        "xPx": 300.0
-      }, 
-      "preFrameNb": 120, 
-      "lost": false, 
-      "bricks": [
-        {
-          "yPx": 100.0, 
-          "xPx": 40.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 150.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 100.0, 
-          "xPx": 490.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 380.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 80.0, 
-          "xPx": 265.0, 
-          "lives": 1
-        }
-      ], 
-      "request": {
-        "frameRate": 0.016666666666666666, 
-        "numEpochs": 60
-      }, 
-      "frameNb": 120, 
-      "paddle": {
-        "widthPx": 100.0, 
-        "heightPx": 20.0, 
-        "yPx": 550.0, 
-        "xPx": 250.0
-      }, 
-      "won": false, 
-      "arrow": {
-        "yPx": 528.0, 
-        "angularVelocityYM": 0.0, 
-        "angularVelocityXM": 0.0, 
-        "rotation": 1.0469000339508057, 
-        "reversed": true, 
-        "xPx": 303.0
-      }, 
-      "action": "HOLD", 
-      "reward": 3.2755146328838602
-    }, 
-    {
-      "ball": {
-        "radiusPx": 6.0, 
-        "linearVelocityYM": 0.0, 
-        "bouncing": false, 
-        "yPx": 540.0, 
-        "dead": false, 
-        "linearVelocityXM": 0.0, 
-        "canMove": false, 
-        "xPx": 300.0
-      }, 
-      "preFrameNb": 120, 
-      "lost": false, 
-      "bricks": [
-        {
-          "yPx": 100.0, 
-          "xPx": 40.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 150.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 100.0, 
-          "xPx": 490.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 380.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 80.0, 
-          "xPx": 265.0, 
-          "lives": 1
-        }
-      ], 
-      "request": {
-        "frameRate": 0.016666666666666666, 
-        "numEpochs": 60
-      }, 
-      "frameNb": 120, 
-      "paddle": {
-        "widthPx": 100.0, 
-        "heightPx": 20.0, 
-        "yPx": 550.0, 
-        "xPx": 250.0
-      }, 
-      "won": false, 
-      "arrow": {
-        "yPx": 528.0, 
-        "angularVelocityYM": 0.0, 
-        "angularVelocityXM": 0.0, 
-        "rotation": 1.0469000339508057, 
-        "reversed": true, 
-        "xPx": 303.0
-      }, 
-      "action": "HOLD", 
-      "reward": 3.2652236298469943
+      "reward": 2.0115426197600974
     }, 
     {
       "ball": {
@@ -245,12 +184,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.45309996604919434, 
+        "ready": false, 
+        "rotation": 0.536899983882904, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 3.254828677284503
+      "reward": 2.001878994718851
     }, 
     {
       "ball": {
@@ -308,12 +248,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.3780999779701233, 
-        "reversed": false, 
+        "ready": false, 
+        "rotation": -0.963100016117096, 
+        "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 3.244328725201179
+      "reward": 1.9921177573034508
     }, 
     {
       "ball": {
@@ -371,12 +312,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 1.1219000816345215, 
+        "ready": false, 
+        "rotation": 0.11189998686313629, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 3.2337227129958013
+      "reward": 1.9822579215303187
     }, 
     {
       "ball": {
@@ -434,12 +376,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.2530999183654785, 
+        "ready": false, 
+        "rotation": 0.7368999719619751, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 3.223009569354005
+      "reward": 1.9722984914564483
     }, 
     {
       "ball": {
@@ -497,12 +440,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.5780999064445496, 
-        "reversed": false, 
+        "ready": false, 
+        "rotation": -0.7631000280380249, 
+        "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 3.2121882121400698
+      "reward": 1.9622384610788015
     }, 
     {
       "ball": {
@@ -560,12 +504,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.9219000935554504, 
+        "ready": false, 
+        "rotation": -0.08810003101825714, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 3.20125754828761
+      "reward": 1.9520768142326934
     }, 
     {
       "ball": {
@@ -623,12 +568,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.05309990793466568, 
+        "ready": false, 
+        "rotation": 0.9368999600410461, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 3.1902164736891656
+      "reward": 1.9418125244891502
     }, 
     {
       "ball": {
@@ -686,12 +632,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.05309990793466568, 
+        "ready": false, 
+        "rotation": 0.9368999600410461, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 3.1790638730846768
+      "reward": 1.9314445550512274
     }, 
     {
       "ball": {
@@ -749,12 +696,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.7780998945236206, 
-        "reversed": false, 
+        "ready": false, 
+        "rotation": -0.5631000399589539, 
+        "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 3.1677986199488295
+      "reward": 1.9209718586492854
     }, 
     {
       "ball": {
@@ -812,12 +760,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.7219001054763794, 
+        "ready": false, 
+        "rotation": -0.2881000339984894, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 3.156419576377266
+      "reward": 1.9103933774352027
     }, 
     {
       "ball": {
@@ -875,12 +824,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.14690010249614716, 
+        "ready": false, 
+        "rotation": 1.1368999481201172, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 3.1449255929716458
+      "reward": 1.899708042875523
     }, 
     {
       "ball": {
@@ -938,12 +888,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.9780998826026917, 
-        "reversed": false, 
+        "ready": false, 
+        "rotation": -0.3631000518798828, 
+        "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 3.133315508723545
+      "reward": 1.8889147756435234
     }, 
     {
       "ball": {
@@ -1001,12 +952,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.5219001173973083, 
+        "ready": false, 
+        "rotation": -0.4881000518798828, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 3.1215881508971806
+      "reward": 1.8780124855101903
     }, 
     {
       "ball": {
@@ -1064,12 +1016,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.3469001054763794, 
-        "reversed": true, 
+        "ready": false, 
+        "rotation": 1.0118999481201172, 
+        "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 3.109742334910954
+      "reward": 1.8670000712340966
     }, 
     {
       "ball": {
@@ -1127,75 +1080,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -1.1530998945236206, 
+        "ready": false, 
+        "rotation": -0.16310004889965057, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 3.097776864217796
-    }, 
-    {
-      "ball": {
-        "radiusPx": 6.0, 
-        "linearVelocityYM": 0.0, 
-        "bouncing": false, 
-        "yPx": 540.0, 
-        "dead": false, 
-        "linearVelocityXM": 0.0, 
-        "canMove": false, 
-        "xPx": 300.0
-      }, 
-      "preFrameNb": 960, 
-      "lost": false, 
-      "bricks": [
-        {
-          "yPx": 100.0, 
-          "xPx": 40.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 150.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 100.0, 
-          "xPx": 490.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 380.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 80.0, 
-          "xPx": 265.0, 
-          "lives": 1
-        }
-      ], 
-      "request": {
-        "frameRate": 0.016666666666666666, 
-        "numEpochs": 60
-      }, 
-      "frameNb": 960, 
-      "paddle": {
-        "widthPx": 100.0, 
-        "heightPx": 20.0, 
-        "yPx": 550.0, 
-        "xPx": 250.0
-      }, 
-      "won": false, 
-      "arrow": {
-        "yPx": 528.0, 
-        "angularVelocityYM": 0.0, 
-        "angularVelocityXM": 0.0, 
-        "rotation": -1.1530998945236206, 
-        "reversed": true, 
-        "xPx": 303.0
-      }, 
-      "action": "HOLD", 
-      "reward": 3.0856905301843036
+      "reward": 1.855876420450163
     }, 
     {
       "ball": {
@@ -1253,12 +1144,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.3219000995159149, 
+        "ready": false, 
+        "rotation": -0.6881000399589539, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 3.073482111968654
+      "reward": 1.844640409557301
     }, 
     {
       "ball": {
@@ -1316,75 +1208,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.5469000935554504, 
-        "reversed": true, 
+        "ready": false, 
+        "rotation": 0.8118999600410461, 
+        "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 3.061150376397291
-    }, 
-    {
-      "ball": {
-        "radiusPx": 6.0, 
-        "linearVelocityYM": 0.0, 
-        "bouncing": false, 
-        "yPx": 540.0, 
-        "dead": false, 
-        "linearVelocityXM": 0.0, 
-        "canMove": false, 
-        "xPx": 300.0
-      }, 
-      "preFrameNb": 1080, 
-      "lost": false, 
-      "bricks": [
-        {
-          "yPx": 100.0, 
-          "xPx": 40.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 150.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 100.0, 
-          "xPx": 490.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 380.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 80.0, 
-          "xPx": 265.0, 
-          "lives": 1
-        }
-      ], 
-      "request": {
-        "frameRate": 0.016666666666666666, 
-        "numEpochs": 60
-      }, 
-      "frameNb": 1080, 
-      "paddle": {
-        "widthPx": 100.0, 
-        "heightPx": 20.0, 
-        "yPx": 550.0, 
-        "xPx": 250.0
-      }, 
-      "won": false, 
-      "arrow": {
-        "yPx": 528.0, 
-        "angularVelocityYM": 0.0, 
-        "angularVelocityXM": 0.0, 
-        "rotation": 0.5469000935554504, 
-        "reversed": true, 
-        "xPx": 303.0
-      }, 
-      "action": "HOLD", 
-      "reward": 3.0486940778403584
+      "reward": 1.8332909036049154
     }, 
     {
       "ball": {
@@ -1442,12 +1272,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.9530999064445496, 
+        "ready": false, 
+        "rotation": 0.03689996153116226, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 3.0361119580858813
+      "reward": 1.8218267561782633
     }, 
     {
       "ball": {
@@ -1505,12 +1336,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.12190009653568268, 
+        "ready": false, 
+        "rotation": -0.8881000280380249, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 3.0234027462126716
+      "reward": 1.8102468092826551
     }, 
     {
       "ball": {
@@ -1568,12 +1400,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.7469000816345215, 
-        "reversed": true, 
+        "ready": false, 
+        "rotation": 0.6118999719619751, 
+        "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 3.0105651584619553
+      "reward": 1.798549893226485
     }, 
     {
       "ball": {
@@ -1631,12 +1464,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.7530999183654785, 
+        "ready": false, 
+        "rotation": 0.2368999719619751, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.997597898107696
+      "reward": 1.7867348265030807
     }, 
     {
       "ball": {
@@ -1694,12 +1528,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.07809992134571075, 
+        "ready": false, 
+        "rotation": -1.0881000757217407, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.9844996553256165
+      "reward": 1.7748004156713595
     }, 
     {
       "ball": {
@@ -1757,12 +1592,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.9469000697135925, 
-        "reversed": true, 
+        "ready": false, 
+        "rotation": 0.4118999242782593, 
+        "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.971269107060889
+      "reward": 1.7627454552352773
     }, 
     {
       "ball": {
@@ -1820,75 +1656,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.5530999302864075, 
+        "ready": false, 
+        "rotation": 0.43689993023872375, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.9579049168944973
-    }, 
-    {
-      "ball": {
-        "radiusPx": 6.0, 
-        "linearVelocityYM": 0.0, 
-        "bouncing": false, 
-        "yPx": 540.0, 
-        "dead": false, 
-        "linearVelocityXM": 0.0, 
-        "canMove": false, 
-        "xPx": 300.0
-      }, 
-      "preFrameNb": 1500, 
-      "lost": false, 
-      "bricks": [
-        {
-          "yPx": 100.0, 
-          "xPx": 40.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 150.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 100.0, 
-          "xPx": 490.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 380.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 80.0, 
-          "xPx": 265.0, 
-          "lives": 1
-        }
-      ], 
-      "request": {
-        "frameRate": 0.016666666666666666, 
-        "numEpochs": 60
-      }, 
-      "frameNb": 1500, 
-      "paddle": {
-        "widthPx": 100.0, 
-        "heightPx": 20.0, 
-        "yPx": 550.0, 
-        "xPx": 250.0
-      }, 
-      "won": false, 
-      "arrow": {
-        "yPx": 528.0, 
-        "angularVelocityYM": 0.0, 
-        "angularVelocityXM": 0.0, 
-        "rotation": -0.5530999302864075, 
-        "reversed": true, 
-        "xPx": 303.0
-      }, 
-      "action": "HOLD", 
-      "reward": 2.944405734908244
+      "reward": 1.7505687275220632
     }, 
     {
       "ball": {
@@ -1946,12 +1720,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.278099924325943, 
-        "reversed": false, 
+        "ready": false, 
+        "rotation": -1.0631000995635986, 
+        "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.930770197548392
+      "reward": 1.7382690025592207
     }, 
     {
       "ball": {
@@ -2009,75 +1784,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 1.1469000577926636, 
-        "reversed": true, 
+        "ready": false, 
+        "rotation": 0.21189990639686584, 
+        "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.916996927487936
-    }, 
-    {
-      "ball": {
-        "radiusPx": 6.0, 
-        "linearVelocityYM": 0.0, 
-        "bouncing": false, 
-        "yPx": 540.0, 
-        "dead": false, 
-        "linearVelocityXM": 0.0, 
-        "canMove": false, 
-        "xPx": 300.0
-      }, 
-      "preFrameNb": 1620, 
-      "lost": false, 
-      "bricks": [
-        {
-          "yPx": 100.0, 
-          "xPx": 40.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 150.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 100.0, 
-          "xPx": 490.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 380.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 80.0, 
-          "xPx": 265.0, 
-          "lives": 1
-        }
-      ], 
-      "request": {
-        "frameRate": 0.016666666666666666, 
-        "numEpochs": 60
-      }, 
-      "frameNb": 1620, 
-      "paddle": {
-        "widthPx": 100.0, 
-        "heightPx": 20.0, 
-        "yPx": 550.0, 
-        "xPx": 250.0
-      }, 
-      "won": false, 
-      "arrow": {
-        "yPx": 528.0, 
-        "angularVelocityYM": 0.0, 
-        "angularVelocityXM": 0.0, 
-        "rotation": 1.1469000577926636, 
-        "reversed": true, 
-        "xPx": 303.0
-      }, 
-      "action": "HOLD", 
-      "reward": 2.903084533487474
+      "reward": 1.7258450379502885
     }, 
     {
       "ball": {
@@ -2135,138 +1848,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.3530999422073364, 
+        "ready": false, 
+        "rotation": 0.6368998885154724, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.8890316102546847
-    }, 
-    {
-      "ball": {
-        "radiusPx": 6.0, 
-        "linearVelocityYM": 0.0, 
-        "bouncing": false, 
-        "yPx": 540.0, 
-        "dead": false, 
-        "linearVelocityXM": 0.0, 
-        "canMove": false, 
-        "xPx": 300.0
-      }, 
-      "preFrameNb": 1680, 
-      "lost": false, 
-      "bricks": [
-        {
-          "yPx": 100.0, 
-          "xPx": 40.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 150.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 100.0, 
-          "xPx": 490.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 380.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 80.0, 
-          "xPx": 265.0, 
-          "lives": 1
-        }
-      ], 
-      "request": {
-        "frameRate": 0.016666666666666666, 
-        "numEpochs": 60
-      }, 
-      "frameNb": 1680, 
-      "paddle": {
-        "widthPx": 100.0, 
-        "heightPx": 20.0, 
-        "yPx": 550.0, 
-        "xPx": 250.0
-      }, 
-      "won": false, 
-      "arrow": {
-        "yPx": 528.0, 
-        "angularVelocityYM": 0.0, 
-        "angularVelocityXM": 0.0, 
-        "rotation": -0.3530999422073364, 
-        "reversed": true, 
-        "xPx": 303.0
-      }, 
-      "action": "HOLD", 
-      "reward": 2.8748367383023723
-    }, 
-    {
-      "ball": {
-        "radiusPx": 6.0, 
-        "linearVelocityYM": 0.0, 
-        "bouncing": false, 
-        "yPx": 540.0, 
-        "dead": false, 
-        "linearVelocityXM": 0.0, 
-        "canMove": false, 
-        "xPx": 300.0
-      }, 
-      "preFrameNb": 1680, 
-      "lost": false, 
-      "bricks": [
-        {
-          "yPx": 100.0, 
-          "xPx": 40.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 150.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 100.0, 
-          "xPx": 490.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 380.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 80.0, 
-          "xPx": 265.0, 
-          "lives": 1
-        }
-      ], 
-      "request": {
-        "frameRate": 0.016666666666666666, 
-        "numEpochs": 60
-      }, 
-      "frameNb": 1680, 
-      "paddle": {
-        "widthPx": 100.0, 
-        "heightPx": 20.0, 
-        "yPx": 550.0, 
-        "xPx": 250.0
-      }, 
-      "won": false, 
-      "arrow": {
-        "yPx": 528.0, 
-        "angularVelocityYM": 0.0, 
-        "angularVelocityXM": 0.0, 
-        "rotation": -0.3530999422073364, 
-        "reversed": true, 
-        "xPx": 303.0
-      }, 
-      "action": "HOLD", 
-      "reward": 2.8604984838050873
+      "reward": 1.713295578749347
     }, 
     {
       "ball": {
@@ -2324,75 +1912,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.4780999422073364, 
-        "reversed": false, 
+        "ready": false, 
+        "rotation": -0.8631001114845276, 
+        "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.846015398454294
-    }, 
-    {
-      "ball": {
-        "radiusPx": 6.0, 
-        "linearVelocityYM": 0.0, 
-        "bouncing": false, 
-        "yPx": 540.0, 
-        "dead": false, 
-        "linearVelocityXM": 0.0, 
-        "canMove": false, 
-        "xPx": 300.0
-      }, 
-      "preFrameNb": 1740, 
-      "lost": false, 
-      "bricks": [
-        {
-          "yPx": 100.0, 
-          "xPx": 40.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 150.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 100.0, 
-          "xPx": 490.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 380.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 80.0, 
-          "xPx": 265.0, 
-          "lives": 1
-        }
-      ], 
-      "request": {
-        "frameRate": 0.016666666666666666, 
-        "numEpochs": 60
-      }, 
-      "frameNb": 1740, 
-      "paddle": {
-        "widthPx": 100.0, 
-        "heightPx": 20.0, 
-        "yPx": 550.0, 
-        "xPx": 250.0
-      }, 
-      "won": false, 
-      "arrow": {
-        "yPx": 528.0, 
-        "angularVelocityYM": 0.0, 
-        "angularVelocityXM": 0.0, 
-        "rotation": -0.4780999422073364, 
-        "reversed": false, 
-        "xPx": 303.0
-      }, 
-      "action": "HOLD", 
-      "reward": 2.8313860193120792
+      "reward": 1.7006193573342547
     }, 
     {
       "ball": {
@@ -2450,12 +1976,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 1.0219000577926636, 
+        "ready": false, 
+        "rotation": 0.011899888515472412, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.8166088686633772
+      "reward": 1.6878150932786056
     }, 
     {
       "ball": {
@@ -2513,12 +2040,205 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.1530999392271042, 
+        "ready": false, 
+        "rotation": 0.8368998765945435, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.8016824538667087
+      "reward": 1.6748814932223948
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 1860, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 1860, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": 0.8368998765945435, 
+        "reversed": true, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": 1.6618172507413738
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 1860, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 1860, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": 0.8368998765945435, 
+        "reversed": true, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": 1.6486210462150896
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 1860, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 1860, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": 0.8368998765945435, 
+        "reversed": true, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": 1.6352915466935911
     }, 
     {
       "ball": {
@@ -2576,12 +2296,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.6780999302864075, 
-        "reversed": false, 
+        "ready": false, 
+        "rotation": -0.6631001234054565, 
+        "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.7866052672034063
+      "reward": 1.6218274057627837
     }, 
     {
       "ball": {
@@ -2639,12 +2360,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.6780999302864075, 
-        "reversed": false, 
+        "ready": false, 
+        "rotation": -0.6631001234054565, 
+        "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.7713757857253234
+      "reward": 1.6082272634084331
     }, 
     {
       "ball": {
@@ -2702,75 +2424,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.8219000697135925, 
+        "ready": false, 
+        "rotation": -0.18810012936592102, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.755992471100997
-    }, 
-    {
-      "ball": {
-        "radiusPx": 6.0, 
-        "linearVelocityYM": 0.0, 
-        "bouncing": false, 
-        "yPx": 540.0, 
-        "dead": false, 
-        "linearVelocityXM": 0.0, 
-        "canMove": false, 
-        "xPx": 300.0
-      }, 
-      "preFrameNb": 1980, 
-      "lost": false, 
-      "bricks": [
-        {
-          "yPx": 100.0, 
-          "xPx": 40.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 150.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 100.0, 
-          "xPx": 490.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 380.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 80.0, 
-          "xPx": 265.0, 
-          "lives": 1
-        }
-      ], 
-      "request": {
-        "frameRate": 0.016666666666666666, 
-        "numEpochs": 60
-      }, 
-      "frameNb": 1980, 
-      "paddle": {
-        "widthPx": 100.0, 
-        "heightPx": 20.0, 
-        "yPx": 550.0, 
-        "xPx": 250.0
-      }, 
-      "won": false, 
-      "arrow": {
-        "yPx": 528.0, 
-        "angularVelocityYM": 0.0, 
-        "angularVelocityXM": 0.0, 
-        "rotation": 0.8219000697135925, 
-        "reversed": false, 
-        "xPx": 303.0
-      }, 
-      "action": "HOLD", 
-      "reward": 2.7404537694602635
+      "reward": 1.5944897458787861
     }, 
     {
       "ball": {
@@ -2828,12 +2488,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.04690007120370865, 
+        "ready": false, 
+        "rotation": 1.0368999242782593, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.7247581112373003
+      "reward": 1.5806134655458093
     }, 
     {
       "ball": {
@@ -2891,12 +2552,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.8780999183654785, 
-        "reversed": false, 
+        "ready": false, 
+        "rotation": -0.4631000757217407, 
+        "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.708903911012085
+      "reward": 1.5665970207650246
     }, 
     {
       "ball": {
@@ -2954,12 +2616,205 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.6219000816345215, 
+        "ready": false, 
+        "rotation": -0.3881000876426697, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.6928895673502513
+      "reward": 1.552438995733929
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 2160, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 2160, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": -0.3881000876426697, 
+        "reversed": false, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": 1.5381379603489838
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 2160, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 2160, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": -0.3881000876426697, 
+        "reversed": false, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": 1.5236924700611605
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 2160, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 2160, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": -0.3881000876426697, 
+        "reversed": false, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": 1.5091010657300261
     }, 
     {
       "ball": {
@@ -3017,12 +2872,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.24690008163452148, 
-        "reversed": true, 
+        "ready": false, 
+        "rotation": 1.111899971961975, 
+        "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.6767134626413283
+      "reward": 1.4943622734763544
     }, 
     {
       "ball": {
@@ -3080,12 +2936,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -1.0780999660491943, 
-        "reversed": false, 
+        "ready": false, 
+        "rotation": -0.2631000280380249, 
+        "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.660373962935346
+      "reward": 1.4794746045332523
     }, 
     {
       "ball": {
@@ -3143,12 +3000,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.42190003395080566, 
+        "ready": false, 
+        "rotation": -0.588100016117096, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.6438694177777875
+      "reward": 1.4644365550957752
     }, 
     {
       "ball": {
@@ -3206,12 +3064,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.42190003395080566, 
+        "ready": false, 
+        "rotation": -0.588100016117096, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.62719816004288
+      "reward": 1.4492466061690303
     }, 
     {
       "ball": {
@@ -3269,12 +3128,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.44690003991127014, 
-        "reversed": true, 
+        "ready": false, 
+        "rotation": 0.911899983882904, 
+        "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.610358505765196
+      "reward": 1.4339032234147429
     }, 
     {
       "ball": {
@@ -3332,12 +3192,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -1.0530999898910522, 
+        "ready": false, 
+        "rotation": -0.06310001760721207, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.5933487539695554
+      "reward": 1.4184048569962708
     }, 
     {
       "ball": {
@@ -3395,12 +3256,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.22190001606941223, 
+        "ready": false, 
+        "rotation": -0.788100004196167, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.5761671864992115
+      "reward": 1.4027499414220563
     }, 
     {
       "ball": {
@@ -3458,12 +3320,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.22190001606941223, 
+        "ready": false, 
+        "rotation": -0.788100004196167, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.5588120678422985
+      "reward": 1.3869368953874965
     }, 
     {
       "ball": {
@@ -3521,75 +3384,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.6468999981880188, 
-        "reversed": true, 
+        "ready": false, 
+        "rotation": 0.711899995803833, 
+        "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.5412816449565283
-    }, 
-    {
-      "ball": {
-        "radiusPx": 6.0, 
-        "linearVelocityYM": 0.0, 
-        "bouncing": false, 
-        "yPx": 540.0, 
-        "dead": false, 
-        "linearVelocityXM": 0.0, 
-        "canMove": false, 
-        "xPx": 300.0
-      }, 
-      "preFrameNb": 2580, 
-      "lost": false, 
-      "bricks": [
-        {
-          "yPx": 100.0, 
-          "xPx": 40.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 150.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 100.0, 
-          "xPx": 490.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 380.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 80.0, 
-          "xPx": 265.0, 
-          "lives": 1
-        }
-      ], 
-      "request": {
-        "frameRate": 0.016666666666666666, 
-        "numEpochs": 60
-      }, 
-      "frameNb": 2580, 
-      "paddle": {
-        "widthPx": 100.0, 
-        "heightPx": 20.0, 
-        "yPx": 550.0, 
-        "xPx": 250.0
-      }, 
-      "won": false, 
-      "arrow": {
-        "yPx": 528.0, 
-        "angularVelocityYM": 0.0, 
-        "angularVelocityXM": 0.0, 
-        "rotation": 0.6468999981880188, 
-        "reversed": true, 
-        "xPx": 303.0
-      }, 
-      "action": "HOLD", 
-      "reward": 2.523574147092113
+      "reward": 1.370964121615214
     }, 
     {
       "ball": {
@@ -3647,138 +3448,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.8531000018119812, 
+        "ready": false, 
+        "rotation": 0.13689999282360077, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.5056877856129063
-    }, 
-    {
-      "ball": {
-        "radiusPx": 6.0, 
-        "linearVelocityYM": 0.0, 
-        "bouncing": false, 
-        "yPx": 540.0, 
-        "dead": false, 
-        "linearVelocityXM": 0.0, 
-        "canMove": false, 
-        "xPx": 300.0
-      }, 
-      "preFrameNb": 2640, 
-      "lost": false, 
-      "bricks": [
-        {
-          "yPx": 100.0, 
-          "xPx": 40.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 150.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 100.0, 
-          "xPx": 490.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 380.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 80.0, 
-          "xPx": 265.0, 
-          "lives": 1
-        }
-      ], 
-      "request": {
-        "frameRate": 0.016666666666666666, 
-        "numEpochs": 60
-      }, 
-      "frameNb": 2640, 
-      "paddle": {
-        "widthPx": 100.0, 
-        "heightPx": 20.0, 
-        "yPx": 550.0, 
-        "xPx": 250.0
-      }, 
-      "won": false, 
-      "arrow": {
-        "yPx": 528.0, 
-        "angularVelocityYM": 0.0, 
-        "angularVelocityXM": 0.0, 
-        "rotation": -0.8531000018119812, 
-        "reversed": true, 
-        "xPx": 303.0
-      }, 
-      "action": "HOLD", 
-      "reward": 2.4876207538157273
-    }, 
-    {
-      "ball": {
-        "radiusPx": 6.0, 
-        "linearVelocityYM": 0.0, 
-        "bouncing": false, 
-        "yPx": 540.0, 
-        "dead": false, 
-        "linearVelocityXM": 0.0, 
-        "canMove": false, 
-        "xPx": 300.0
-      }, 
-      "preFrameNb": 2640, 
-      "lost": false, 
-      "bricks": [
-        {
-          "yPx": 100.0, 
-          "xPx": 40.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 150.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 100.0, 
-          "xPx": 490.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 380.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 80.0, 
-          "xPx": 265.0, 
-          "lives": 1
-        }
-      ], 
-      "request": {
-        "frameRate": 0.016666666666666666, 
-        "numEpochs": 60
-      }, 
-      "frameNb": 2640, 
-      "paddle": {
-        "widthPx": 100.0, 
-        "heightPx": 20.0, 
-        "yPx": 550.0, 
-        "xPx": 250.0
-      }, 
-      "won": false, 
-      "arrow": {
-        "yPx": 528.0, 
-        "angularVelocityYM": 0.0, 
-        "angularVelocityXM": 0.0, 
-        "rotation": -0.8531000018119812, 
-        "reversed": true, 
-        "xPx": 303.0
-      }, 
-      "action": "HOLD", 
-      "reward": 2.4693712267478696
+      "reward": 1.3548300066937162
     }, 
     {
       "ball": {
@@ -3836,12 +3512,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.0218999981880188, 
+        "ready": false, 
+        "rotation": -0.988099992275238, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.4509373610227616
+      "reward": 1.3385329209144254
     }, 
     {
       "ball": {
@@ -3899,75 +3576,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.8468999862670898, 
-        "reversed": true, 
+        "ready": false, 
+        "rotation": 0.511900007724762, 
+        "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.4323172946337626
-    }, 
-    {
-      "ball": {
-        "radiusPx": 6.0, 
-        "linearVelocityYM": 0.0, 
-        "bouncing": false, 
-        "yPx": 540.0, 
-        "dead": false, 
-        "linearVelocityXM": 0.0, 
-        "canMove": false, 
-        "xPx": 300.0
-      }, 
-      "preFrameNb": 2760, 
-      "lost": false, 
-      "bricks": [
-        {
-          "yPx": 100.0, 
-          "xPx": 40.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 150.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 100.0, 
-          "xPx": 490.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 380.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 80.0, 
-          "xPx": 265.0, 
-          "lives": 1
-        }
-      ], 
-      "request": {
-        "frameRate": 0.016666666666666666, 
-        "numEpochs": 60
-      }, 
-      "frameNb": 2760, 
-      "paddle": {
-        "widthPx": 100.0, 
-        "heightPx": 20.0, 
-        "yPx": 550.0, 
-        "xPx": 250.0
-      }, 
-      "won": false, 
-      "arrow": {
-        "yPx": 528.0, 
-        "angularVelocityYM": 0.0, 
-        "angularVelocityXM": 0.0, 
-        "rotation": 0.8468999862670898, 
-        "reversed": true, 
-        "xPx": 303.0
-      }, 
-      "action": "HOLD", 
-      "reward": 2.4135091467660876
+      "reward": 1.322071218107061
     }, 
     {
       "ball": {
@@ -4025,12 +3640,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.6531000137329102, 
+        "ready": false, 
+        "rotation": 0.336899995803833, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.3945110176068196
+      "reward": 1.30544323547336
     }, 
     {
       "ball": {
@@ -4088,12 +3704,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.17810001969337463, 
-        "reversed": false, 
+        "ready": false, 
+        "rotation": -1.163100004196167, 
+        "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.375320988153014
+      "reward": 1.2886472934191162
     }, 
     {
       "ball": {
@@ -4151,12 +3768,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 1.0469000339508057, 
-        "reversed": true, 
+        "ready": false, 
+        "rotation": 0.31189998984336853, 
+        "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.3559371200178565
+      "reward": 1.2716816953845267
     }, 
     {
       "ball": {
@@ -4214,75 +3832,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.45309996604919434, 
+        "ready": false, 
+        "rotation": 0.536899983882904, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.3363574552348694
-    }, 
-    {
-      "ball": {
-        "radiusPx": 6.0, 
-        "linearVelocityYM": 0.0, 
-        "bouncing": false, 
-        "yPx": 540.0, 
-        "dead": false, 
-        "linearVelocityXM": 0.0, 
-        "canMove": false, 
-        "xPx": 300.0
-      }, 
-      "preFrameNb": 3000, 
-      "lost": false, 
-      "bricks": [
-        {
-          "yPx": 100.0, 
-          "xPx": 40.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 150.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 100.0, 
-          "xPx": 490.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 380.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 80.0, 
-          "xPx": 265.0, 
-          "lives": 1
-        }
-      ], 
-      "request": {
-        "frameRate": 0.016666666666666666, 
-        "numEpochs": 60
-      }, 
-      "frameNb": 3000, 
-      "paddle": {
-        "widthPx": 100.0, 
-        "heightPx": 20.0, 
-        "yPx": 550.0, 
-        "xPx": 250.0
-      }, 
-      "won": false, 
-      "arrow": {
-        "yPx": 528.0, 
-        "angularVelocityYM": 0.0, 
-        "angularVelocityXM": 0.0, 
-        "rotation": -0.45309996604919434, 
-        "reversed": true, 
-        "xPx": 303.0
-      }, 
-      "action": "HOLD", 
-      "reward": 2.3165800160601346
+      "reward": 1.2545447276728199
     }, 
     {
       "ball": {
@@ -4340,12 +3896,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.3780999779701233, 
-        "reversed": false, 
+        "ready": false, 
+        "rotation": -0.963100016117096, 
+        "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.2966028047725238
+      "reward": 1.2372346592771568
     }, 
     {
       "ball": {
@@ -4403,12 +3960,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 1.1219000816345215, 
+        "ready": false, 
+        "rotation": 0.11189998686313629, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.276423803471907
+      "reward": 1.2197497417057794
     }, 
     {
       "ball": {
@@ -4466,12 +4024,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.2530999183654785, 
+        "ready": false, 
+        "rotation": 0.7368999719619751, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.256040973875324
+      "reward": 1.202088208805399
     }, 
     {
       "ball": {
@@ -4529,12 +4088,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.5780999064445496, 
-        "reversed": false, 
+        "ready": false, 
+        "rotation": -0.7631000280380249, 
+        "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.235452257111099
+      "reward": 1.1842482765827917
     }, 
     {
       "ball": {
@@ -4592,12 +4152,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.9219000935554504, 
+        "ready": false, 
+        "rotation": -0.08810003101825714, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.2146555735108717
+      "reward": 1.1662281430246029
     }, 
     {
       "ball": {
@@ -4655,138 +4216,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.05309990793466568, 
+        "ready": false, 
+        "rotation": 0.9368999600410461, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.1936488223995307
-    }, 
-    {
-      "ball": {
-        "radiusPx": 6.0, 
-        "linearVelocityYM": 0.0, 
-        "bouncing": false, 
-        "yPx": 540.0, 
-        "dead": false, 
-        "linearVelocityXM": 0.0, 
-        "canMove": false, 
-        "xPx": 300.0
-      }, 
-      "preFrameNb": 3360, 
-      "lost": false, 
-      "bricks": [
-        {
-          "yPx": 100.0, 
-          "xPx": 40.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 150.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 100.0, 
-          "xPx": 490.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 380.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 80.0, 
-          "xPx": 265.0, 
-          "lives": 1
-        }
-      ], 
-      "request": {
-        "frameRate": 0.016666666666666666, 
-        "numEpochs": 60
-      }, 
-      "frameNb": 3360, 
-      "paddle": {
-        "widthPx": 100.0, 
-        "heightPx": 20.0, 
-        "yPx": 550.0, 
-        "xPx": 250.0
-      }, 
-      "won": false, 
-      "arrow": {
-        "yPx": 528.0, 
-        "angularVelocityYM": 0.0, 
-        "angularVelocityXM": 0.0, 
-        "rotation": -0.05309990793466568, 
-        "reversed": true, 
-        "xPx": 303.0
-      }, 
-      "action": "HOLD", 
-      "reward": 2.172429881883025
-    }, 
-    {
-      "ball": {
-        "radiusPx": 6.0, 
-        "linearVelocityYM": 0.0, 
-        "bouncing": false, 
-        "yPx": 540.0, 
-        "dead": false, 
-        "linearVelocityXM": 0.0, 
-        "canMove": false, 
-        "xPx": 300.0
-      }, 
-      "preFrameNb": 3360, 
-      "lost": false, 
-      "bricks": [
-        {
-          "yPx": 100.0, 
-          "xPx": 40.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 150.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 100.0, 
-          "xPx": 490.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 380.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 80.0, 
-          "xPx": 265.0, 
-          "lives": 1
-        }
-      ], 
-      "request": {
-        "frameRate": 0.016666666666666666, 
-        "numEpochs": 60
-      }, 
-      "frameNb": 3360, 
-      "paddle": {
-        "widthPx": 100.0, 
-        "heightPx": 20.0, 
-        "yPx": 550.0, 
-        "xPx": 250.0
-      }, 
-      "won": false, 
-      "arrow": {
-        "yPx": 528.0, 
-        "angularVelocityYM": 0.0, 
-        "angularVelocityXM": 0.0, 
-        "rotation": -0.05309990793466568, 
-        "reversed": true, 
-        "xPx": 303.0
-      }, 
-      "action": "HOLD", 
-      "reward": 2.1509966086340295
+      "reward": 1.1480259879153212
     }, 
     {
       "ball": {
@@ -4844,12 +4280,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.7780998945236206, 
-        "reversed": false, 
+        "ready": false, 
+        "rotation": -0.5631000399589539, 
+        "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.129346837675448
+      "reward": 1.1296399726534205
     }, 
     {
       "ball": {
@@ -4907,12 +4344,525 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.7219001054763794, 
+        "ready": false, 
+        "rotation": -0.2881000339984894, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.107478382161729
+      "reward": 1.111068240065642
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 3480, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 3480, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": -0.2881000339984894, 
+        "reversed": false, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": 1.0923089142194011
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 3480, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 3480, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": -0.2881000339984894, 
+        "reversed": false, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": 1.073360100233299
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 3480, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 3480, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": -0.2881000339984894, 
+        "reversed": false, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": 1.0542198840857215
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 3480, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 3480, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": -0.2881000339984894, 
+        "reversed": false, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": 1.0348863324215016
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 3480, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 3480, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": -0.2881000339984894, 
+        "reversed": false, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": 1.015357492356633
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 3480, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 3480, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": -0.2881000339984894, 
+        "reversed": false, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": 0.9956313912810084
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 3480, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 3480, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": -0.2881000339984894, 
+        "reversed": false, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": 0.975706036659165
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 3480, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 3480, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": -0.2881000339984894, 
+        "reversed": false, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": 0.9555794158290205
     }, 
     {
       "ball": {
@@ -4970,12 +4920,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.14690010249614716, 
+        "ready": false, 
+        "rotation": 1.1368999481201172, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.0853890331579725
+      "reward": 0.9352494957985712
     }, 
     {
       "ball": {
@@ -5033,12 +4984,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.9780998826026917, 
-        "reversed": false, 
+        "ready": false, 
+        "rotation": -0.3631000518798828, 
+        "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.0630765594168046
+      "reward": 0.9147142230405417
     }, 
     {
       "ball": {
@@ -5096,12 +5048,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.5219001173973083, 
+        "ready": false, 
+        "rotation": -0.4881000518798828, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.0405387071529986
+      "reward": 0.8939715232849564
     }, 
     {
       "ball": {
@@ -5159,12 +5112,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.3469001054763794, 
-        "reversed": true, 
+        "ready": false, 
+        "rotation": 1.0118999481201172, 
+        "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 2.017773199815821
+      "reward": 0.8730193013096176
     }, 
     {
       "ball": {
@@ -5222,75 +5176,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -1.1530998945236206, 
+        "ready": false, 
+        "rotation": -0.16310004889965057, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.9947777378590754
-    }, 
-    {
-      "ball": {
-        "radiusPx": 6.0, 
-        "linearVelocityYM": 0.0, 
-        "bouncing": false, 
-        "yPx": 540.0, 
-        "dead": false, 
-        "linearVelocityXM": 0.0, 
-        "canMove": false, 
-        "xPx": 300.0
-      }, 
-      "preFrameNb": 3780, 
-      "lost": false, 
-      "bricks": [
-        {
-          "yPx": 100.0, 
-          "xPx": 40.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 150.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 100.0, 
-          "xPx": 490.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 380.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 80.0, 
-          "xPx": 265.0, 
-          "lives": 1
-        }
-      ], 
-      "request": {
-        "frameRate": 0.016666666666666666, 
-        "numEpochs": 60
-      }, 
-      "frameNb": 3780, 
-      "paddle": {
-        "widthPx": 100.0, 
-        "heightPx": 20.0, 
-        "yPx": 550.0, 
-        "xPx": 250.0
-      }, 
-      "won": false, 
-      "arrow": {
-        "yPx": 528.0, 
-        "angularVelocityYM": 0.0, 
-        "angularVelocityXM": 0.0, 
-        "rotation": -1.1530998945236206, 
-        "reversed": true, 
-        "xPx": 303.0
-      }, 
-      "action": "HOLD", 
-      "reward": 1.9715499985088274
+      "reward": 0.8518554407284675
     }, 
     {
       "ball": {
@@ -5348,12 +5240,77 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.3219000995159149, 
+        "ready": false, 
+        "rotation": -0.6881000399589539, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.948087635528779
+      "reward": 0.8304778037778106
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 3840, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 3840, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": -0.6881000399589539, 
+        "reversed": false, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": 0.8088842311003793
     }, 
     {
       "ball": {
@@ -5411,12 +5368,77 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.5469000935554504, 
-        "reversed": true, 
+        "ready": false, 
+        "rotation": 0.8118999600410461, 
+        "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.924388278983276
+      "reward": 0.7870725415272167
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 3900, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 3900, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": 0.8118999600410461, 
+        "reversed": false, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": 0.7650405318573555
     }, 
     {
       "ball": {
@@ -5474,12 +5496,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.9530999064445496, 
+        "ready": false, 
+        "rotation": 0.03689996153116226, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.9004495349979191
+      "reward": 0.7427859766352735
     }, 
     {
       "ball": {
@@ -5537,12 +5560,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.12190009653568268, 
+        "ready": false, 
+        "rotation": -0.8881000280380249, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.8762689855177606
+      "reward": 0.7203066279260995
     }, 
     {
       "ball": {
@@ -5600,12 +5624,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.7469000816345215, 
-        "reversed": true, 
+        "ready": false, 
+        "rotation": 0.6118999719619751, 
+        "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.851844188063055
+      "reward": 0.6976002150885501
     }, 
     {
       "ball": {
@@ -5663,12 +5688,77 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.7530999183654785, 
+        "ready": false, 
+        "rotation": 0.2368999719619751, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.8271726754825444
+      "reward": 0.6746644445455708
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 4140, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 4140, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": 0.2368999719619751, 
+        "reversed": true, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": 0.6514969995526627
     }, 
     {
       "ball": {
@@ -5726,12 +5816,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.07809992134571075, 
+        "ready": false, 
+        "rotation": -1.0881000757217407, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.802251955704251
+      "reward": 0.6280955399638666
     }, 
     {
       "ball": {
@@ -5789,12 +5880,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.9469000697135925, 
-        "reversed": true, 
+        "ready": false, 
+        "rotation": 0.4118999242782593, 
+        "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.7770795114837525
+      "reward": 0.6044577019953856
     }, 
     {
       "ball": {
@@ -5852,12 +5944,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.5530999302864075, 
+        "ready": false, 
+        "rotation": 0.43689993023872375, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.7516528001499156
+      "reward": 0.5805810979868189
     }, 
     {
       "ball": {
@@ -5915,12 +6008,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.278099924325943, 
-        "reversed": false, 
+        "ready": false, 
+        "rotation": -1.0631000995635986, 
+        "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.72596925334806
+      "reward": 0.5564633161599838
     }, 
     {
       "ball": {
@@ -5978,12 +6072,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 1.1469000577926636, 
-        "reversed": true, 
+        "ready": false, 
+        "rotation": 0.21189990639686584, 
+        "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.7000262767805292
+      "reward": 0.5321019203753019
     }, 
     {
       "ball": {
@@ -6041,12 +6136,77 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.3530999422073364, 
+        "ready": false, 
+        "rotation": 0.6368998885154724, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.6738212499446394
+      "reward": 0.5074944498857241
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 4500, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 4500, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": 0.6368998885154724, 
+        "reversed": true, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": 0.4826384190881711
     }, 
     {
       "ball": {
@@ -6104,12 +6264,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.4780999422073364, 
-        "reversed": false, 
+        "ready": false, 
+        "rotation": -0.8631001114845276, 
+        "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.6473515258679832
+      "reward": 0.4575313172724608
     }, 
     {
       "ball": {
@@ -6167,75 +6328,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 1.0219000577926636, 
+        "ready": false, 
+        "rotation": 0.011899888515472412, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.620614430841058
-    }, 
-    {
-      "ball": {
-        "radiusPx": 6.0, 
-        "linearVelocityYM": 0.0, 
-        "bouncing": false, 
-        "yPx": 540.0, 
-        "dead": false, 
-        "linearVelocityXM": 0.0, 
-        "canMove": false, 
-        "xPx": 300.0
-      }, 
-      "preFrameNb": 4620, 
-      "lost": false, 
-      "bricks": [
-        {
-          "yPx": 100.0, 
-          "xPx": 40.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 150.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 100.0, 
-          "xPx": 490.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 380.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 80.0, 
-          "xPx": 265.0, 
-          "lives": 1
-        }
-      ], 
-      "request": {
-        "frameRate": 0.016666666666666666, 
-        "numEpochs": 60
-      }, 
-      "frameNb": 4620, 
-      "paddle": {
-        "widthPx": 100.0, 
-        "heightPx": 20.0, 
-        "yPx": 550.0, 
-        "xPx": 250.0
-      }, 
-      "won": false, 
-      "arrow": {
-        "yPx": 528.0, 
-        "angularVelocityYM": 0.0, 
-        "angularVelocityXM": 0.0, 
-        "rotation": 1.0219000577926636, 
-        "reversed": false, 
-        "xPx": 303.0
-      }, 
-      "action": "HOLD", 
-      "reward": 1.593607264147194
+      "reward": 0.4321706083677028
     }, 
     {
       "ball": {
@@ -6293,12 +6392,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.1530999392271042, 
+        "ready": false, 
+        "rotation": 0.8368998765945435, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.566327297789755
+      "reward": 0.4065537306861293
     }, 
     {
       "ball": {
@@ -6356,12 +6456,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.6780999302864075, 
-        "reversed": false, 
+        "ready": false, 
+        "rotation": -0.6631001234054565, 
+        "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.538771776216585
+      "reward": 0.3806780966643379
     }, 
     {
       "ball": {
@@ -6419,12 +6520,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.8219000697135925, 
+        "ready": false, 
+        "rotation": -0.18810012936592102, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.5109379160416654
+      "reward": 0.3545410926019221
     }, 
     {
       "ball": {
@@ -6482,12 +6584,77 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.04690007120370865, 
+        "ready": false, 
+        "rotation": 1.0368999242782593, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.4828229057639688
+      "reward": 0.32814007839746184
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 4860, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 4860, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": 1.0368999242782593, 
+        "reversed": true, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": 0.30147238728184544
     }, 
     {
       "ball": {
@@ -6545,12 +6712,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.8780999183654785, 
-        "reversed": false, 
+        "ready": false, 
+        "rotation": -0.4631000757217407, 
+        "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.4544239054834673
+      "reward": 0.27453532554889964
     }, 
     {
       "ball": {
@@ -6608,12 +6776,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.6219000816345215, 
+        "ready": false, 
+        "rotation": -0.3881000876426697, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.4257380466142742
+      "reward": 0.24732617228329778
     }, 
     {
       "ball": {
@@ -6671,12 +6840,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.24690008163452148, 
-        "reversed": true, 
+        "ready": false, 
+        "rotation": 1.111899971961975, 
+        "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.396762431594887
+      "reward": 0.21984217908572004
     }, 
     {
       "ball": {
@@ -6734,138 +6904,77 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.24690008163452148, 
+        "ready": false, 
+        "rotation": 1.111899971961975, 
+        "reversed": false, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": 0.19208056979523752
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 5100, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 5100, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": -0.2631000280380249, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.3674941335955058
-    }, 
-    {
-      "ball": {
-        "radiusPx": 6.0, 
-        "linearVelocityYM": 0.0, 
-        "bouncing": false, 
-        "yPx": 540.0, 
-        "dead": false, 
-        "linearVelocityXM": 0.0, 
-        "canMove": false, 
-        "xPx": 300.0
-      }, 
-      "preFrameNb": 5100, 
-      "lost": false, 
-      "bricks": [
-        {
-          "yPx": 100.0, 
-          "xPx": 40.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 150.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 100.0, 
-          "xPx": 490.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 380.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 80.0, 
-          "xPx": 265.0, 
-          "lives": 1
-        }
-      ], 
-      "request": {
-        "frameRate": 0.016666666666666666, 
-        "numEpochs": 60
-      }, 
-      "frameNb": 5100, 
-      "paddle": {
-        "widthPx": 100.0, 
-        "heightPx": 20.0, 
-        "yPx": 550.0, 
-        "xPx": 250.0
-      }, 
-      "won": false, 
-      "arrow": {
-        "yPx": 528.0, 
-        "angularVelocityYM": 0.0, 
-        "angularVelocityXM": 0.0, 
-        "rotation": -1.0780999660491943, 
-        "reversed": false, 
-        "xPx": 303.0
-      }, 
-      "action": "HOLD", 
-      "reward": 1.3379301962223937
-    }, 
-    {
-      "ball": {
-        "radiusPx": 6.0, 
-        "linearVelocityYM": 0.0, 
-        "bouncing": false, 
-        "yPx": 540.0, 
-        "dead": false, 
-        "linearVelocityXM": 0.0, 
-        "canMove": false, 
-        "xPx": 300.0
-      }, 
-      "preFrameNb": 5100, 
-      "lost": false, 
-      "bricks": [
-        {
-          "yPx": 100.0, 
-          "xPx": 40.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 150.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 100.0, 
-          "xPx": 490.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 380.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 80.0, 
-          "xPx": 265.0, 
-          "lives": 1
-        }
-      ], 
-      "request": {
-        "frameRate": 0.016666666666666666, 
-        "numEpochs": 60
-      }, 
-      "frameNb": 5100, 
-      "paddle": {
-        "widthPx": 100.0, 
-        "heightPx": 20.0, 
-        "yPx": 550.0, 
-        "xPx": 250.0
-      }, 
-      "won": false, 
-      "arrow": {
-        "yPx": 528.0, 
-        "angularVelocityYM": 0.0, 
-        "angularVelocityXM": 0.0, 
-        "rotation": -1.0780999660491943, 
-        "reversed": false, 
-        "xPx": 303.0
-      }, 
-      "action": "HOLD", 
-      "reward": 1.3080676332192502
+      "reward": 0.16403854020889164
     }, 
     {
       "ball": {
@@ -6923,12 +7032,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.42190003395080566, 
+        "ready": false, 
+        "rotation": -0.588100016117096, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.2779034281655697
+      "reward": 0.13571325779844123
     }, 
     {
       "ball": {
@@ -6986,12 +7096,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.44690003991127014, 
-        "reversed": true, 
+        "ready": false, 
+        "rotation": 0.911899983882904, 
+        "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.2474345341719535
+      "reward": 0.10710186142424886
     }, 
     {
       "ball": {
@@ -7049,12 +7160,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -1.0530999898910522, 
+        "ready": false, 
+        "rotation": -0.06310001760721207, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.2166578735723406
+      "reward": 0.07820146104627675
     }, 
     {
       "ball": {
@@ -7112,12 +7224,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.22190001606941223, 
+        "ready": false, 
+        "rotation": -0.788100004196167, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.185570337613136
+      "reward": 0.04900913743216346
     }, 
     {
       "ball": {
@@ -7175,12 +7288,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.6468999981880188, 
-        "reversed": true, 
+        "ready": false, 
+        "rotation": 0.711899995803833, 
+        "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.1541687861391918
+      "reward": 0.019521941862352097
     }, 
     {
       "ball": {
@@ -7238,12 +7352,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.8531000018119812, 
+        "ready": false, 
+        "rotation": 0.13689999282360077, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.122450047276622
+      "reward": -0.010263104167760412
     }, 
     {
       "ball": {
@@ -7301,12 +7416,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.0218999981880188, 
+        "ready": false, 
+        "rotation": -0.988099992275238, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.09041091711241
+      "reward": -0.04034900924868207
     }, 
     {
       "ball": {
@@ -7364,75 +7480,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.8468999862670898, 
-        "reversed": true, 
+        "ready": false, 
+        "rotation": 0.511900007724762, 
+        "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 1.0580481593707816
-    }, 
-    {
-      "ball": {
-        "radiusPx": 6.0, 
-        "linearVelocityYM": 0.0, 
-        "bouncing": false, 
-        "yPx": 540.0, 
-        "dead": false, 
-        "linearVelocityXM": 0.0, 
-        "canMove": false, 
-        "xPx": 300.0
-      }, 
-      "preFrameNb": 5580, 
-      "lost": false, 
-      "bricks": [
-        {
-          "yPx": 100.0, 
-          "xPx": 40.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 150.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 100.0, 
-          "xPx": 490.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 380.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 80.0, 
-          "xPx": 265.0, 
-          "lives": 1
-        }
-      ], 
-      "request": {
-        "frameRate": 0.016666666666666666, 
-        "numEpochs": 60
-      }, 
-      "frameNb": 5580, 
-      "paddle": {
-        "widthPx": 100.0, 
-        "heightPx": 20.0, 
-        "yPx": 550.0, 
-        "xPx": 250.0
-      }, 
-      "won": false, 
-      "arrow": {
-        "yPx": 528.0, 
-        "angularVelocityYM": 0.0, 
-        "angularVelocityXM": 0.0, 
-        "rotation": 0.8468999862670898, 
-        "reversed": true, 
-        "xPx": 303.0
-      }, 
-      "action": "HOLD", 
-      "reward": 1.0253585050863088
+      "reward": -0.07073881236072421
     }, 
     {
       "ball": {
@@ -7490,12 +7544,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.6531000137329102, 
+        "ready": false, 
+        "rotation": 0.336899995803833, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 0.9923386522737098
+      "reward": -0.10143558318096876
     }, 
     {
       "ball": {
@@ -7553,12 +7608,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.17810001969337463, 
-        "reversed": false, 
+        "ready": false, 
+        "rotation": -1.163100004196167, 
+        "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 0.9589852655943167
+      "reward": -0.132442422393337
     }, 
     {
       "ball": {
@@ -7616,12 +7672,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 1.0469000339508057, 
-        "reversed": true, 
+        "ready": false, 
+        "rotation": 0.31189998984336853, 
+        "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 0.9252949760191724
+      "reward": -0.1637624620017898
     }, 
     {
       "ball": {
@@ -7679,12 +7736,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.45309996604919434, 
+        "ready": false, 
+        "rotation": 0.536899983882904, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 0.8912643804887237
+      "reward": -0.1953988656466916
     }, 
     {
       "ball": {
@@ -7742,12 +7800,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.3780999779701233, 
-        "reversed": false, 
+        "ready": false, 
+        "rotation": -0.963100016117096, 
+        "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 0.8568900415690786
+      "reward": -0.22735482892437026
     }, 
     {
       "ball": {
@@ -7805,12 +7864,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 1.1219000816345215, 
+        "ready": false, 
+        "rotation": 0.11189998686313629, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 0.8221684871047904
+      "reward": -0.25963357970990414
     }, 
     {
       "ball": {
@@ -7868,12 +7928,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.2530999183654785, 
+        "ready": false, 
+        "rotation": 0.7368999719619751, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 0.7870962098681356
+      "reward": -0.2922383784831709
     }, 
     {
       "ball": {
@@ -7931,12 +7992,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.5780999064445496, 
-        "reversed": false, 
+        "ready": false, 
+        "rotation": -0.7631000280380249, 
+        "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 0.7516696672048481
+      "reward": -0.3251725186581876
     }, 
     {
       "ball": {
@@ -7994,12 +8056,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.5780999064445496, 
-        "reversed": false, 
+        "ready": false, 
+        "rotation": -0.7631000280380249, 
+        "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 0.7158852806762747
+      "reward": -0.3584393269157801
     }, 
     {
       "ball": {
@@ -8057,12 +8120,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.9219000935554504, 
+        "ready": false, 
+        "rotation": -0.08810003101825714, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 0.6797394356979177
+      "reward": -0.39204216353961124
     }, 
     {
       "ball": {
@@ -8120,12 +8184,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.05309990793466568, 
+        "ready": false, 
+        "rotation": 0.9368999600410461, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 0.643228481174325
+      "reward": -0.425984422755602
     }, 
     {
       "ball": {
@@ -8183,12 +8248,333 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.7780998945236206, 
-        "reversed": false, 
+        "ready": false, 
+        "rotation": -0.5631000399589539, 
+        "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 0.6063487291302918
+      "reward": -0.46026953307478463
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 6240, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 6240, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": -0.5631000399589539, 
+        "reversed": true, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": -0.494900957639616
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 6240, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 6240, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": -0.5631000399589539, 
+        "reversed": true, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": -0.5298821945737886
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 6240, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 6240, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": -0.5631000399589539, 
+        "reversed": true, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": -0.5652167773355795
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 6240, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 6240, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": -0.5631000399589539, 
+        "reversed": true, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": -0.6009082750747622
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 6240, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 6240, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": -0.5631000399589539, 
+        "reversed": true, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": -0.6369602929931282
     }, 
     {
       "ball": {
@@ -8246,12 +8632,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.7219001054763794, 
+        "ready": false, 
+        "rotation": -0.2881000339984894, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 0.5690964543383393
+      "reward": -0.6733764727086496
     }, 
     {
       "ball": {
@@ -8309,12 +8696,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.14690010249614716, 
+        "ready": false, 
+        "rotation": 1.1368999481201172, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 0.5314678939424275
+      "reward": -0.7101604926233176
     }, 
     {
       "ball": {
@@ -8372,12 +8760,141 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.9780998826026917, 
-        "reversed": false, 
+        "ready": false, 
+        "rotation": -0.3631000518798828, 
+        "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 0.49345924707787014
+      "reward": -0.7473160682946995
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 6420, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 6420, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": -0.3631000518798828, 
+        "reversed": true, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": -0.7848469528112471
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 6420, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 6420, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": -0.3631000518798828, 
+        "reversed": true, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": -0.8227569371713956
     }, 
     {
       "ball": {
@@ -8435,12 +8952,77 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.5219001173973083, 
+        "ready": false, 
+        "rotation": -0.4881000518798828, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 0.45506667448740823
+      "reward": -0.8610498506664958
+    }, 
+    {
+      "ball": {
+        "radiusPx": 6.0, 
+        "linearVelocityYM": 0.0, 
+        "bouncing": false, 
+        "yPx": 540.0, 
+        "dead": false, 
+        "linearVelocityXM": 0.0, 
+        "canMove": false, 
+        "xPx": 300.0
+      }, 
+      "preFrameNb": 6480, 
+      "lost": false, 
+      "bricks": [
+        {
+          "yPx": 100.0, 
+          "xPx": 40.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 150.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 100.0, 
+          "xPx": 490.0, 
+          "lives": 1
+        }, 
+        {
+          "yPx": 160.0, 
+          "xPx": 380.0, 
+          "lives": 2
+        }, 
+        {
+          "yPx": 80.0, 
+          "xPx": 265.0, 
+          "lives": 1
+        }
+      ], 
+      "request": {
+        "frameRate": 0.016666666666666666, 
+        "numEpochs": 60
+      }, 
+      "frameNb": 6480, 
+      "paddle": {
+        "widthPx": 100.0, 
+        "heightPx": 20.0, 
+        "yPx": 550.0, 
+        "xPx": 250.0
+      }, 
+      "won": false, 
+      "arrow": {
+        "yPx": 528.0, 
+        "angularVelocityYM": 0.0, 
+        "angularVelocityXM": 0.0, 
+        "ready": false, 
+        "rotation": -0.4881000518798828, 
+        "reversed": false, 
+        "xPx": 303.0
+      }, 
+      "action": "HOLD", 
+      "reward": -0.8997295612676065
     }, 
     {
       "ball": {
@@ -8498,12 +9080,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.3469001054763794, 
-        "reversed": true, 
+        "ready": false, 
+        "rotation": 1.0118999481201172, 
+        "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 0.41628629813340606
+      "reward": -0.9387999760162035
     }, 
     {
       "ball": {
@@ -8561,12 +9144,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -1.1530998945236206, 
+        "ready": false, 
+        "rotation": -0.16310004889965057, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 0.37711420080613134
+      "reward": -0.978265041418827
     }, 
     {
       "ball": {
@@ -8624,12 +9208,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.3219000995159149, 
+        "ready": false, 
+        "rotation": -0.6881000399589539, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 0.337546425728076
+      "reward": -1.018128743845719
     }, 
     {
       "ball": {
@@ -8687,12 +9272,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.5469000935554504, 
-        "reversed": true, 
+        "ready": false, 
+        "rotation": 0.8118999600410461, 
+        "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 0.2975789761542827
+      "reward": -1.0583951099334885
     }, 
     {
       "ball": {
@@ -8750,12 +9336,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.9530999064445496, 
+        "ready": false, 
+        "rotation": 0.03689996153116226, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 0.257207814968633
+      "reward": -1.099068206991842
     }, 
     {
       "ball": {
@@ -8813,12 +9400,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.12190009653568268, 
+        "ready": false, 
+        "rotation": -0.8881000280380249, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 0.21642886427605748
+      "reward": -1.140152143414421
     }, 
     {
       "ball": {
@@ -8876,12 +9464,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.7469000816345215, 
-        "reversed": true, 
+        "ready": false, 
+        "rotation": 0.6118999719619751, 
+        "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 0.1752380049906276
+      "reward": -1.1816510690937938
     }, 
     {
       "ball": {
@@ -8939,12 +9528,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.7469000816345215, 
-        "reversed": true, 
+        "ready": false, 
+        "rotation": 0.6118999719619751, 
+        "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 0.1336310764194864
+      "reward": -1.223569175840635
     }, 
     {
       "ball": {
@@ -9002,12 +9592,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.7530999183654785, 
+        "ready": false, 
+        "rotation": 0.2368999719619751, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 0.0916038758425761
+      "reward": -1.265910697807141
     }, 
     {
       "ball": {
@@ -9065,75 +9656,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.07809992134571075, 
+        "ready": false, 
+        "rotation": -1.0881000757217407, 
         "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": 0.04915215808812118
-    }, 
-    {
-      "ball": {
-        "radiusPx": 6.0, 
-        "linearVelocityYM": 0.0, 
-        "bouncing": false, 
-        "yPx": 540.0, 
-        "dead": false, 
-        "linearVelocityXM": 0.0, 
-        "canMove": false, 
-        "xPx": 300.0
-      }, 
-      "preFrameNb": 7020, 
-      "lost": false, 
-      "bricks": [
-        {
-          "yPx": 100.0, 
-          "xPx": 40.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 150.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 100.0, 
-          "xPx": 490.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 380.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 80.0, 
-          "xPx": 265.0, 
-          "lives": 1
-        }
-      ], 
-      "request": {
-        "frameRate": 0.016666666666666666, 
-        "numEpochs": 60
-      }, 
-      "frameNb": 7020, 
-      "paddle": {
-        "widthPx": 100.0, 
-        "heightPx": 20.0, 
-        "yPx": 550.0, 
-        "xPx": 250.0
-      }, 
-      "won": false, 
-      "arrow": {
-        "yPx": 528.0, 
-        "angularVelocityYM": 0.0, 
-        "angularVelocityXM": 0.0, 
-        "rotation": -0.07809992134571075, 
-        "reversed": false, 
-        "xPx": 303.0
-      }, 
-      "action": "HOLD", 
-      "reward": 0.006271635103823363
+      "reward": -1.3086799119147234
     }, 
     {
       "ball": {
@@ -9191,12 +9720,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 0.9469000697135925, 
-        "reversed": true, 
+        "ready": false, 
+        "rotation": 0.4118999242782593, 
+        "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": -0.03704202447627548
+      "reward": -1.3518811382860185
     }, 
     {
       "ball": {
@@ -9254,75 +9784,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.5530999302864075, 
+        "ready": false, 
+        "rotation": 0.43689993023872375, 
         "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": -0.08079319576930463
-    }, 
-    {
-      "ball": {
-        "radiusPx": 6.0, 
-        "linearVelocityYM": 0.0, 
-        "bouncing": false, 
-        "yPx": 540.0, 
-        "dead": false, 
-        "linearVelocityXM": 0.0, 
-        "canMove": false, 
-        "xPx": 300.0
-      }, 
-      "preFrameNb": 7140, 
-      "lost": false, 
-      "bricks": [
-        {
-          "yPx": 100.0, 
-          "xPx": 40.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 150.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 100.0, 
-          "xPx": 490.0, 
-          "lives": 1
-        }, 
-        {
-          "yPx": 160.0, 
-          "xPx": 380.0, 
-          "lives": 2
-        }, 
-        {
-          "yPx": 80.0, 
-          "xPx": 265.0, 
-          "lives": 1
-        }
-      ], 
-      "request": {
-        "frameRate": 0.016666666666666666, 
-        "numEpochs": 60
-      }, 
-      "frameNb": 7140, 
-      "paddle": {
-        "widthPx": 100.0, 
-        "heightPx": 20.0, 
-        "yPx": 550.0, 
-        "xPx": 250.0
-      }, 
-      "won": false, 
-      "arrow": {
-        "yPx": 528.0, 
-        "angularVelocityYM": 0.0, 
-        "angularVelocityXM": 0.0, 
-        "rotation": -0.5530999302864075, 
-        "reversed": true, 
-        "xPx": 303.0
-      }, 
-      "action": "HOLD", 
-      "reward": -0.12498629808549568
+      "reward": -1.3955187406812664
     }, 
     {
       "ball": {
@@ -9380,12 +9848,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": -0.278099924325943, 
-        "reversed": false, 
+        "ready": false, 
+        "rotation": -1.0631000995635986, 
+        "reversed": true, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": -0.16962579537457756
+      "reward": -1.4395971269390921
     }, 
     {
       "ball": {
@@ -9439,12 +9908,13 @@
         "yPx": 528.0, 
         "angularVelocityYM": 0.0, 
         "angularVelocityXM": 0.0, 
-        "rotation": 1.1469000577926636, 
-        "reversed": true, 
+        "ready": false, 
+        "rotation": 0.21189990639686584, 
+        "reversed": false, 
         "xPx": 303.0
       }, 
       "action": "HOLD", 
-      "reward": -0.21471619667668043
+      "reward": -1.4841207494217443
     }
   ]
 }
