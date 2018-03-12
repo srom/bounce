@@ -12,6 +12,7 @@ WON_REWARD = +50
 LOST_REWARD = -5
 BRICK_LIFE = +50
 EPSILON = +1
+ALL_LIVES = 7
 
 MAX_FRAMES = 5 * 60 * 60  # 5 minutes
 MAX_PRE_FRAMES = 60 * 60  # 1 minute
@@ -36,8 +37,11 @@ def get_reward(inputWorld, outputWorld):
         # if not inputWorld.arrow.ready and outputWorld.arrow.ready:
         #     reward += EPSILON
 
+        # Brick's life is worth more as we more closer to a win
+        goal_multiplier = ALL_LIVES - get_num_lives(outputWorld) + 1
+
         lives_down = get_num_lives(inputWorld) - get_num_lives(outputWorld)
-        reward += lives_down * BRICK_LIFE
+        reward += goal_multiplier * lives_down * BRICK_LIFE
 
     return reward * get_time_factor(outputWorld), False
 
@@ -73,7 +77,12 @@ def get_time_factor(outputWorld):
     else:
         x = 1.0 * get_post_frame_nb(outputWorld) / MAX_FRAMES
 
-    return - 100 * x * math.log(x, 10)
+    time_factor = - 100 * x * math.log(x, 10)
+
+    # if time_factor > 1:
+    #     time_factor = 1
+
+    return time_factor
 
     # if outputWorld.arrow.ready:
     #     return 1.0
