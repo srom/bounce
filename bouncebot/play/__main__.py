@@ -20,11 +20,11 @@ def main():
         worlds, won = play(bouncebot)
 
         logger.info(
-            'Game end: %s (%d worlds; %d frames; %d bricks left) ; Arrow ready: %s',
+            'Game end: %s (%d worlds; %d frames; %d lives left) ; Arrow ready: %s',
             'WON' if won else 'LOST',
             len(worlds.worlds),
             worlds.worlds[-1].frame_nb,
-            len(worlds.worlds[-1].bricks),
+            sum(b.lives for b in worlds.worlds[-1].bricks),
             worlds.worlds[-1].arrow.ready,
         )
 

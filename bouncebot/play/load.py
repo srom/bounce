@@ -17,8 +17,6 @@ class BounceBotModel(object):
         self.f_x = f_x
 
     def evaluate(self, x):
-        logger.info('X:\n%s', x)
-        logger.info('OUTPUT: %s', self.session.run(self.f_x, feed_dict={self.x: x}))
         return self.session.run(self.f_x, feed_dict={self.x: x})[0][0]
 
     def close(self):

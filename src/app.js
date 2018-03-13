@@ -98,6 +98,8 @@ function init () {
     bricks.forEach((brick) => brick.addTo(stage));
     walls.forEach((wall) => wall.addTo(stage));
 
+    console.log(ball.el.position, bricks[0].el.position);
+
     const listener = new b2Listener;
     listener.EndContact = function (contact) {
         const bodyA = contact.GetFixtureA().GetBody();
@@ -209,6 +211,8 @@ function init () {
         updateArrow(pbWorld, arrow);
         updateBricks(pbWorld, bricks);
 
+        console.log(ball.el.position, bricks[0].el.position);
+
         bricks.forEach((brick) => {
             if (brick.isGarbage()) {
                 bounceSound.play();
@@ -256,8 +260,8 @@ function init () {
 
 const updateBall = (world, ball) => {
     const newBall = world.ball;
-    ball.el.position.x = newBall.xPx;
-    ball.el.position.y = newBall.yPx;
+    ball.el.position.x = newBall.xPx - initialBallX;
+    ball.el.position.y = newBall.yPx - initialBallY;
     ball.canMove = newBall.canMove;
     ball.dead = newBall.dead;
     ball.bouncing = newBall.bouncing;

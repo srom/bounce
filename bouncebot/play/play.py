@@ -20,7 +20,7 @@ def play(bouncebot):
     all_worlds = []
 
     while 1:
-        outputWorld = simulation(inputWorld, action, num_epochs=60)
+        outputWorld = simulation(inputWorld, action, num_epochs=5)
 
         reward, done = get_reward(inputWorld, outputWorld)
         rewards.append(reward)
@@ -35,5 +35,3 @@ def play(bouncebot):
         X = get_features(inputWorld, outputWorld)
         inputWorld = outputWorld
         action = bouncebot.evaluate(np.array([X]))
-
-        logger.info('ACTION: %d', action)
