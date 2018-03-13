@@ -20,7 +20,7 @@ def export_model(saver, model_save_path):
     with tf.Session() as session:
         saver.restore(session, model_save_path)
 
-        output_node_names = ['f_p/f_evaluate']
+        output_node_names = ['f_p/f_evaluate', 'f_p/f_explore/Multinomial']
 
         output_graph_def = graph_util.convert_variables_to_constants(
             session,

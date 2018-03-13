@@ -1,11 +1,16 @@
 from __future__ import unicode_literals
 
+import logging
+
 import numpy as np
 
 from ..train.features import get_features
 from ..world.models.world_pb2 import HOLD, Worlds
 from ..world.query import simulation
 from ..world.reward import get_reward, update_rewards
+
+
+logger = logging.getLogger(__name__)
 
 
 def play(bouncebot):
@@ -30,3 +35,5 @@ def play(bouncebot):
         X = get_features(inputWorld, outputWorld)
         inputWorld = outputWorld
         action = bouncebot.evaluate(np.array([X]))
+
+        logger.info('ACTION: %d', action)

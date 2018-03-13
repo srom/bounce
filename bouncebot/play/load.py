@@ -1,6 +1,12 @@
 from __future__ import unicode_literals
 
+import logging
+
+import numpy as np
 import tensorflow as tf
+
+
+logger = logging.getLogger(__name__)
 
 
 class BounceBotModel(object):
@@ -11,7 +17,9 @@ class BounceBotModel(object):
         self.f_x = f_x
 
     def evaluate(self, x):
-        return self.session.run(self.f_x, feed_dict={self.x: x})[0]
+        logger.info('X:\n%s', x)
+        logger.info('OUTPUT: %s', self.session.run(self.f_x, feed_dict={self.x: x}))
+        return self.session.run(self.f_x, feed_dict={self.x: x})[0][0]
 
     def close(self):
         self.session.close()
@@ -36,6 +44,6 @@ def load_model():
         session = tf.Session(graph=graph)
 
         x = graph.get_tensor_by_name('bouncebot/input/X:0')
-        f_x = graph.get_tensor_by_name('bouncebot/f_p/f_evaluate:0')
+        f_x = graph.get_tensor_by_name('bouncebot/f_p/f_explore/Multinomial:0')
 
         return BounceBotModel(session, x, f_x)

@@ -216,7 +216,7 @@ function init () {
             }
         });
 
-        if (arrow.ready && !ball.canMove) {
+        if (arrow.ready) {
             stage.removeChild(arrow.el);
         }
 
@@ -260,6 +260,8 @@ const updateBall = (world, ball) => {
     ball.el.position.y = newBall.yPx;
     ball.canMove = newBall.canMove;
     ball.dead = newBall.dead;
+    ball.bouncing = newBall.bouncing;
+
 };
 
 const updatePaddle = (world, paddle) => {
