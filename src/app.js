@@ -211,8 +211,6 @@ function init () {
         updateArrow(pbWorld, arrow);
         updateBricks(pbWorld, bricks);
 
-        console.log(ball.el.position, bricks[0].el.position);
-
         bricks.forEach((brick) => {
             if (brick.isGarbage()) {
                 bounceSound.play();
@@ -265,7 +263,6 @@ const updateBall = (world, ball) => {
     ball.canMove = newBall.canMove;
     ball.dead = newBall.dead;
     ball.bouncing = newBall.bouncing;
-
 };
 
 const updatePaddle = (world, paddle) => {
