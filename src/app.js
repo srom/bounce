@@ -223,6 +223,9 @@ function init () {
         }
 
         frame++;
+
+        console.log('ball position', ball.el.position);
+        console.log('----------');
     }
 
     function draw () {

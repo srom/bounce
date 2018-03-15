@@ -33,10 +33,11 @@ export default class Ball extends Entity {
     }
 
     createBody (world) {
+        const worldPosition = this.worldPosition();
         const bodyDef = new b2BodyDef;
         bodyDef.type = b2Body.b2_dynamicBody;
-        bodyDef.position.x = pixelsToMeters(this.el.position.x);
-        bodyDef.position.y = pixelsToMeters(this.el.position.y);
+        bodyDef.position.x = pixelsToMeters(worldPosition.x);
+        bodyDef.position.y = pixelsToMeters(worldPosition.y);
 
         fixDef.shape = new b2CircleShape(pixelsToMeters(this.radius));
 
@@ -71,8 +72,8 @@ export default class Ball extends Entity {
 
     worldPosition () {
         return {
-            x: this.el.position.x, // + this._initialX,
-            y: this.el.position.y, // + this._initialY
+            x: this.el.position.x + this._initialX,
+            y: this.el.position.y + this._initialY
         };
     }
 
@@ -89,8 +90,8 @@ export default class Ball extends Entity {
 
     render () {
         if (this.canMove) {
-            this.el.position.x = metersToPixels(this.body.GetPosition().x); // - this._initialX;
-            this.el.position.y = metersToPixels(this.body.GetPosition().y); // - this._initialY;
+            this.el.position.x = metersToPixels(this.body.GetPosition().x) - this._initialX;
+            this.el.position.y = metersToPixels(this.body.GetPosition().y) - this._initialY;
 
             if (this.worldPosition().y - this.radius > constants.STAGE_HEIGHT_PX) {
                 this.dead = true;
@@ -122,8 +123,8 @@ export default class Ball extends Entity {
 
         return {
             position: {
-                x: x_px,
-                y: y_px,
+                x: x_px - this._initialX,
+                y: y_px - this._initialY,
             },
         };
     };

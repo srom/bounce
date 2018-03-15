@@ -312,6 +312,7 @@ var getInputFromAction = function getInputFromAction(inputWorld) {
 
 var getOutputWorld = function getOutputWorld(inputWorld, request, ball, paddle, arrow, bricks) {
     var ballVelocity = ball.body ? ball.body.GetLinearVelocity() : { x: 0, y: 0 };
+    var ballPosition = ball.worldPosition();
 
     return _world.World.create({
         frameNb: getFrameNb(inputWorld),
@@ -320,8 +321,8 @@ var getOutputWorld = function getOutputWorld(inputWorld, request, ball, paddle, 
         won: inputWorld.won,
         lost: inputWorld.lost,
         ball: {
-            xPx: ball.el.position.x,
-            yPx: ball.el.position.y,
+            xPx: ballPosition.x,
+            yPx: ballPosition.y,
             radiusPx: ball.radius,
             linearVelocityXM: ballVelocity.x,
             linearVelocityYM: ballVelocity.y,

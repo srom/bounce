@@ -58,10 +58,11 @@ var Ball = function (_Entity) {
     _createClass(Ball, [{
         key: 'createBody',
         value: function createBody(world) {
+            var worldPosition = this.worldPosition();
             var bodyDef = new b2BodyDef();
             bodyDef.type = b2Body.b2_dynamicBody;
-            bodyDef.position.x = (0, _scale.pixelsToMeters)(this.el.position.x);
-            bodyDef.position.y = (0, _scale.pixelsToMeters)(this.el.position.y);
+            bodyDef.position.x = (0, _scale.pixelsToMeters)(worldPosition.x);
+            bodyDef.position.y = (0, _scale.pixelsToMeters)(worldPosition.y);
 
             _fixture2.default.shape = new b2CircleShape((0, _scale.pixelsToMeters)(this.radius));
 
@@ -99,8 +100,8 @@ var Ball = function (_Entity) {
         key: 'worldPosition',
         value: function worldPosition() {
             return {
-                x: this.el.position.x, // + this._initialX,
-                y: this.el.position.y // + this._initialY
+                x: this.el.position.x + this._initialX,
+                y: this.el.position.y + this._initialY
             };
         }
     }, {
@@ -114,8 +115,10 @@ var Ball = function (_Entity) {
         key: 'render',
         value: function render() {
             if (this.canMove) {
-                this.el.position.x = (0, _scale.metersToPixels)(this.body.GetPosition().x); // - this._initialX;
-                this.el.position.y = (0, _scale.metersToPixels)(this.body.GetPosition().y); // - this._initialY;
+                this.el.position.x = (0, _scale.metersToPixels)(this.body.GetPosition().x) - this._initialX;
+                this.el.position.y = (0, _scale.metersToPixels)(this.body.GetPosition().y) - this._initialY;
+
+                console.log('ball position', this.el.position);
 
                 if (this.worldPosition().y - this.radius > constants.STAGE_HEIGHT_PX) {
                     this.dead = true;
@@ -181,8 +184,8 @@ var _initialiseProps = function _initialiseProps() {
 
         return {
             position: {
-                x: x_px,
-                y: y_px
+                x: x_px - _this2._initialX,
+                y: y_px - _this2._initialY
             }
         };
     };
