@@ -49,6 +49,10 @@ const initializeWorld = () => {
 
     const bricks = setBricks(world);
 
+    const paddle = new Paddle(initialPaddleX, initialPaddleY, paddleWidth, paddleHeight);
+    paddle.createBody(world);
+    console.log('Paddle INITIAL position', paddle.body.GetPosition());
+
     return World.create({
         frameNb: 0,
         preFrameNb: 0,
@@ -100,7 +104,8 @@ const mainLoop = (inputWorld) => {
     const ball = parseBall(inputWorld.ball, b2_world);
     const paddle = parsePaddle(inputWorld.paddle, b2_world);
     const arrow = parseArrow(inputWorld.arrow);
-    const bricks = parseBricks(inputWorld.bricks, b2_world);
+    const bricks = setBricks(b2_world);
+    updateBricks(bricks, inputWorld.bricks, b2_world);
     setWalls(b2_world);
 
     const movie = request.movie;
@@ -163,10 +168,6 @@ const update = (b2_world, inputWorld, frame_rate, ball, paddle, arrow, bricks) =
 
     if (ball.dead) {
         gameOver(inputWorld);
-    }
-
-    if (ball.body) {
-        console.log('ball linear velocity', ball.body.GetLinearVelocity());
     }
 };
 
@@ -264,15 +265,13 @@ const parseArrow = (pb_arrow) => {
     return arrow
 };
 
-const parseBricks = (pb_bricks, world) => {
-    const bricks = pb_bricks.map((pb_brick) => {
-        let brick = new Brick(pb_brick.lives, pb_brick.xPx, pb_brick.yPx, pb_brick.widthPx, pb_brick.heightPx);
+const updateBricks = (bricks, pb_bricks, world) => {
+    bricks.forEach((brick, index) => {
+        const pb_brick = pb_bricks[index];
         brick.lives = pb_brick.lives;
-        return brick;
-    });
-    bricks.forEach((brick) => {
-        if (brick.lives > 0) {
-            brick.createBody(world);
+        if (brick.lives <= 0) {
+            world.DestroyBody(brick.body);
+            brick.body = null;
         }
     });
     return bricks;

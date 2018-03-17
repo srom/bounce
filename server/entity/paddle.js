@@ -30,10 +30,12 @@ export default class Paddle extends Entity {
     }
 
     createBody (world) {
+        const worldPosition = this.worldPosition();
+
         const bodyDef = new b2BodyDef;
         bodyDef.type = b2Body.b2_staticBody;
-        bodyDef.position.x = pixelsToMeters(this.el.position.x) + pixelsToMeters(this.width) / 2;
-        bodyDef.position.y = pixelsToMeters(this.el.position.x) + pixelsToMeters(this.height) / 2;
+        bodyDef.position.x = pixelsToMeters(worldPosition.x) + pixelsToMeters(this.width) / 2;
+        bodyDef.position.y = pixelsToMeters(this._initialY) + pixelsToMeters(this.height) / 2;
 
         fixDef.shape = new b2PolygonShape();
         fixDef.shape.SetAsBox(pixelsToMeters(this.width) / 2, pixelsToMeters(this.height) / 2);
@@ -45,6 +47,13 @@ export default class Paddle extends Entity {
         this.body = body;
 
         return this;
+    }
+
+    worldPosition () {
+        return {
+            x: this.el.position.x,
+            y: this.el.position.y
+        };
     }
 
     render (input) {

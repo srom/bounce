@@ -98,7 +98,7 @@ function init () {
     bricks.forEach((brick) => brick.addTo(stage));
     walls.forEach((wall) => wall.addTo(stage));
 
-    console.log(ball.el.position, bricks[0].el.position);
+    console.log(paddle.body.GetPosition());
 
     const listener = new b2Listener;
     listener.EndContact = function (contact) {
@@ -110,7 +110,7 @@ function init () {
         const brick = bricks.find((b) => [bodyA, bodyB].includes(b.body));
         if (containsBall && brick) {
             console.log('ball body', ball.body);
-            console.log('brick body', brick.body);
+            console.log('brick position', brick.body.GetPosition());
             console.log('--------------');
             brick.contact();
         }
@@ -285,6 +285,7 @@ const updatePaddle = (world, paddle) => {
     const newPaddle = world.paddle;
     paddle.el.position.x = newPaddle.xPx;
     paddle.el.position.y = newPaddle.yPx;
+    //paddle.body.SetPosition({ x: 4.583333333333334, y: 4.25 });
 };
 
 const updateArrow = (world, arrow) => {

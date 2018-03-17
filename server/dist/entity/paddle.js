@@ -58,10 +58,12 @@ var Paddle = function (_Entity) {
     _createClass(Paddle, [{
         key: 'createBody',
         value: function createBody(world) {
+            var worldPosition = this.worldPosition();
+
             var bodyDef = new b2BodyDef();
             bodyDef.type = b2Body.b2_staticBody;
-            bodyDef.position.x = (0, _scale.pixelsToMeters)(this.el.position.x) + (0, _scale.pixelsToMeters)(this.width) / 2;
-            bodyDef.position.y = (0, _scale.pixelsToMeters)(this.el.position.x) + (0, _scale.pixelsToMeters)(this.height) / 2;
+            bodyDef.position.x = (0, _scale.pixelsToMeters)(worldPosition.x) + (0, _scale.pixelsToMeters)(this.width) / 2;
+            bodyDef.position.y = (0, _scale.pixelsToMeters)(this._initialY) + (0, _scale.pixelsToMeters)(this.height) / 2;
 
             _fixture2.default.shape = new b2PolygonShape();
             _fixture2.default.shape.SetAsBox((0, _scale.pixelsToMeters)(this.width) / 2, (0, _scale.pixelsToMeters)(this.height) / 2);
@@ -73,6 +75,14 @@ var Paddle = function (_Entity) {
             this.body = body;
 
             return this;
+        }
+    }, {
+        key: 'worldPosition',
+        value: function worldPosition() {
+            return {
+                x: this.el.position.x,
+                y: this.el.position.y
+            };
         }
     }, {
         key: 'render',

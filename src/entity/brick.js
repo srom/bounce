@@ -60,7 +60,7 @@ export default class Brick extends Entity {
     }
 
     isGarbage () {
-        return this.lives == 0;
+        return this._garbage || this.lives <= 0;
     }
 
     _createBrick = (lvl, x_px, y_px, width_px, height_px, options) => {
