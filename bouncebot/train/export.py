@@ -9,12 +9,13 @@ from tensorflow.python.framework import graph_util
 
 BUCKET_NAME = 'bouncebot'
 OUTPUT_KEY_NAME = 'model/bouncebot.pb'
+LOCAL_EXPORT = 'bouncebot/model/bouncebot.pb'
 
 
 logger = logging.getLogger(__name__)
 
 
-def export_model(saver, model_save_path):
+def export_model(saver, model_save_path, local=False):
     logger.info('Exporting model')
 
     with tf.Session() as session:
@@ -28,7 +29,10 @@ def export_model(saver, model_save_path):
             output_node_names,
         )
 
-        export_model_to_s3(output_graph_def)
+        if local:
+            export_model_to_disk(output_graph_def)
+        else:
+            export_model_to_s3(output_graph_def)
 
     logger.info('Export completed')
 
@@ -38,3 +42,8 @@ def export_model_to_s3(output_graph_def):
     bucket = s3.Bucket(BUCKET_NAME)
     bucket.put_object(Key=OUTPUT_KEY_NAME, Body=output_graph_def.SerializeToString())
     logger.info('Model exported to s3://%s/%s', BUCKET_NAME, OUTPUT_KEY_NAME)
+
+
+def export_model_to_disk(output_graph_def):
+    with open(LOCAL_EXPORT, 'wb') as f:
+        f.write(output_graph_def.SerializeToString())

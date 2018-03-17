@@ -338,7 +338,8 @@ var getOutputWorld = function getOutputWorld(inputWorld, request, ball, paddle, 
             xPx: paddle.el.position.x,
             yPx: paddle.el.position.y,
             widthPx: paddle.width,
-            heightPx: paddle.height
+            heightPx: paddle.height,
+            canMove: ball.canMove
         },
         arrow: {
             xPx: arrow.el.position.x,

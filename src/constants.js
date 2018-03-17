@@ -13,5 +13,5 @@ export const VELOCITY_FACTOR = 2.3;
 export const VELOCITY_ITERATIONS = 6;
 export const POSITION_ITERATIONS = 2;
 
-export const DEBUG_PHYSICS = true;
+export const DEBUG_PHYSICS = false;
 export const DEBUG_CANVAS_CLASS = "debugCanvas";

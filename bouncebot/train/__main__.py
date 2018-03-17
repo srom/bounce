@@ -62,7 +62,7 @@ def play_game((session, bounce_dnn)):
     return X, rewards, labels, worlds
 
 
-def main(model_dir='checkpoints', export=False):
+def main(model_dir='checkpoints', export=False, export_local=False):
     logging.basicConfig(level=logging.INFO, format="%(asctime)s (%(levelname)s) %(message)s")
     tf.reset_default_graph()
 
@@ -142,6 +142,9 @@ def main(model_dir='checkpoints', export=False):
                 export_model(saver, model_save_path)
                 last_saved_loss = best_loss
 
+            if export_local and iteration % ITERATIONS_BETWEEN_SAVE == 0:
+                export_model(saver, model_save_path, local=True)
+
             logger.info('Writing summary')
             train_summary, _ = bounce_dnn.compute_summary(
                 session, X_train, labels_train,
@@ -162,7 +165,8 @@ def main(model_dir='checkpoints', export=False):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--export', default=False, action='store_true')
+    parser.add_argument('--export-local', '--export_local', default=False, action='store_true')
 
     args = parser.parse_args()
 
-    main(export=args.export)
+    main(export=args.export, export_local=args.export_local)

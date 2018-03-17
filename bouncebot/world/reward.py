@@ -30,8 +30,8 @@ def get_reward(inputWorld, outputWorld):
 
     reward = EPSILON
 
-    # if not outputWorld.arrow.ready and outputWorld.action in (LEFT, RIGHT):
-    #     reward -= EPSILON
+    if not outputWorld.arrow.ready and outputWorld.action in (LEFT, RIGHT):
+        reward -= EPSILON
 
     if outputWorld.arrow.ready and outputWorld.action == SPACE:
         reward -= EPSILON

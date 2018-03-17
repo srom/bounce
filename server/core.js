@@ -310,6 +310,7 @@ const getOutputWorld = (inputWorld, request, ball, paddle, arrow, bricks) => {
             yPx: paddle.el.position.y,
             widthPx: paddle.width,
             heightPx: paddle.height,
+            canMove: ball.canMove,
         },
         arrow: {
             xPx: arrow.el.position.x,

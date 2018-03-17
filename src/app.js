@@ -237,8 +237,8 @@ function init () {
 
         frame++;
 
-        //console.log('ball position', ball.el.position);
-        //console.log('----------');
+        console.log('paddle can move', paddle.canMove);
+        console.log('----------');
     }
 
     function draw () {
@@ -285,7 +285,7 @@ const updatePaddle = (world, paddle) => {
     const newPaddle = world.paddle;
     paddle.el.position.x = newPaddle.xPx;
     paddle.el.position.y = newPaddle.yPx;
-    //paddle.body.SetPosition({ x: 4.583333333333334, y: 4.25 });
+    paddle.canMove = newPaddle.canMove;
 };
 
 const updateArrow = (world, arrow) => {

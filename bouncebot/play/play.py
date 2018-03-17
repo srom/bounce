@@ -21,7 +21,7 @@ def play(bouncebot):
     rewards = []
     all_worlds = []
 
-    num_epochs = 5
+    num_epochs = 1
     all_epochs = 0
 
     while 1:
@@ -43,3 +43,12 @@ def play(bouncebot):
         all_epochs += num_epochs
         if all_epochs % ACTION_FRAMES == 0:
             action = bouncebot.evaluate(np.array([X]))
+
+            if action == 0:
+                logger.info('LEFT')
+            if action == 1:
+                logger.info('RIGHT')
+            if action == 2:
+                logger.info('SPACE')
+            if action == 3:
+                logger.info('HOLD')
