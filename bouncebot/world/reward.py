@@ -5,7 +5,7 @@ import math
 
 import numpy as np
 
-from .models.world_pb2 import LEFT, RIGHT
+from .models.world_pb2 import LEFT, RIGHT, SPACE
 
 
 WON_REWARD = +50
@@ -30,7 +30,10 @@ def get_reward(inputWorld, outputWorld):
 
     reward = EPSILON
 
-    if not outputWorld.arrow.ready and outputWorld.action in (LEFT, RIGHT):
+    # if not outputWorld.arrow.ready and outputWorld.action in (LEFT, RIGHT):
+    #     reward -= EPSILON
+
+    if outputWorld.arrow.ready and outputWorld.action == SPACE:
         reward -= EPSILON
 
     if inputWorld:

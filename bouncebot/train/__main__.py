@@ -110,7 +110,7 @@ def main(model_dir='checkpoints', export=False):
 
             learning_start = time.time()
 
-            mean_reward, mean_worlds_length, mean_num_lives = compute_game_statistics(games)
+            mean_reward, mean_worlds_length, mean_num_lives, overall_score = compute_game_statistics(games)
 
             X, rewards, labels = get_features_from_games(games)
 
@@ -149,6 +149,7 @@ def main(model_dir='checkpoints', export=False):
                     mean_reward=mean_reward,
                     mean_worlds_length=mean_worlds_length,
                     mean_num_lives=mean_num_lives,
+                    overall_score=overall_score,
                 ),
                 training=True
             )

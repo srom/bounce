@@ -138,8 +138,6 @@ var mainLoop = function mainLoop(inputWorld) {
     updateBricks(bricks, inputWorld.bricks, b2_world);
     (0, _wall.setWalls)(b2_world);
 
-    console.log('Paddle position', paddle.body.GetPosition());
-
     var movie = request.movie;
     var worlds = [];
 

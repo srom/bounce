@@ -1,11 +1,16 @@
 from __future__ import unicode_literals
 
+import logging
+
 import numpy as np
 
 from ..world.models.world_pb2 import Worlds, HOLD
 from ..world.query import simulation
 from ..world.reward import get_reward, update_rewards
 from .features import get_features
+
+
+logger = logging.getLogger(__name__)
 
 
 def play(session, bounce_dnn):
