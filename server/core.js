@@ -144,6 +144,7 @@ const update = (b2_world, inputWorld, frame_rate, ball, paddle, arrow, bricks) =
     bricks.forEach((brick) => {
         if (brick.isGarbage() && brick.body) {
             b2_world.DestroyBody(brick.body);
+            brick.body = null;
         }
     });
 
@@ -162,6 +163,10 @@ const update = (b2_world, inputWorld, frame_rate, ball, paddle, arrow, bricks) =
 
     if (ball.dead) {
         gameOver(inputWorld);
+    }
+
+    if (ball.body) {
+        console.log('ball linear velocity', ball.body.GetLinearVelocity());
     }
 };
 

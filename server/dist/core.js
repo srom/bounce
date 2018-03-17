@@ -174,6 +174,7 @@ var update = function update(b2_world, inputWorld, frame_rate, ball, paddle, arr
     bricks.forEach(function (brick) {
         if (brick.isGarbage() && brick.body) {
             b2_world.DestroyBody(brick.body);
+            brick.body = null;
         }
     });
 
@@ -191,6 +192,10 @@ var update = function update(b2_world, inputWorld, frame_rate, ball, paddle, arr
 
     if (ball.dead) {
         gameOver(inputWorld);
+    }
+
+    if (ball.body) {
+        console.log('ball linear velocity', ball.body.GetLinearVelocity());
     }
 };
 

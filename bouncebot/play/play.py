@@ -12,6 +12,8 @@ from ..world.reward import get_reward, update_rewards
 
 logger = logging.getLogger(__name__)
 
+ACTION_FRAMES = 60
+
 
 def play(bouncebot):
     inputWorld = None
@@ -19,8 +21,11 @@ def play(bouncebot):
     rewards = []
     all_worlds = []
 
+    num_epochs = 5
+    all_epochs = 0
+
     while 1:
-        outputWorld = simulation(inputWorld, action, num_epochs=5)
+        outputWorld = simulation(inputWorld, action, num_epochs=num_epochs)
 
         reward, done = get_reward(inputWorld, outputWorld)
         rewards.append(reward)
@@ -34,4 +39,7 @@ def play(bouncebot):
 
         X = get_features(inputWorld, outputWorld)
         inputWorld = outputWorld
-        action = bouncebot.evaluate(np.array([X]))
+
+        all_epochs += num_epochs
+        if all_epochs % ACTION_FRAMES == 0:
+            action = bouncebot.evaluate(np.array([X]))

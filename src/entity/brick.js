@@ -24,6 +24,7 @@ export default class Brick extends Entity {
     body;
 
     lives = 1;
+    initialLives = null;
 
     _garbage  = false;
 
@@ -59,7 +60,7 @@ export default class Brick extends Entity {
     }
 
     isGarbage () {
-        return this._garbage;
+        return this.lives == 0;
     }
 
     _createBrick = (lvl, x_px, y_px, width_px, height_px, options) => {
@@ -80,6 +81,7 @@ export default class Brick extends Entity {
         this.height = height_px;
         this._initialX = x_px;
         this._initialY = y_px;
+        this.initialLives = this.lives;
 
         return brick;
     };

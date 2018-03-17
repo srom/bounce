@@ -109,6 +109,9 @@ function init () {
 
         const brick = bricks.find((b) => [bodyA, bodyB].includes(b.body));
         if (containsBall && brick) {
+            console.log('ball body', ball.body);
+            console.log('brick body', brick.body);
+            console.log('--------------');
             brick.contact();
         }
 
@@ -209,12 +212,22 @@ function init () {
         updateBall(pbWorld, ball);
         updatePaddle(pbWorld, paddle);
         updateArrow(pbWorld, arrow);
-        updateBricks(pbWorld, bricks);
+        updateBricks(pbWorld, bricks, bounceSound);
 
         bricks.forEach((brick) => {
+            if (brick.initialLives - brick.lives > 0) {
+                console.log('DOWN', brick.lives, brick.initialLives);
+                if (brick.lives > 0) {
+                    brick.el.texture = PIXI.loader.resources.brickDamagedGreen.texture;
+                }
+            }
             if (brick.isGarbage()) {
-                bounceSound.play();
+                console.log('GARBAGE');
                 stage.removeChild(brick.el);
+                if (brick.body) {
+                    world.DestroyBody(brick.body);
+                    brick.body = null;
+                }
             }
         });
 
@@ -224,8 +237,8 @@ function init () {
 
         frame++;
 
-        console.log('ball position', ball.el.position);
-        console.log('----------');
+        //console.log('ball position', ball.el.position);
+        //console.log('----------');
     }
 
     function draw () {
@@ -282,12 +295,15 @@ const updateArrow = (world, arrow) => {
     arrow.ready = newArrow.ready;
 };
 
-const updateBricks = (world, bricks) => {
+const updateBricks = (world, bricks, bounceSound) => {
     const newBricks = world.bricks;
     bricks.forEach((brick, index) => {
         const newBrick = newBricks[index];
         brick.el.position.x = newBrick.xPx;
         brick.el.position.y = newBrick.yPx;
+        if (brick.lives !== newBrick.lives) {
+            bounceSound.play();
+        }
         brick.lives = newBrick.lives;
     });
 };

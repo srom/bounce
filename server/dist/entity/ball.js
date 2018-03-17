@@ -118,8 +118,6 @@ var Ball = function (_Entity) {
                 this.el.position.x = (0, _scale.metersToPixels)(this.body.GetPosition().x) - this._initialX;
                 this.el.position.y = (0, _scale.metersToPixels)(this.body.GetPosition().y) - this._initialY;
 
-                console.log('ball position', this.el.position);
-
                 if (this.worldPosition().y - this.radius > constants.STAGE_HEIGHT_PX) {
                     this.dead = true;
                 } else if (this.worldPosition().y - this.radius < 0) {
