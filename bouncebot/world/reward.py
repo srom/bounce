@@ -9,8 +9,8 @@ from .models.world_pb2 import LEFT, RIGHT, SPACE
 
 
 WON_REWARD = +50
-LOST_REWARD = -5
-BRICK_LIFE = +50
+LOST_REWARD = -50
+BRICK_LIFE = +10
 EPSILON = +1
 ALL_LIVES = 7
 
@@ -41,7 +41,9 @@ def get_reward(inputWorld, outputWorld):
         #     reward += EPSILON
 
         # Brick's life is worth more as we more closer to a win
-        goal_multiplier = ALL_LIVES - get_num_lives(outputWorld) + 1
+        # goal_multiplier = ALL_LIVES - get_num_lives(outputWorld) + 1
+
+        goal_multiplier = 1
 
         lives_down = get_num_lives(inputWorld) - get_num_lives(outputWorld)
         reward += goal_multiplier * lives_down * BRICK_LIFE

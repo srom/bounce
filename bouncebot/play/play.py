@@ -21,7 +21,7 @@ def play(bouncebot):
     rewards = []
     all_worlds = []
 
-    num_epochs = 1
+    num_epochs = 5
     all_epochs = 0
 
     while 1:
