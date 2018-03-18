@@ -109,14 +109,12 @@ function init () {
 
         const brick = bricks.find((b) => [bodyA, bodyB].includes(b.body));
         if (containsBall && brick) {
-            console.log('ball body', ball.body);
-            console.log('brick position', brick.body.GetPosition());
-            console.log('--------------');
             brick.contact();
         }
 
         if (containsBall) {
             ball.contact();
+            console.log('CONTACT')
         }
     };
     world.SetContactListener(listener);
@@ -216,13 +214,11 @@ function init () {
 
         bricks.forEach((brick) => {
             if (brick.initialLives - brick.lives > 0) {
-                console.log('DOWN', brick.lives, brick.initialLives);
                 if (brick.lives > 0) {
                     brick.el.texture = PIXI.loader.resources.brickDamagedGreen.texture;
                 }
             }
             if (brick.isGarbage()) {
-                console.log('GARBAGE');
                 stage.removeChild(brick.el);
                 if (brick.body) {
                     world.DestroyBody(brick.body);
@@ -236,9 +232,6 @@ function init () {
         }
 
         frame++;
-
-        console.log('paddle can move', paddle.canMove);
-        console.log('----------');
     }
 
     function draw () {
