@@ -15,7 +15,7 @@ EPSILON = +1
 ALL_LIVES = 7
 
 MAX_FRAMES = 5 * 60 * 60  # 5 minutes
-MAX_PRE_FRAMES = 60 * 60  # 1 minute
+MAX_PRE_FRAMES = 30 * 60  # 30 seconds
 
 DISCOUNT_RATE = 0.99
 
@@ -30,11 +30,11 @@ def get_reward(inputWorld, outputWorld):
 
     reward = EPSILON
 
-    if not outputWorld.arrow.ready and outputWorld.action in (LEFT, RIGHT):
-        reward -= EPSILON
+    # if not outputWorld.arrow.ready and outputWorld.action in (LEFT, RIGHT):
+    #     reward -= EPSILON
 
-    if outputWorld.arrow.ready and outputWorld.action == SPACE:
-        reward -= EPSILON
+    # if outputWorld.arrow.ready and outputWorld.action == SPACE:
+    #     reward -= EPSILON
 
     if inputWorld:
         # if not inputWorld.arrow.ready and outputWorld.arrow.ready:
