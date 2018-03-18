@@ -36,22 +36,24 @@ class BounceDNN(object):
 
             self.apply_gradients_op = self._get_apply_gradients_op(optimizer)
 
+        with tf.variable_scope('summary_probabilities'):
+            self.mean_output_probabilities = tf.reduce_mean(self.outputs, 0)
+            tf.summary.scalar('action_probabilities/left', self.mean_output_probabilities[0])
+            tf.summary.scalar('action_probabilities/right', self.mean_output_probabilities[1])
+            tf.summary.scalar('action_probabilities/space', self.mean_output_probabilities[2])
+            tf.summary.scalar('action_probabilities/hold', self.mean_output_probabilities[3])
+
         with tf.variable_scope('summary'):
             self.mean_reward = tf.placeholder(tf.float32, shape=[], name='mean_reward')
             self.mean_worlds_length = tf.placeholder(tf.float32, shape=[], name='mean_worlds_length')
             self.mean_num_lives = tf.placeholder(tf.float32, shape=[], name='mean_num_lives')
             self.overall_score = tf.placeholder(tf.int32, shape=[], name='overall_score')
-            self.mean_output_probabilities = tf.reduce_mean(self.outputs, 0)
             tf.summary.scalar('cross_entropy_mean', tf.reduce_mean(self.cross_entropy))
             tf.summary.scalar('learning_rate', optimizer._lr_t)
             tf.summary.scalar('mean_reward', self.mean_reward)
             tf.summary.scalar('mean_worlds_length', self.mean_worlds_length)
             tf.summary.scalar('mean_num_lives', self.mean_num_lives)
             tf.summary.scalar('overall_score', self.overall_score)
-            tf.summary.scalar('action_probabilities/left', self.mean_output_probabilities[0])
-            tf.summary.scalar('action_probabilities/right', self.mean_output_probabilities[1])
-            tf.summary.scalar('action_probabilities/space', self.mean_output_probabilities[2])
-            tf.summary.scalar('action_probabilities/hold', self.mean_output_probabilities[3])
             self.summary = tf.summary.merge_all()
 
     def pick_action(self, session, X, explore=False):
