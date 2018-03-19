@@ -16,7 +16,7 @@ from .play import play
 from .summary import compute_game_statistics
 
 
-LEARNING_RATE = 1e-3
+LEARNING_RATE = 1e-4
 BATCH_SIZE = 10  # Number of games to play between training steps
 ITERATIONS_BETWEEN_SAVE = 10
 
