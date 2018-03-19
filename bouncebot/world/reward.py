@@ -8,8 +8,8 @@ import numpy as np
 from .models.world_pb2 import LEFT, RIGHT, SPACE, HOLD
 
 
-WON_REWARD = +100
-LOST_REWARD = -50
+WON_REWARD = +1000
+LOST_REWARD = -100
 BRICK_LIFE = +10
 EPSILON = +1
 ALL_LIVES = 7
@@ -30,25 +30,28 @@ def get_reward(inputWorld, outputWorld):
     elif lost(outputWorld):
         return LOST_REWARD, True
 
-    # reward = EPSILON
-    reward = 0
+    reward = EPSILON
+    # reward = 0
 
     if not outputWorld.arrow.ready and outputWorld.action in (LEFT, RIGHT):
         reward -= EPSILON
     elif inputWorld and outputWorld.arrow.ready and outputWorld.action in (LEFT, RIGHT):
         if inputWorld.paddle.x_px != outputWorld.paddle.x_px:
-            reward += EPSILON
+            reward += 5 * EPSILON
+        else:
+            reward -= 5 * EPSILON
 
         if ball_bounced_on_paddle(inputWorld, outputWorld):
             logger.info('BOUUUUNCE')
-            reward += 5 * EPSILON
+            reward += BRICK_LIFE * EPSILON
 
     if outputWorld.arrow.ready and outputWorld.action == HOLD:
         reward -= EPSILON
 
     if inputWorld and inputWorld.arrow.ready and outputWorld.arrow.ready and outputWorld.action == SPACE:
-        reward -= 5 * EPSILON
+        reward -= 10 * EPSILON
 
+    goal_multiplier = 1
     if inputWorld:
         # Brick's life is worth more as we more closer to a win
         goal_multiplier = ALL_LIVES - get_num_lives(outputWorld) + 1
@@ -58,7 +61,12 @@ def get_reward(inputWorld, outputWorld):
         lives_down = get_num_lives(inputWorld) - get_num_lives(outputWorld)
         reward += goal_multiplier * lives_down * BRICK_LIFE
 
-    return reward * get_time_factor(outputWorld), False
+    total_reward = reward * get_time_factor(outputWorld)
+
+    # if total_reward > 0:
+    #     total_reward *= goal_multiplier
+
+    return total_reward, False
 
 
 def ball_bounced_on_paddle(inputWorld, outputWorld):
@@ -75,8 +83,8 @@ def update_rewards(worlds, rewards):
         discounted_rewards.append(discounted_reward)
 
     X = np.array(discounted_rewards)
-    # X_norm = X / np.std(X)
-    X_norm = X
+    X_norm = X / np.std(X)
+    # X_norm = X
 
     for index, world in enumerate(worlds.worlds):
         world.reward = X_norm[index]

@@ -232,6 +232,8 @@ function init () {
         }
 
         frame++;
+        console.log('ACTION', pbWorld.action);
+        console.log(paddle.el.position.x);
     }
 
     function draw () {

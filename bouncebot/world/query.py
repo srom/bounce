@@ -18,7 +18,7 @@ def simulation(current_world, action, movie=False, num_epochs=DEFAULT_NUM_EPOCHS
 
 
 def run_simulation(current_world, action, num_epochs, movie):
-    current_world.action = action if action else current_world.action
+    current_world.action = action if action is not None else current_world.action
     current_world.request.frame_rate = FRAME_RATE
     current_world.request.num_epochs = num_epochs
     current_world.request.movie = movie
