@@ -14,7 +14,7 @@ BRICK_LIFE = +50
 EPSILON = +1
 ALL_LIVES = 7
 
-MAX_FRAMES = 2 * 60 * 60  # 2 minutes
+MAX_FRAMES = 1 * 60 * 60  # 1 minute
 MAX_PRE_FRAMES = 5 * 60  # 5 seconds
 
 DISCOUNT_RATE = 0.99
@@ -141,5 +141,6 @@ def get_num_lives(world):
 
 
 def get_post_frame_nb(world):
-    x = world.frame_nb - world.pre_frame_nb
-    return x if x > 0 else 1
+    # x = world.frame_nb - world.pre_frame_nb
+    # return x if x > 0 else 1
+    return world.frame_nb

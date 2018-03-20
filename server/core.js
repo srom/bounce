@@ -51,7 +51,6 @@ const initializeWorld = () => {
 
     const paddle = new Paddle(initialPaddleX, initialPaddleY, paddleWidth, paddleHeight);
     paddle.createBody(world);
-    console.log('Paddle INITIAL position', paddle.body.GetPosition());
 
     return World.create({
         frameNb: 0,
@@ -177,12 +176,10 @@ const clean = (world) => {
 
 const youWin = (inputWorld) => {
     inputWorld.won = true;
-    console.log("WON");
 };
 
 const gameOver = (inputWorld) => {
     inputWorld.lost = true;
-    console.log("LOST");
 };
 
 const contactListener = (listener) => {
@@ -196,22 +193,11 @@ const contactListener = (listener) => {
         const paddle = getInstanceOrNull(bodyA, bodyB, Paddle);
 
         if (ball !== null && brick !== null) {
-            console.log('=== CONTACT BALL & BRICK');
             brick.contact();
         }
 
         if (ball !== null) {
             ball.contact();
-
-            if (wall !== null) {
-                console.log('=== CONTACT BALL & WALL', wall._initialPosition);
-            } else if (paddle !== null) {
-                console.log('=== CONTACT BALL & PADDLE');
-            }
-        } else {
-            console.log('=== CONTACT WTF');
-            console.log('BODY A', contact.GetFixtureA().GetBody().GetUserData());
-            console.log('BODY B', contact.GetFixtureB().GetBody().GetUserData());
         }
     };
     return listener

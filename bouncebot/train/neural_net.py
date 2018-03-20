@@ -28,6 +28,7 @@ class BounceDNN(object):
             self.cross_entropy = self._get_loss()
 
         with tf.variable_scope("train", reuse=reuse):
+            # self.global_step = tf.Variable(0, name='global_step', trainable=False)
             optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate)
 
             (self.compute_gradients_op,
@@ -114,6 +115,9 @@ class BounceDNN(object):
             self.overall_score: statistics.get('overall_score', 0),
         }
         return session.run([self.summary, self.cross_entropy], feed_dict=feed_dict)
+    #
+    # def get_global_step(self, session):
+    #     return session.run(self.global_step)
 
     def _get_logits(self):
         input_dropout = tf.layers.dropout(self.X, DROPOUT_RATE, training=self.training)

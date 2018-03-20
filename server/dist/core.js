@@ -82,7 +82,6 @@ var initializeWorld = function initializeWorld() {
 
     var paddle = new _paddle2.default(initialPaddleX, initialPaddleY, paddleWidth, paddleHeight);
     paddle.createBody(world);
-    console.log('Paddle INITIAL position', paddle.body.GetPosition());
 
     return _world.World.create({
         frameNb: 0,
@@ -206,12 +205,10 @@ var clean = function clean(world) {
 
 var youWin = function youWin(inputWorld) {
     inputWorld.won = true;
-    console.log("WON");
 };
 
 var gameOver = function gameOver(inputWorld) {
     inputWorld.lost = true;
-    console.log("LOST");
 };
 
 var contactListener = function contactListener(listener) {
@@ -225,22 +222,11 @@ var contactListener = function contactListener(listener) {
         var paddle = getInstanceOrNull(bodyA, bodyB, _paddle2.default);
 
         if (ball !== null && brick !== null) {
-            console.log('=== CONTACT BALL & BRICK');
             brick.contact();
         }
 
         if (ball !== null) {
             ball.contact();
-
-            if (wall !== null) {
-                console.log('=== CONTACT BALL & WALL', wall._initialPosition);
-            } else if (paddle !== null) {
-                console.log('=== CONTACT BALL & PADDLE');
-            }
-        } else {
-            console.log('=== CONTACT WTF');
-            console.log('BODY A', contact.GetFixtureA().GetBody().GetUserData());
-            console.log('BODY B', contact.GetFixtureB().GetBody().GetUserData());
         }
     };
     return listener;

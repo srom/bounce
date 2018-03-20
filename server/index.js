@@ -7,13 +7,6 @@ import { World, Worlds } from './models/world';
 const UNIX_SOCKET = '/tmp/bounce.sock';
 
 
-const log = function(who, what) {
-  return function() {
-    var args = Array.prototype.slice.call(arguments);
-    console.log('[%s on %s]', who, what, args);
-  };
-};
-
 const bounce_socket = function(socket) {
 
   socket.on('data', function(data) {
@@ -37,8 +30,8 @@ const bounce_socket = function(socket) {
     }
   });
 
-  socket.on('error', log('socket', 'error'));
-  socket.on('close', log('socket', 'close'));
+  socket.on('error', function() {});
+  socket.on('close', function() {});
 
   socket.pipe(socket);
 };
@@ -56,16 +49,12 @@ server.on('listening', function() {
   }
 });
 
-server.on('connection', function(socket) {
-  server.getConnections(function(err, count) {
-    console.log('%d open connections!', count);
-  });
-});
+server.on('connection', function(socket) {});
 
-server.on('close', function() { console.log('[server on close]'); });
+server.on('close', function() {});
 
 server.on('err', function(err) {
-  console.log(err);
+  console.log('error');
   server.close(function() { console.log("shutting down the server!"); });
 });
 

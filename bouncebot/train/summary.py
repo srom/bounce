@@ -10,7 +10,7 @@ def compute_game_statistics(games):
     overall_score = 0
     for X, rewards, _, worlds in games:
         last_world = worlds.worlds[-1]
-        worlds_lengths.append(X.shape[0])
+        worlds_lengths.append(len(worlds.worlds))
         all_rewards.append(np.mean(rewards))
         lives.append(sum(b.lives for b in last_world.bricks))
         if last_world.won:

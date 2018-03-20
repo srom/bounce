@@ -34,7 +34,7 @@ def get_training_features(worlds):
 def split_features(X, rewards, labels):
     l = X.shape[0]
     index = int(TRAIN_TEST_RATIO * l) - 1
-    return X[:index+1,:], X[index+1:,:], rewards[:index+1], rewards[index+1:], labels[:index+1], labels[index+1:]
+    return X, X[index+1:,:], rewards, rewards[index+1:], labels, labels[index+1:]
 
 
 def get_features(inputWorld, outputWorld):

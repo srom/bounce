@@ -12,13 +12,6 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 var UNIX_SOCKET = '/tmp/bounce.sock';
 
-var log = function log(who, what) {
-  return function () {
-    var args = Array.prototype.slice.call(arguments);
-    console.log('[%s on %s]', who, what, args);
-  };
-};
-
 var bounce_socket = function bounce_socket(socket) {
 
   socket.on('data', function (data) {
@@ -42,8 +35,8 @@ var bounce_socket = function bounce_socket(socket) {
     }
   });
 
-  socket.on('error', log('socket', 'error'));
-  socket.on('close', log('socket', 'close'));
+  socket.on('error', function () {});
+  socket.on('close', function () {});
 
   socket.pipe(socket);
 };
@@ -61,18 +54,12 @@ server.on('listening', function () {
   }
 });
 
-server.on('connection', function (socket) {
-  server.getConnections(function (err, count) {
-    console.log('%d open connections!', count);
-  });
-});
+server.on('connection', function (socket) {});
 
-server.on('close', function () {
-  console.log('[server on close]');
-});
+server.on('close', function () {});
 
 server.on('err', function (err) {
-  console.log(err);
+  console.log('error');
   server.close(function () {
     console.log("shutting down the server!");
   });
