@@ -49,7 +49,9 @@ class BounceDNN(object):
             self.mean_worlds_length = tf.placeholder(tf.float32, shape=[], name='mean_worlds_length')
             self.mean_num_lives = tf.placeholder(tf.float32, shape=[], name='mean_num_lives')
             self.overall_score = tf.placeholder(tf.int32, shape=[], name='overall_score')
+            self.ratio_exploration = self._get_exploration_ratio()
             tf.summary.scalar('cross_entropy_mean', tf.reduce_mean(self.cross_entropy))
+            tf.summary.scalar('ratio_exploration', self.ratio_exploration)
             tf.summary.scalar('learning_rate', optimizer._lr_t)
             tf.summary.scalar('mean_reward', self.mean_reward)
             tf.summary.scalar('mean_worlds_length', self.mean_worlds_length)
@@ -158,3 +160,13 @@ class BounceDNN(object):
 
     def _get_apply_gradients_op(self, optimizer):
         return optimizer.apply_gradients(self.grads_and_vars, name='apply_gradients')
+
+    def _get_exploration_ratio(self):
+        x = tf.add(self.f_evaluate, 1)
+        y = tf.add(tf.reduce_sum(self.f_explore, axis=1), 1)
+        return tf.reduce_mean(
+            tf.divide(
+                tf.abs(tf.subtract(x, y)),
+                tf.maximum(tf.abs(tf.subtract(x, y)), 1)
+            )
+        )
