@@ -34,6 +34,9 @@ def get_training_features(worlds):
 def split_features(X, rewards, labels):
     l = X.shape[0]
     index = int(TRAIN_TEST_RATIO * l) - 1
+    np.random.shuffle(X)
+    np.random.shuffle(rewards)
+    np.random.shuffle(labels)
     return X, X[index+1:,:], rewards, rewards[index+1:], labels, labels[index+1:]
 
 
