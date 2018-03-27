@@ -2,7 +2,6 @@ from __future__ import unicode_literals
 
 import argparse
 import logging
-from multiprocessing.dummy import Pool as ThreadPool, cpu_count
 import os
 import time
 
@@ -21,26 +20,6 @@ BATCH_SIZE = 10  # Number of games to play between training steps
 ITERATIONS_BETWEEN_SAVE = 10
 
 logger = logging.getLogger(__name__)
-
-
-def play_batch(session, bounce_dnn):
-    num_retry = 1
-    while True:
-        pool = ThreadPool(cpu_count())
-        try:
-            return pool.map(play_game, [(session, bounce_dnn)] * BATCH_SIZE)
-        except KeyboardInterrupt:
-            raise
-        except BaseException as e:
-            logger.exception(e)
-            num_retry -= 1
-            if num_retry == 0:
-                raise
-            else:
-                logger.error('Retrying...')
-                continue
-        finally:
-            pool.close()
 
 
 def play_game((session, bounce_dnn)):
@@ -98,8 +77,6 @@ def main(model_dir='checkpoints', export=False, export_local=False):
             start = time.time()
 
             logger.info('------ Play -------')
-
-            # games = play_batch(session, bounce_dnn)
 
             games = []
             for _ in xrange(BATCH_SIZE):
