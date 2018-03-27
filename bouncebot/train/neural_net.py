@@ -61,12 +61,7 @@ class BounceDNN(object):
             self.summary = tf.summary.merge_all()
 
     def pick_action(self, session, X, explore=False):
-        if explore:
-            f = self.f_explore
-        else:
-            f = self.f_evaluate
-
-        return session.run(f, feed_dict={
+        return session.run(self.f_explore, feed_dict={
             self.X: X,
             self.training: explore
         })[0][0]
