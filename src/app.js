@@ -9,6 +9,7 @@ import Wall, { setWalls } from './entity/wall';
 import Arrow from './entity/arrow';
 import Brick, { BrickLevel1, BrickLevel2, setBricks } from './entity/brick';
 import debugPhysics from './util/debug';
+import { rayCast } from './util/raycast';
 import { getHashValue } from './util/url';
 import * as input from './util/input';
 
@@ -89,6 +90,8 @@ function init () {
     const arrow = new Arrow(initialArrowX, initialArrowY);
     const bricks = setBricks(world);
     const walls = setWalls(world);
+
+    let prevBallPos = null;
 
     paddle.createBody(world);
 
@@ -193,6 +196,19 @@ function init () {
                 constants.VELOCITY_FACTOR * arrow.velocity.y
             );
             stage.removeChild(arrow.el);
+        }
+
+        if (ball.body) {
+            const ballPos = ball.body.GetPosition();
+            if (prevBallPos) {
+                const closestThing = rayCast(prevBallPos, ballPos, paddle, bricks, walls);
+                if (closestThing) {
+                    console.log('closest thing:', getInstance(closestThing));
+                } else {
+                    console.log('closest thing: DEATH')
+                }
+            }
+            prevBallPos = ballPos.Copy();
         }
     }
 
@@ -302,4 +318,16 @@ const updateBricks = (world, bricks, bounceSound) => {
         }
         brick.lives = newBrick.lives;
     });
+};
+
+const getInstance = (obj) => {
+    if (obj instanceof Brick) {
+        return 'BRICK';
+    } else if (obj instanceof Paddle) {
+        return 'PADDLE';
+    } else if (obj instanceof Wall) {
+        return 'WALL';
+    } else {
+        return obj;
+    }
 };
