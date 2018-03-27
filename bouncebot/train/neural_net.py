@@ -60,10 +60,10 @@ class BounceDNN(object):
 
             self.summary = tf.summary.merge_all()
 
-    def pick_action(self, session, X, explore=False):
+    def pick_action(self, session, X, training=False):
         return session.run(self.f_explore, feed_dict={
             self.X: X,
-            self.training: explore
+            self.training: training
         })[0][0]
 
     def compute_gradients(self, session, X, rewards, labels):
