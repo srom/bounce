@@ -82,7 +82,7 @@ def main(model_dir='checkpoints', export=False, export_local=False):
             session.run(tf.global_variables_initializer())
         else:
             saver.restore(session, checkpoint_path)
-            # iteration = bounce_dnn.get_global_step(session)
+            iteration = bounce_dnn.get_global_step(session)
 
         saver.save(session, save_path, global_step=iteration)
 

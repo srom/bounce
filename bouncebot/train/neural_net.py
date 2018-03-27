@@ -28,7 +28,7 @@ class BounceDNN(object):
             self.cross_entropy = self._get_loss()
 
         with tf.variable_scope("train", reuse=reuse):
-            # self.global_step = tf.Variable(0, name='global_step', trainable=False)
+            self.global_step = tf.Variable(0, name='global_step', trainable=False)
             optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate)
 
             (self.compute_gradients_op,
@@ -37,13 +37,6 @@ class BounceDNN(object):
 
             self.apply_gradients_op = self._get_apply_gradients_op(optimizer)
 
-        with tf.variable_scope('summary_probabilities'):
-            self.mean_output_probabilities = tf.reduce_mean(self.outputs, 0)
-            tf.summary.scalar('action_probabilities/left', self.mean_output_probabilities[0])
-            tf.summary.scalar('action_probabilities/right', self.mean_output_probabilities[1])
-            tf.summary.scalar('action_probabilities/space', self.mean_output_probabilities[2])
-            tf.summary.scalar('action_probabilities/hold', self.mean_output_probabilities[3])
-
         with tf.variable_scope('summary'):
             self.mean_reward = tf.placeholder(tf.float32, shape=[], name='mean_reward')
             self.mean_worlds_length = tf.placeholder(tf.float32, shape=[], name='mean_worlds_length')
@@ -51,12 +44,20 @@ class BounceDNN(object):
             self.overall_score = tf.placeholder(tf.int32, shape=[], name='overall_score')
             self.ratio_exploration = self._get_exploration_ratio()
             tf.summary.scalar('cross_entropy_mean', tf.reduce_mean(self.cross_entropy))
-            tf.summary.scalar('ratio_exploration', self.ratio_exploration)
             tf.summary.scalar('learning_rate', optimizer._lr_t)
+            tf.summary.scalar('mean_num_lives', self.mean_num_lives)
             tf.summary.scalar('mean_reward', self.mean_reward)
             tf.summary.scalar('mean_worlds_length', self.mean_worlds_length)
-            tf.summary.scalar('mean_num_lives', self.mean_num_lives)
             tf.summary.scalar('overall_score', self.overall_score)
+            tf.summary.scalar('ratio_exploration', self.ratio_exploration)
+
+            probs_family = 'z_probability'
+            self.mean_output_probabilities = tf.reduce_mean(self.outputs, 0)
+            tf.summary.scalar('left', self.mean_output_probabilities[0], family=probs_family)
+            tf.summary.scalar('right', self.mean_output_probabilities[1], family=probs_family)
+            tf.summary.scalar('space', self.mean_output_probabilities[2], family=probs_family)
+            tf.summary.scalar('hold', self.mean_output_probabilities[3], family=probs_family)
+
             self.summary = tf.summary.merge_all()
 
     def pick_action(self, session, X, explore=False):
@@ -117,9 +118,9 @@ class BounceDNN(object):
             self.overall_score: statistics.get('overall_score', 0),
         }
         return session.run([self.summary, self.cross_entropy], feed_dict=feed_dict)
-    #
-    # def get_global_step(self, session):
-    #     return session.run(self.global_step)
+
+    def get_global_step(self, session):
+        return session.run(self.global_step)
 
     def _get_logits(self):
         input_dropout = tf.layers.dropout(self.X, DROPOUT_RATE, training=self.training)
