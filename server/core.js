@@ -3,6 +3,7 @@ import Box2D from 'box2dweb';
 import { World, Worlds } from './models/world';
 import * as constants from './constants';
 import { randomFloat, randomBoolean } from './util/random';
+import { rayCast } from './util/raycast';
 import Ball from './entity/ball';
 import Paddle from './entity/paddle';
 import Arrow, { MAX_ANGLE } from './entity/arrow';
@@ -105,7 +106,12 @@ const mainLoop = (inputWorld) => {
     const arrow = parseArrow(inputWorld.arrow);
     const bricks = setBricks(b2_world);
     updateBricks(bricks, inputWorld.bricks, b2_world);
-    setWalls(b2_world);
+    const walls = setWalls(b2_world);
+
+    let previousBallPosition = null;
+    if (ball.body) {
+        previousBallPosition = ball.body.GetPosition().Copy();
+    }
 
     const movie = request.movie;
     const worlds = [];
@@ -122,9 +128,16 @@ const mainLoop = (inputWorld) => {
         update(b2_world, currentWorld, request.frameRate, ball, paddle, arrow, bricks);
         clean(b2_world);
 
-        const newWorld = getOutputWorld(currentWorld, request, ball, paddle, arrow, bricks);
+        const ballPosition = ball.body ? ball.body.GetPosition() : null;
+        const target = getTarget(previousBallPosition, ballPosition, paddle, bricks, walls);
+
+        const newWorld = getOutputWorld(currentWorld, request, ball, paddle, arrow, bricks, target);
         currentWorld = newWorld;
         worlds.push(newWorld);
+
+        if (ball.body) {
+            previousBallPosition = ball.body.GetPosition().Copy();
+        }
     }
 
     if (movie) {
@@ -271,7 +284,7 @@ const getInputFromAction = (inputWorld) => {
     };
 };
 
-const getOutputWorld = (inputWorld, request, ball, paddle, arrow, bricks) => {
+const getOutputWorld = (inputWorld, request, ball, paddle, arrow, bricks, target) => {
     const ballVelocity = ball.body ? ball.body.GetLinearVelocity() : {x: 0, y: 0};
     const ballPosition = ball.worldPosition();
 
@@ -316,6 +329,9 @@ const getOutputWorld = (inputWorld, request, ball, paddle, arrow, bricks) => {
                 lives: brick.lives,
             };
         }),
+        physics: {
+            target: target,
+        },
     });
 };
 
@@ -328,5 +344,27 @@ const getPreFrameNb = (inputWorld, arrow) => {
         return inputWorld.preFrameNb;
     } else {
         return inputWorld.preFrameNb + 1;
+    }
+};
+
+const getTarget = (prevBallPos, ballPos, paddle, bricks, walls) => {
+    if (ballPos === null) {
+        return null;
+    }
+
+    const closestThing = rayCast(prevBallPos, ballPos, paddle, bricks, walls);
+
+    return getTargetName(closestThing);
+};
+
+const getTargetName = (closestThing) => {
+    if (closestThing instanceof Brick) {
+        return 'BRICK';
+    } else if (closestThing instanceof Paddle) {
+        return 'PADDLE';
+    } else if (closestThing instanceof Wall) {
+        return 'WALL';
+    } else {
+        return 'VOID';
     }
 };

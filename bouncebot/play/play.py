@@ -52,3 +52,6 @@ def play(bouncebot):
                 logger.info('SPACE')
             if action == 3:
                 logger.info('HOLD')
+
+            if outputWorld.physics and outputWorld.physics.target:
+                logger.info('TARGET: %s', outputWorld.physics.target)

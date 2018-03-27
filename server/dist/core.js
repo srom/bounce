@@ -17,6 +17,8 @@ var constants = _interopRequireWildcard(_constants);
 
 var _random = require('./util/random');
 
+var _raycast = require('./util/raycast');
+
 var _ball = require('./entity/ball');
 
 var _ball2 = _interopRequireDefault(_ball);
@@ -135,7 +137,12 @@ var mainLoop = function mainLoop(inputWorld) {
     var arrow = parseArrow(inputWorld.arrow);
     var bricks = (0, _brick.setBricks)(b2_world);
     updateBricks(bricks, inputWorld.bricks, b2_world);
-    (0, _wall.setWalls)(b2_world);
+    var walls = (0, _wall.setWalls)(b2_world);
+
+    var previousBallPosition = null;
+    if (ball.body) {
+        previousBallPosition = ball.body.GetPosition().Copy();
+    }
 
     var movie = request.movie;
     var worlds = [];
@@ -152,9 +159,16 @@ var mainLoop = function mainLoop(inputWorld) {
         update(b2_world, currentWorld, request.frameRate, ball, paddle, arrow, bricks);
         clean(b2_world);
 
-        var newWorld = getOutputWorld(currentWorld, request, ball, paddle, arrow, bricks);
+        var ballPosition = ball.body ? ball.body.GetPosition() : null;
+        var target = getTarget(previousBallPosition, ballPosition, paddle, bricks, walls);
+
+        var newWorld = getOutputWorld(currentWorld, request, ball, paddle, arrow, bricks, target);
         currentWorld = newWorld;
         worlds.push(newWorld);
+
+        if (ball.body) {
+            previousBallPosition = ball.body.GetPosition().Copy();
+        }
     }
 
     if (movie) {
@@ -300,7 +314,7 @@ var getInputFromAction = function getInputFromAction(inputWorld) {
     };
 };
 
-var getOutputWorld = function getOutputWorld(inputWorld, request, ball, paddle, arrow, bricks) {
+var getOutputWorld = function getOutputWorld(inputWorld, request, ball, paddle, arrow, bricks, target) {
     var ballVelocity = ball.body ? ball.body.GetLinearVelocity() : { x: 0, y: 0 };
     var ballPosition = ball.worldPosition();
 
@@ -344,7 +358,10 @@ var getOutputWorld = function getOutputWorld(inputWorld, request, ball, paddle, 
                 heightPx: brick.el.position.height,
                 lives: brick.lives
             };
-        })
+        }),
+        physics: {
+            target: target
+        }
     });
 };
 
@@ -357,5 +374,27 @@ var getPreFrameNb = function getPreFrameNb(inputWorld, arrow) {
         return inputWorld.preFrameNb;
     } else {
         return inputWorld.preFrameNb + 1;
+    }
+};
+
+var getTarget = function getTarget(prevBallPos, ballPos, paddle, bricks, walls) {
+    if (ballPos === null) {
+        return null;
+    }
+
+    var closestThing = (0, _raycast.rayCast)(prevBallPos, ballPos, paddle, bricks, walls);
+
+    return getTargetName(closestThing);
+};
+
+var getTargetName = function getTargetName(closestThing) {
+    if (closestThing instanceof _brick2.default) {
+        return 'BRICK';
+    } else if (closestThing instanceof _paddle2.default) {
+        return 'PADDLE';
+    } else if (closestThing instanceof _wall2.default) {
+        return 'WALL';
+    } else {
+        return 'VOID';
     }
 };

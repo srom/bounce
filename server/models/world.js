@@ -232,6 +232,7 @@ export const World = $root.World = (() => {
      * @property {number|null} [frameNb] World frameNb
      * @property {number|null} [preFrameNb] World preFrameNb
      * @property {IRequest|null} [request] World request
+     * @property {IPhysics|null} [physics] World physics
      */
 
     /**
@@ -339,6 +340,14 @@ export const World = $root.World = (() => {
     World.prototype.request = null;
 
     /**
+     * World physics.
+     * @member {IPhysics|null|undefined} physics
+     * @memberof World
+     * @instance
+     */
+    World.prototype.physics = null;
+
+    /**
      * Creates a new World instance using the specified properties.
      * @function create
      * @memberof World
@@ -385,6 +394,8 @@ export const World = $root.World = (() => {
             writer.uint32(/* id 10, wireType 0 =*/80).int32(message.preFrameNb);
         if (message.request != null && message.hasOwnProperty("request"))
             $root.Request.encode(message.request, writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
+        if (message.physics != null && message.hasOwnProperty("physics"))
+            $root.Physics.encode(message.physics, writer.uint32(/* id 12, wireType 2 =*/98).fork()).ldelim();
         return writer;
     };
 
@@ -453,6 +464,9 @@ export const World = $root.World = (() => {
                 break;
             case 11:
                 message.request = $root.Request.decode(reader, reader.uint32());
+                break;
+            case 12:
+                message.physics = $root.Physics.decode(reader, reader.uint32());
                 break;
             default:
                 reader.skipType(tag & 7);
@@ -543,6 +557,11 @@ export const World = $root.World = (() => {
             if (error)
                 return "request." + error;
         }
+        if (message.physics != null && message.hasOwnProperty("physics")) {
+            let error = $root.Physics.verify(message.physics);
+            if (error)
+                return "physics." + error;
+        }
         return null;
     };
 
@@ -616,6 +635,11 @@ export const World = $root.World = (() => {
                 throw TypeError(".World.request: object expected");
             message.request = $root.Request.fromObject(object.request);
         }
+        if (object.physics != null) {
+            if (typeof object.physics !== "object")
+                throw TypeError(".World.physics: object expected");
+            message.physics = $root.Physics.fromObject(object.physics);
+        }
         return message;
     };
 
@@ -645,6 +669,7 @@ export const World = $root.World = (() => {
             object.frameNb = 0;
             object.preFrameNb = 0;
             object.request = null;
+            object.physics = null;
         }
         if (message.ball != null && message.hasOwnProperty("ball"))
             object.ball = $root.Ball.toObject(message.ball, options);
@@ -671,6 +696,8 @@ export const World = $root.World = (() => {
             object.preFrameNb = message.preFrameNb;
         if (message.request != null && message.hasOwnProperty("request"))
             object.request = $root.Request.toObject(message.request, options);
+        if (message.physics != null && message.hasOwnProperty("physics"))
+            object.physics = $root.Physics.toObject(message.physics, options);
         return object;
     };
 
@@ -2150,6 +2177,193 @@ export const Request = $root.Request = (() => {
     };
 
     return Request;
+})();
+
+export const Physics = $root.Physics = (() => {
+
+    /**
+     * Properties of a Physics.
+     * @exports IPhysics
+     * @interface IPhysics
+     * @property {string|null} [target] Physics target
+     */
+
+    /**
+     * Constructs a new Physics.
+     * @exports Physics
+     * @classdesc Represents a Physics.
+     * @implements IPhysics
+     * @constructor
+     * @param {IPhysics=} [properties] Properties to set
+     */
+    function Physics(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * Physics target.
+     * @member {string} target
+     * @memberof Physics
+     * @instance
+     */
+    Physics.prototype.target = "";
+
+    /**
+     * Creates a new Physics instance using the specified properties.
+     * @function create
+     * @memberof Physics
+     * @static
+     * @param {IPhysics=} [properties] Properties to set
+     * @returns {Physics} Physics instance
+     */
+    Physics.create = function create(properties) {
+        return new Physics(properties);
+    };
+
+    /**
+     * Encodes the specified Physics message. Does not implicitly {@link Physics.verify|verify} messages.
+     * @function encode
+     * @memberof Physics
+     * @static
+     * @param {IPhysics} message Physics message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    Physics.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.target != null && message.hasOwnProperty("target"))
+            writer.uint32(/* id 1, wireType 2 =*/10).string(message.target);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified Physics message, length delimited. Does not implicitly {@link Physics.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof Physics
+     * @static
+     * @param {IPhysics} message Physics message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    Physics.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a Physics message from the specified reader or buffer.
+     * @function decode
+     * @memberof Physics
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {Physics} Physics
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    Physics.decode = function decode(reader, length) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.Physics();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            switch (tag >>> 3) {
+            case 1:
+                message.target = reader.string();
+                break;
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a Physics message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof Physics
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {Physics} Physics
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    Physics.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a Physics message.
+     * @function verify
+     * @memberof Physics
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    Physics.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.target != null && message.hasOwnProperty("target"))
+            if (!$util.isString(message.target))
+                return "target: string expected";
+        return null;
+    };
+
+    /**
+     * Creates a Physics message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof Physics
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {Physics} Physics
+     */
+    Physics.fromObject = function fromObject(object) {
+        if (object instanceof $root.Physics)
+            return object;
+        let message = new $root.Physics();
+        if (object.target != null)
+            message.target = String(object.target);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a Physics message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof Physics
+     * @static
+     * @param {Physics} message Physics
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    Physics.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults)
+            object.target = "";
+        if (message.target != null && message.hasOwnProperty("target"))
+            object.target = message.target;
+        return object;
+    };
+
+    /**
+     * Converts this Physics to JSON.
+     * @function toJSON
+     * @memberof Physics
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    Physics.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    return Physics;
 })();
 
 export { $root as default };
