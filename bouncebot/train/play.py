@@ -5,7 +5,7 @@ import logging
 import numpy as np
 
 from ..world.models.world_pb2 import Worlds, HOLD
-from ..world.query import simulation
+from ..world.query import simulation, TooManyErrors
 from ..world.reward import get_reward, update_rewards
 from .features import get_features
 
@@ -20,11 +20,16 @@ def play(session, bounce_dnn):
     all_worlds = []
 
     while 1:
-        outputWorld = simulation(inputWorld, action, num_epochs=60)
+        try:
+            outputWorld = simulation(inputWorld, action, num_epochs=60)
 
-        reward, done = get_reward(inputWorld, outputWorld)
-        rewards.append(reward)
-        all_worlds.append(outputWorld)
+            reward, done = get_reward(inputWorld, outputWorld)
+            rewards.append(reward)
+            all_worlds.append(outputWorld)
+
+        except TooManyErrors as e:
+            logger.exception(e)
+            done = True
 
         if done:
             worlds = Worlds()

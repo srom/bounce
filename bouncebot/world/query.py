@@ -17,6 +17,10 @@ def simulation(current_world, action, movie=False, num_epochs=DEFAULT_NUM_EPOCHS
     return run_simulation(current_world, action, num_epochs, movie)
 
 
+class TooManyErrors(IOError):
+    pass
+
+
 def run_simulation(current_world, action, num_epochs, movie):
     current_world.action = action if action is not None else current_world.action
     current_world.request.frame_rate = FRAME_RATE
@@ -52,7 +56,7 @@ def run_simulation(current_world, action, num_epochs, movie):
 
             return new_world
 
-    raise ValueError('Cannot get valid output')
+    raise TooManyErrors('Cannot get valid output')
 
 
 def getDefaultWorld():

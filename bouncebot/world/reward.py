@@ -30,49 +30,57 @@ def get_reward(inputWorld, outputWorld):
     elif lost(outputWorld):
         return LOST_REWARD, True
 
-    # reward = EPSILON
-    reward = EPSILON
+    reward = 0
+    if not outputWorld.arrow.ready:
+        reward = EPSILON
 
-    if not outputWorld.arrow.ready and outputWorld.action in (LEFT, RIGHT):
-        reward -= EPSILON
-    elif inputWorld and outputWorld.arrow.ready and outputWorld.action in (LEFT, RIGHT):
-        if inputWorld.paddle.x_px != outputWorld.paddle.x_px:
-            reward += EPSILON
-        else:
+        if outputWorld.action in (LEFT, RIGHT):
             reward -= EPSILON
+
+    else:
+        if outputWorld.physics and outputWorld.physics.target:
+            # Use output of ray casting to help evaluate the position.
+            # world.physics.target describes what the ball is facing.
+            # It can take 4 values:
+            #  - BRICK: great.
+            #  - PADDLE: good, more chances to survive.
+            #  - WALL: OK, ball can probably keep on playing.
+            #  - VOID: facing death
+
+            if outputWorld.physics.target == 'BRICK':
+                reward += 5
+            elif outputWorld.physics.target == 'PADDLE':
+                reward += 5
+            elif outputWorld.physics.target == 'WALL':
+                reward += 1
+            elif outputWorld.physics.target == 'VOID':
+                reward -= 2
+
+        if outputWorld.action in (LEFT, RIGHT):
+            if inputWorld.paddle.x_px != outputWorld.paddle.x_px:
+                pass
+                # reward += EPSILON
+            else:
+                reward -= EPSILON
 
         if ball_bounced_on_paddle(inputWorld, outputWorld):
             logger.info('BOUUUUNCE')
             reward += BRICK_LIFE * EPSILON
 
-    # if outputWorld.arrow.ready and outputWorld.action == HOLD:
-    #     reward -= EPSILON
+        if outputWorld.action == SPACE:
+            if not inputWorld.arrow.ready:
+                reward += EPSILON
+            else:
+                reward -= EPSILON
 
-    if not outputWorld.arrow.ready:
-        reward = EPSILON
+        if inputWorld:
+            # Brick's life is worth more as we more closer to a win
+            goal_multiplier = ALL_LIVES - get_num_lives(outputWorld) + 1
 
-    if outputWorld.action == SPACE:
-        if inputWorld and not inputWorld.arrow.ready and outputWorld.arrow.ready:
-            reward += EPSILON
-        elif inputWorld and inputWorld.arrow.ready and outputWorld.arrow.ready:
-            reward -= EPSILON
+            lives_down = get_num_lives(inputWorld) - get_num_lives(outputWorld)
+            reward += goal_multiplier * lives_down * BRICK_LIFE
 
-    goal_multiplier = 1
-    if inputWorld:
-        # Brick's life is worth more as we more closer to a win
-        goal_multiplier = ALL_LIVES - get_num_lives(outputWorld) + 1
-
-        # goal_multiplier = 1
-
-        lives_down = get_num_lives(inputWorld) - get_num_lives(outputWorld)
-        reward += goal_multiplier * lives_down * BRICK_LIFE
-
-    total_reward = reward * get_time_factor(outputWorld)
-
-    # if total_reward > 0:
-    #     total_reward *= goal_multiplier
-
-    return total_reward, False
+    return reward * get_time_factor(outputWorld), False
 
 
 def ball_bounced_on_paddle(inputWorld, outputWorld):
