@@ -41,14 +41,14 @@ class BounceDNN(object):
             self.mean_reward = tf.placeholder(tf.float32, shape=[], name='mean_reward')
             self.mean_worlds_length = tf.placeholder(tf.float32, shape=[], name='mean_worlds_length')
             self.mean_num_lives = tf.placeholder(tf.float32, shape=[], name='mean_num_lives')
-            self.overall_score = tf.placeholder(tf.int32, shape=[], name='overall_score')
+            self.num_victories_last_100_games = tf.placeholder(tf.int32, shape=[], name='num_victories_last_100_games')
             self.ratio_exploration = self._get_exploration_ratio()
             tf.summary.scalar('cross_entropy_mean', tf.reduce_mean(self.cross_entropy))
             tf.summary.scalar('learning_rate', optimizer._lr_t)
             tf.summary.scalar('mean_num_lives', self.mean_num_lives)
             tf.summary.scalar('mean_reward', self.mean_reward)
             tf.summary.scalar('mean_worlds_length', self.mean_worlds_length)
-            tf.summary.scalar('overall_score', self.overall_score)
+            tf.summary.scalar('num_victories_last_100_games', self.num_victories_last_100_games)
             tf.summary.scalar('ratio_exploration', self.ratio_exploration)
 
             probs_family = 'z_probability'
@@ -110,7 +110,7 @@ class BounceDNN(object):
             self.mean_reward: statistics.get('mean_reward', 0),
             self.mean_worlds_length: statistics.get('mean_worlds_length', 0),
             self.mean_num_lives: statistics.get('mean_num_lives', 0),
-            self.overall_score: statistics.get('overall_score', 0),
+            self.num_victories_last_100_games: statistics.get('num_victories_last_100_games', 0),
         }
         return session.run([self.summary, self.cross_entropy], feed_dict=feed_dict)
 

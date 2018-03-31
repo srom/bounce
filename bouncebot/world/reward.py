@@ -48,9 +48,9 @@ def get_reward(inputWorld, outputWorld):
             #  - VOID: facing death
 
             if outputWorld.physics.target == 'BRICK':
-                reward += 5
+                reward += 10
             elif outputWorld.physics.target == 'PADDLE':
-                reward += 5
+                reward += 10
             elif outputWorld.physics.target == 'WALL':
                 reward += 1
             elif outputWorld.physics.target == 'VOID':
@@ -58,8 +58,7 @@ def get_reward(inputWorld, outputWorld):
 
         if outputWorld.action in (LEFT, RIGHT):
             if inputWorld.paddle.x_px != outputWorld.paddle.x_px:
-                pass
-                # reward += EPSILON
+                reward += 2 * EPSILON
             else:
                 reward -= EPSILON
 
@@ -71,7 +70,7 @@ def get_reward(inputWorld, outputWorld):
             if not inputWorld.arrow.ready:
                 reward += EPSILON
             else:
-                reward -= EPSILON
+                reward -= 5 * EPSILON
 
         if inputWorld:
             # Brick's life is worth more as we more closer to a win

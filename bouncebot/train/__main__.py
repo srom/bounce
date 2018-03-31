@@ -12,7 +12,7 @@ from .export import export_model
 from .features import get_training_features, split_features, get_features_from_games
 from .neural_net import BounceDNN
 from .play import play
-from .summary import compute_game_statistics
+from .summary import compute_game_statistics, update_rolling_scores
 
 
 LEARNING_RATE = 1e-4
@@ -72,6 +72,8 @@ def main(model_dir='checkpoints', export=False, export_local=False):
         best_loss_iteration = 0
         last_saved_loss = float('Inf')
 
+        rolling_scores = []
+
         while True:
             iteration += 1
             start = time.time()
@@ -88,7 +90,9 @@ def main(model_dir='checkpoints', export=False, export_local=False):
 
             learning_start = time.time()
 
-            mean_reward, mean_worlds_length, mean_num_lives, overall_score = compute_game_statistics(games)
+            mean_reward, mean_worlds_length, mean_num_lives, scores = compute_game_statistics(games)
+
+            num_victories_last_100_games = update_rolling_scores(rolling_scores, scores)
 
             X, rewards, labels = get_features_from_games(games)
 
@@ -130,7 +134,7 @@ def main(model_dir='checkpoints', export=False, export_local=False):
                     mean_reward=mean_reward,
                     mean_worlds_length=mean_worlds_length,
                     mean_num_lives=mean_num_lives,
-                    overall_score=overall_score,
+                    num_victories_last_100_games=num_victories_last_100_games,
                 ),
                 training=True
             )
