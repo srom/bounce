@@ -16,6 +16,7 @@
     "protobufjs": "6.8.4"
   },
   "devDependencies": {
+    "babel-cli": "6.26.0",
     "babel-core": "^6.4.0",
     "babel-loader": "^6.2.1",
     "babel-polyfill": "^6.8.0",
