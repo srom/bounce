@@ -8,7 +8,7 @@ import numpy as np
 from .models.world_pb2 import LEFT, RIGHT, SPACE, HOLD
 
 
-WON_REWARD = +100
+WON_REWARD = +500
 LOST_REWARD = -100
 BRICK_LIFE = +50
 EPSILON = +1
@@ -47,13 +47,13 @@ def get_reward(inputWorld, outputWorld):
             #  - VOID: facing death
 
             if outputWorld.physics.target == 'BRICK':
-                reward += 2
+                reward += 5
             elif outputWorld.physics.target == 'PADDLE':
-                reward += 10
+                reward += 20
             elif outputWorld.physics.target == 'WALL':
                 reward += 1
             elif outputWorld.physics.target == 'VOID':
-                reward -= 10
+                reward -= 5
 
         if outputWorld.action in (LEFT, RIGHT):
             if inputWorld.paddle.x_px != outputWorld.paddle.x_px:
