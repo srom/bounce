@@ -17,7 +17,8 @@ from .summary import compute_game_statistics, update_rolling_scores
 
 LEARNING_RATE = 1e-4
 BATCH_SIZE = 10  # Number of games to play between training steps
-ITERATIONS_BETWEEN_SAVE = 10
+ITERATIONS_BETWEEN_SAVE = 1e3
+ITERATIONS_BETWEEN_LOCAL_SAVE = 10
 
 logger = logging.getLogger(__name__)
 
@@ -120,11 +121,14 @@ def main(model_dir='checkpoints', export=False, export_local=False):
             logger.info('best loss: %f (%d)', best_loss, best_loss_iteration)
             logger.info('Elapsed (total): %f', time.time() - start)
 
-            if export and iteration % ITERATIONS_BETWEEN_SAVE == 0 and best_loss < last_saved_loss:
-                export_model(saver, model_save_path)
-                last_saved_loss = best_loss
+            if export and iteration % ITERATIONS_BETWEEN_SAVE == 0:
+                if best_loss < last_saved_loss:
+                    export_model(saver, model_save_path, best=True)
+                    last_saved_loss = best_loss
+                else:
+                    export_model(saver, model_save_path)
 
-            if export_local and iteration % ITERATIONS_BETWEEN_SAVE == 0:
+            if export_local and iteration % ITERATIONS_BETWEEN_LOCAL_SAVE == 0:
                 export_model(saver, model_save_path, local=True)
 
             logger.info('Writing summary')
