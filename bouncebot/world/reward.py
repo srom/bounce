@@ -36,7 +36,6 @@ def get_reward(inputWorld, outputWorld):
 
         if outputWorld.action in (LEFT, RIGHT):
             reward -= EPSILON
-
     else:
         if outputWorld.physics and outputWorld.physics.target:
             # Use output of ray casting to help evaluate the position.
@@ -48,17 +47,17 @@ def get_reward(inputWorld, outputWorld):
             #  - VOID: facing death
 
             if outputWorld.physics.target == 'BRICK':
-                reward += 10
+                reward += 5
             elif outputWorld.physics.target == 'PADDLE':
-                reward += 10
+                reward += 5
             elif outputWorld.physics.target == 'WALL':
                 reward += 1
             elif outputWorld.physics.target == 'VOID':
-                reward -= 2
+                reward -= 5
 
         if outputWorld.action in (LEFT, RIGHT):
             if inputWorld.paddle.x_px != outputWorld.paddle.x_px:
-                reward += 2 * EPSILON
+                reward += EPSILON
             else:
                 reward -= EPSILON
 
@@ -66,11 +65,8 @@ def get_reward(inputWorld, outputWorld):
             logger.info('BOUUUUNCE')
             reward += BRICK_LIFE * EPSILON
 
-        if outputWorld.action == SPACE:
-            if not inputWorld.arrow.ready:
-                reward += EPSILON
-            else:
-                reward -= 5 * EPSILON
+        if outputWorld.action == SPACE and inputWorld.arrow.ready:
+            reward -= 5 * EPSILON
 
         if inputWorld:
             # Brick's life is worth more as we more closer to a win

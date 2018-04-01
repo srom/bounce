@@ -4,8 +4,7 @@ set -e
 set -x
 
 curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
-sudo apt-get install -y nodej
-sudo apt-get install -y build-essentials
+sudo apt-get install -y nodejs
 sudo npm install -g npm@latest
 
 sudo pip2 install pip --upgrade
