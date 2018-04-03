@@ -8,9 +8,9 @@ import numpy as np
 from .models.world_pb2 import LEFT, RIGHT, SPACE, HOLD
 
 
-WON_REWARD = +500
-LOST_REWARD = -100
-BRICK_LIFE = +50
+WON_REWARD = +100
+LOST_REWARD = -2
+BRICK_LIFE = +1
 EPSILON = +1
 ALL_LIVES = 7
 
@@ -47,30 +47,31 @@ def get_reward(inputWorld, outputWorld):
             #  - VOID: facing death
 
             if outputWorld.physics.target == 'BRICK':
-                reward += 5
-            elif outputWorld.physics.target == 'PADDLE':
-                reward += 20
-            elif outputWorld.physics.target == 'WALL':
                 reward += 1
+            elif outputWorld.physics.target == 'PADDLE':
+                reward += 1
+            elif outputWorld.physics.target == 'WALL':
+                reward += 0
             elif outputWorld.physics.target == 'VOID':
-                reward -= 5
+                reward -= 1
 
-        if outputWorld.action in (LEFT, RIGHT):
-            if inputWorld.paddle.x_px != outputWorld.paddle.x_px:
-                reward += EPSILON
-            else:
-                reward -= EPSILON
+        # if outputWorld.action in (LEFT, RIGHT):
+        #     if inputWorld.paddle.x_px != outputWorld.paddle.x_px:
+        #         reward += EPSILON
+        #     else:
+        #         reward -= EPSILON
 
         if ball_bounced_on_paddle(inputWorld, outputWorld):
             logger.info('BOUUUUNCE')
             reward += BRICK_LIFE * EPSILON
 
-        if outputWorld.action == SPACE and inputWorld.arrow.ready:
-            reward -= 5 * EPSILON
+        # if outputWorld.action == SPACE and inputWorld.arrow.ready:
+        #     reward -= EPSILON
 
         if inputWorld:
             # Brick's life is worth more as we more closer to a win
-            goal_multiplier = ALL_LIVES - get_num_lives(outputWorld) + 1
+            # goal_multiplier = ALL_LIVES - get_num_lives(outputWorld) + 1
+            goal_multiplier = 1
 
             lives_down = get_num_lives(inputWorld) - get_num_lives(outputWorld)
             reward += goal_multiplier * lives_down * BRICK_LIFE
@@ -113,12 +114,14 @@ def get_time_factor(outputWorld):
         x = 1.0 * outputWorld.pre_frame_nb / MAX_PRE_FRAMES
         return - 100 * x * math.log(x, 10)
     else:
-        x = 1.0 * get_post_frame_nb(outputWorld) / MAX_FRAMES
+        # x = 1.0 * get_post_frame_nb(outputWorld) / MAX_FRAMES
+        #
+        # if x < 0.5:
+        #     return INITIAL_TIME_MULTIPLIER
+        # else:
+        #     return -INITIAL_TIME_MULTIPLIER * math.log(x, 10)
 
-        if x < 0.5:
-            return INITIAL_TIME_MULTIPLIER
-        else:
-            return -INITIAL_TIME_MULTIPLIER * math.log(x, 10)
+        return 1.0
 
     # if time_factor > 1:
     #     time_factor = 1
