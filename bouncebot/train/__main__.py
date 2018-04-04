@@ -15,7 +15,8 @@ from .play import play
 from .summary import compute_game_statistics, update_rolling_scores
 
 
-LEARNING_RATE = 1e-4
+LEARNING_RATE = 1e-3
+EPSILON = 1e-8
 BATCH_SIZE = 10  # Number of games to play between training steps
 ITERATIONS_BETWEEN_SAVE = 1e3
 ITERATIONS_BETWEEN_LOCAL_SAVE = 10
@@ -51,7 +52,7 @@ def main(model_dir='checkpoints', export=False, export_local=False):
     model_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), model_dir)
 
     logger.info('Loading the graph')
-    bounce_dnn = BounceDNN(learning_rate=LEARNING_RATE)
+    bounce_dnn = BounceDNN(learning_rate=LEARNING_RATE, epsilon=EPSILON)
 
     checkpoint_path = tf.train.latest_checkpoint(model_path)
 

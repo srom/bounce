@@ -12,7 +12,7 @@ DROPOUT_RATE = 0.5
 
 class BounceDNN(object):
 
-    def __init__(self, learning_rate, reuse=False):
+    def __init__(self, learning_rate, epsilon, reuse=False):
         with tf.variable_scope("input", reuse=reuse):
             self.X = tf.placeholder(tf.float32, shape=[None, NUM_INPUTS], name='X')
             self.actions = tf.placeholder(tf.float32, shape=[None, NUM_ACTIONS], name='actions')
@@ -29,7 +29,7 @@ class BounceDNN(object):
 
         with tf.variable_scope("train", reuse=reuse):
             self.global_step = tf.Variable(0, name='global_step', trainable=False)
-            optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate)
+            optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate, epsilon=epsilon)
 
             (self.compute_gradients_op,
              self.grads_and_vars,
