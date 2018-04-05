@@ -59,13 +59,16 @@ class BounceBot(object):
             self.training: True,
         })
 
+    def get_global_step(self, session):
+        return session.run(self.global_step)
+
     def _get_outputs(self):
         hidden_1 = tf.layers.dense(self.x, HIDDEN_UNITS, activation=tf.nn.elu, name='hidden_1')
         hidden_2 = tf.layers.dense(hidden_1, HIDDEN_UNITS, activation=tf.nn.elu, name='hidden_2')
         return tf.layers.dense(hidden_2, NUM_ACTIONS, activation=tf.nn.elu, name='outputs')
 
     def _get_loss(self):
-        critic_action_q_values = tf.reduce_sum(self.outputs * self.actions, axis=1, keep_dims=True)
+        critic_action_q_values = tf.reduce_sum(self.outputs * self.actions, axis=1, keepdims=True)
         return tf.reduce_mean(tf.square(self.targets - critic_action_q_values))
 
 
