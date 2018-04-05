@@ -8,6 +8,7 @@ import time
 import numpy as np
 import tensorflow as tf
 
+from .export import export_model
 from .network import BounceBot, get_copy_op
 
 
@@ -15,6 +16,7 @@ LEARNING_RATE = 1e-3
 BATCH_SIZE = 50
 ITERATIONS_BETWEEN_SAVE = 1e3
 ITERATIONS_BETWEEN_LOCAL_SAVE = 10
+COPY_STEPS = 25
 
 logger = logging.getLogger(__name__)
 
@@ -55,7 +57,35 @@ def main(model_dir='checkpoints', export=False, export_local=False):
         last_saved_loss = float('Inf')
 
         while True:
-            raise NotImplementedError
+            iteration += 1
+            start = time.time()
+
+            mean_loss = 0
+
+            if mean_loss < best_loss:
+                best_loss = mean_loss
+                best_loss_iteration = iteration
+
+            logger.info('iteration: %d', iteration)
+            logger.info('loss: %f', mean_loss)
+            logger.info('best loss: %f (%d)', best_loss, best_loss_iteration)
+            logger.info('Elapsed (total): %f', time.time() - start)
+
+            if iteration % COPY_STEPS == 0:
+                copy_critic_to_actor.run()
+                model_save_path = saver.save(session, save_path, global_step=iteration)
+
+            if export and iteration % ITERATIONS_BETWEEN_SAVE == 0:
+                if best_loss < last_saved_loss:
+                    export_model(saver, model_save_path, best=True)
+                    last_saved_loss = best_loss
+                else:
+                    export_model(saver, model_save_path)
+
+            if export_local and iteration % ITERATIONS_BETWEEN_LOCAL_SAVE == 0:
+                export_model(saver, model_save_path, local=True)
+
+            logger.info('-------------------')
 
 
 if __name__ == '__main__':

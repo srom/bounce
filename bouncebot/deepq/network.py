@@ -28,6 +28,7 @@ class BounceBot(object):
 
             with tf.variable_scope('q_values'):
                 self.outputs = self._get_outputs()
+                self.output_action = tf.argmax(self.outputs, axis=1, name='output_action')
 
             with tf.variable_scope('loss'):
                 self.mse = self._get_loss()
@@ -44,6 +45,12 @@ class BounceBot(object):
             var.name[len(self.scope.name):]: var
             for var in self.trainable_variables
         }
+
+    def evaluate(self, session, x, training=False):
+        return session.run(self.output_action, feed_dict={
+            self.x: x,
+            self.training: training,
+        })
 
     def get_q_values(self, session, x, training=False):
         return session.run(self.outputs, feed_dict={
