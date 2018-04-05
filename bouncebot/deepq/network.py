@@ -34,22 +34,22 @@ class BounceBot(object):
 
             with tf.variable_scope('train'):
                 self.global_step = tf.Variable(0, name='global_step', trainable=False)
-                self.trainable_variables = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, scope=self.scope.name)
                 optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate, epsilon=epsilon)
                 self.training_op = optimizer.minimize(self.mse, global_step=self.global_step)
+
+        self.trainable_variables = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, scope=self.scope.name)
+
+    def get_trainable_variables_by_name(self):
+        return {
+            var.name[len(self.scope.name):]: var
+            for var in self.trainable_variables
+        }
 
     def get_q_values(self, session, x, training=False):
         return session.run(self.outputs, feed_dict={
             self.x: x,
             self.training: training,
         })
-
-    def get_trainable_variables_by_name(self, session):
-        variables = session.run(self.trainable_variables)
-        return {
-            var.name[len(self.scope.name):]: var
-            for var in variables
-        }
 
     def train(self, session, x, actions, targets):
         return session.run(self.training_op, feed_dict={
@@ -67,3 +67,13 @@ class BounceBot(object):
     def _get_loss(self):
         critic_action_q_values = tf.reduce_sum(self.outputs * self.actions, axis=1, keep_dims=True)
         return tf.reduce_mean(tf.square(self.targets - critic_action_q_values))
+
+
+def get_copy_op(actor, critic):
+    actor_variables = actor.get_trainable_variables_by_name()
+    critic_variables = critic.get_trainable_variables_by_name()
+    copy_ops = [
+        actor_variable.assign(critic_variables[var_name])
+        for var_name, actor_variable in actor_variables.items()
+    ]
+    return tf.group(*copy_ops)
