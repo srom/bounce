@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 import tensorflow as tf
 
-from ..train.features import NUM_FEATURES as NUM_INPUTS
+from ..pg.features import NUM_FEATURES as NUM_INPUTS
 
 
 HIDDEN_UNITS = 256
