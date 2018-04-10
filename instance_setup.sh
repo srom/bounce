@@ -32,5 +32,5 @@ mkdir log
 popd
 
 # nohup ./run_server.sh > log/node_server.log 2>&1 &
-# nohup env/bin/python -m bouncebot.train --export > log/bouncebot.log 2>&1 &
+# nohup env/bin/python -m bouncebot.deepq --export > log/bouncebot.log 2>&1 &
 # nohup env/bin/tensorboard --logdir summary_log/ > log/tensorboard.log 2>&1 &

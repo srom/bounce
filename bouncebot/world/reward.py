@@ -114,14 +114,12 @@ def get_time_factor(outputWorld):
         x = 1.0 * outputWorld.pre_frame_nb / MAX_PRE_FRAMES
         return - 100 * x * math.log(x, 10)
     else:
-        # x = 1.0 * get_post_frame_nb(outputWorld) / MAX_FRAMES
-        #
-        # if x < 0.5:
-        #     return INITIAL_TIME_MULTIPLIER
-        # else:
-        #     return -INITIAL_TIME_MULTIPLIER * math.log(x, 10)
+        x = 1.0 * get_post_frame_nb(outputWorld) / MAX_FRAMES
 
-        return 1.0
+        if x < 0.5:
+            return INITIAL_TIME_MULTIPLIER
+        else:
+            return -INITIAL_TIME_MULTIPLIER * math.log(x, 10)
 
     # if time_factor > 1:
     #     time_factor = 1
