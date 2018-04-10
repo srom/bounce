@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 import argparse
+import collections
 import logging
 import os
 import time
@@ -8,17 +9,29 @@ import time
 import numpy as np
 import tensorflow as tf
 
+from .do import play
 from .export import export_model
+from .memory import Memory
 from .network import BounceBot, get_copy_op
+from .summary import compute_game_statistics
 
 
 LEARNING_RATE = 1e-3
 BATCH_SIZE = 50
-ITERATIONS_BETWEEN_SAVE = 1e3
+ITERATIONS_BETWEEN_SAVE = 1e2
 ITERATIONS_BETWEEN_LOCAL_SAVE = 10
-COPY_STEPS = 25
+NUM_GAMES_BEFORE_TRAINING = 2
+COPY_STEPS = 30
+LOGGING_STEPS = 10
+MEMORY_SIZE = 1e4
+DISCOUNT_RATE = 0.95
 
 logger = logging.getLogger(__name__)
+
+
+def play_game(session, actor):
+    worlds, won = play(session, actor)
+    return worlds, won
 
 
 def main(model_dir='checkpoints', export=False, export_local=False):
@@ -34,13 +47,10 @@ def main(model_dir='checkpoints', export=False, export_local=False):
     critic = BounceBot('critic', learning_rate=LEARNING_RATE)
     copy_critic_to_actor = get_copy_op(actor, critic)
 
+    saver = tf.train.Saver()
     checkpoint_path = tf.train.latest_checkpoint(model_path)
-
-    saver = tf.train.Saver()
     model_save_path = None
 
-    saver = tf.train.Saver()
-    model_save_path = None
     with tf.Session() as session:
         if not checkpoint_path:
             session.run(tf.global_variables_initializer())
@@ -52,6 +62,9 @@ def main(model_dir='checkpoints', export=False, export_local=False):
 
         summary_writer = tf.summary.FileWriter('./summary_log/train', session.graph)
 
+        replay_memory = Memory(MEMORY_SIZE)
+        rolling_scores = collections.deque([], maxlen=100)
+
         best_loss = float('Inf')
         best_loss_iteration = 0
         last_saved_loss = float('Inf')
@@ -60,20 +73,56 @@ def main(model_dir='checkpoints', export=False, export_local=False):
             iteration += 1
             start = time.time()
 
-            mean_loss = 0
+            games = []
+            while 1:
+                worlds, won = play_game(session, actor)
+                replay_memory.add_worlds(worlds)
+                games.append(worlds)
+
+                if len(games) == NUM_GAMES_BEFORE_TRAINING:
+                    break
+
+            X_in, actions, rewards, X_out, carry_on = replay_memory.sample_memories(BATCH_SIZE)
+            next_q_values = actor.get_q_values(session, X_out, training=True)
+            max_next_q_values = np.max(next_q_values, axis=1, keepdims=True)
+            targets = rewards + DISCOUNT_RATE * np.multiply(max_next_q_values, carry_on.reshape((len(carry_on), 1)))
+
+            critic.train(session, X_in, actions, targets)
+
+            mean_reward, mean_worlds_length, mean_num_lives, scores = compute_game_statistics(games)
+
+            rolling_scores.extend(scores)
+            num_victories_last_100_games = 100.0 * np.mean(rolling_scores) if len(rolling_scores) == 100 else 0.0
+
+            summary, losses = critic.compute_summary(session, X_in, actions, targets, training=True, statistics=dict(
+                mean_reward=mean_reward,
+                mean_worlds_length=mean_worlds_length,
+                mean_num_lives=mean_num_lives,
+                num_victories_last_100_games=num_victories_last_100_games,
+            ),)
+            mean_loss = np.mean(losses)
+
+            summary_writer.add_summary(summary, global_step=iteration)
 
             if mean_loss < best_loss:
                 best_loss = mean_loss
                 best_loss_iteration = iteration
 
-            logger.info('iteration: %d', iteration)
-            logger.info('loss: %f', mean_loss)
-            logger.info('best loss: %f (%d)', best_loss, best_loss_iteration)
-            logger.info('Elapsed (total): %f', time.time() - start)
+            if iteration % LOGGING_STEPS == 0:
+                logger.info('-------------------')
+                logger.info('iteration: %d', iteration)
+                logger.info('loss: %f', mean_loss)
+                logger.info('best loss: %f (%d)', best_loss, best_loss_iteration)
+                logger.info('Elapsed (total): %f', time.time() - start)
+                logger.info('-------------------')
 
             if iteration % COPY_STEPS == 0:
                 copy_critic_to_actor.run()
+
+            if iteration % ITERATIONS_BETWEEN_LOCAL_SAVE == 0:
                 model_save_path = saver.save(session, save_path, global_step=iteration)
+                if export_local:
+                    export_model(saver, model_save_path, local=True)
 
             if export and iteration % ITERATIONS_BETWEEN_SAVE == 0:
                 if best_loss < last_saved_loss:
@@ -81,11 +130,6 @@ def main(model_dir='checkpoints', export=False, export_local=False):
                     last_saved_loss = best_loss
                 else:
                     export_model(saver, model_save_path)
-
-            if export_local and iteration % ITERATIONS_BETWEEN_LOCAL_SAVE == 0:
-                export_model(saver, model_save_path, local=True)
-
-            logger.info('-------------------')
 
 
 if __name__ == '__main__':
