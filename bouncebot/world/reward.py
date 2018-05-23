@@ -8,8 +8,8 @@ import numpy as np
 from .models.world_pb2 import LEFT, RIGHT, SPACE, HOLD
 
 
-WON_REWARD = +100
-LOST_REWARD = -2
+WON_REWARD = +1
+LOST_REWARD = -1
 BRICK_LIFE = +1
 EPSILON = +1
 ALL_LIVES = 7
@@ -32,11 +32,16 @@ def get_reward(inputWorld, outputWorld):
 
     reward = 0
     if not outputWorld.arrow.ready:
-        reward = EPSILON
+        # reward = EPSILON
+        reward = 0
 
         if outputWorld.action in (LEFT, RIGHT):
-            reward -= EPSILON
+            reward -= 0
+            # reward -= EPSILON
     else:
+        if not inputWorld.arrow.ready:
+            reward += EPSILON
+
         if outputWorld.physics and outputWorld.physics.target:
             # Use output of ray casting to help evaluate the position.
             # world.physics.target describes what the ball is facing.
@@ -47,13 +52,13 @@ def get_reward(inputWorld, outputWorld):
             #  - VOID: facing death
 
             if outputWorld.physics.target == 'BRICK':
-                reward += 1
+                reward += 0
             elif outputWorld.physics.target == 'PADDLE':
-                reward += 1
+                reward += 0
             elif outputWorld.physics.target == 'WALL':
                 reward += 0
             elif outputWorld.physics.target == 'VOID':
-                reward -= 1
+                reward -= 0
 
         # if outputWorld.action in (LEFT, RIGHT):
         #     if inputWorld.paddle.x_px != outputWorld.paddle.x_px:
@@ -61,9 +66,9 @@ def get_reward(inputWorld, outputWorld):
         #     else:
         #         reward -= EPSILON
 
-        if ball_bounced_on_paddle(inputWorld, outputWorld):
-            logger.info('BOUUUUNCE')
-            reward += BRICK_LIFE * EPSILON
+        # if ball_bounced_on_paddle(inputWorld, outputWorld):
+        #     logger.info('BOUUUUNCE')
+        #     reward += BRICK_LIFE * EPSILON
 
         # if outputWorld.action == SPACE and inputWorld.arrow.ready:
         #     reward -= EPSILON
