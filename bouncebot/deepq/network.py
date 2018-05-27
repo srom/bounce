@@ -7,10 +7,13 @@ import tensorflow as tf
 from ..pg.features import NUM_FEATURES as NUM_INPUTS
 
 
-HIDDEN_UNITS = 256
-NUM_ACTIONS = 4
+# Parameters
+HIDDEN_UNITS = 128
 DEFAULT_EPSILON = 1e-8
 DECAY_STEPS = 5e4
+
+# Constants
+NUM_ACTIONS = 4
 
 
 class BounceBot(object):

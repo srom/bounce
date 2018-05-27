@@ -40,7 +40,7 @@ def get_reward(inputWorld, outputWorld):
             # reward -= EPSILON
     else:
         if not inputWorld.arrow.ready:
-            reward += EPSILON
+            reward += 2 * EPSILON
 
         if outputWorld.physics and outputWorld.physics.target:
             # Use output of ray casting to help evaluate the position.
